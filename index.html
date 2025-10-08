@@ -56,6 +56,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary-color);
+            cursor: pointer;
         }
 
         .nav-links {
@@ -72,6 +73,7 @@
             color: var(--text-color);
             font-weight: 500;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -110,6 +112,17 @@
         .btn-outline:hover {
             background-color: var(--primary-color);
             color: white;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+            min-height: 80vh;
+            padding: 2rem 0;
+        }
+
+        .page.active {
+            display: block;
         }
 
         /* Hero Section */
@@ -252,6 +265,7 @@
             color: #ddd;
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .footer-links a:hover {
@@ -352,6 +366,7 @@
         .auth-link a {
             color: var(--primary-color);
             text-decoration: none;
+            cursor: pointer;
         }
 
         /* Dashboard */
@@ -430,6 +445,7 @@
             display: flex;
             gap: 10px;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
         /* Day View */
@@ -556,6 +572,30 @@
             display: flex;
             gap: 10px;
             margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Settings Page */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .settings-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .settings-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-group h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
         }
 
         /* Responsive */
@@ -585,11 +625,15 @@
                 align-items: flex-start;
                 gap: 1rem;
             }
+            
+            .dashboard-actions, .day-actions {
+                flex-direction: column;
+            }
         }
 
         /* Utility Classes */
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         .text-center {
@@ -618,39 +662,64 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <div class="logo">75Hard</div>
+                <div class="logo" onclick="showPage('home')">75Hard</div>
                 <ul class="nav-links">
-                    <li><a href="#home">الرئيسية</a></li>
-                    <li><a href="#features">الميزات</a></li>
-                    <li><a href="#faq">الأسئلة الشائعة</a></li>
-                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a onclick="showPage('home')">الرئيسية</a></li>
+                    <li><a onclick="showPage('features')">الميزات</a></li>
+                    <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
+                    <li><a onclick="showPage('contact')">اتصل بنا</a></li>
                 </ul>
                 <div class="auth-buttons">
-                    <button class="btn btn-outline" id="loginBtn">تسجيل الدخول</button>
-                    <button class="btn btn-primary" id="signupBtn">إنشاء حساب</button>
+                    <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
                 </div>
             </nav>
         </div>
     </header>
 
     <!-- Landing Page -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>ابدأ تحدي 75 يوم — قوّي انضباطك</h1>
-            <p>برنامج يومي مكوّن من 5 قواعد لبناء عادة الانضباط الذاتي — غذاء، تمرينين (أحدهما خارجي)، ماء، قراءة، صورة يومية.</p>
-            <button class="cta-button">ابدأ الآن — سجّل مجاناً</button>
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <h1>ابدأ تحدي 75 يوم — قوّي انضباطك</h1>
+                <p>برنامج يومي مكوّن من 5 قواعد لبناء عادة الانضباط الذاتي — غذاء، تمرينين (أحدهما خارجي)، ماء، قراءة، صورة يومية.</p>
+                <button class="cta-button" onclick="showPage('signup')">ابدأ الآن — سجّل مجاناً</button>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="container">
+                <h2 class="section-title">ميزات التطبيق</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>لوحة متابعة</h3>
+                        <p>تتبع تقدمك اليومي مع لوحة متابعة تفاعلية تعرض إنجازاتك ونسبة الإنجاز الكلية.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>تذكيرات ذكية</h3>
+                        <p>لا تفوت أي مهمة مع نظام التذكيرات اليومية الذي ينبهك لإكمال مهامك في الوقت المناسب.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📤</div>
+                        <h3>تصدير التقارير</h3>
+                        <p>احصل على تقارير مفصلة عن تقدمك بصيغ CSV وPDF لمشاركتها أو حفظها للأرشيف.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
+    <!-- Features Page -->
+    <section id="features" class="page">
         <div class="container">
-            <h2 class="section-title">ميزات التطبيق</h2>
+            <h1 class="section-title">ميزات تحدي 75 يوم</h1>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>لوحة متابعة</h3>
-                    <p>تتبع تقدمك اليومي مع لوحة متابعة تفاعلية تعرض إنجازاتك ونسبة الإنجاز الكلية.</p>
+                    <h3>لوحة متابعة شاملة</h3>
+                    <p>تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز الكلية بشكل مرئي وجذاب.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔔</div>
@@ -662,14 +731,29 @@
                     <h3>تصدير التقارير</h3>
                     <p>احصل على تقارير مفصلة عن تقدمك بصيغ CSV وPDF لمشاركتها أو حفظها للأرشيف.</p>
                 </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>واجهة متجاوبة</h3>
+                    <p>استخدم التطبيق على جميع الأجهزة من الهواتف إلى أجهزة الكمبيوتر المكتبية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>حماية البيانات</h3>
+                    <p>بياناتك وصورك محمية ومشفرة، مع خيارات خصوصية متقدمة.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>دعم متعدد اللغات</h3>
+                    <p>استخدم التطبيق باللغة العربية أو الإنجليزية حسب تفضيلاتك.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section id="faq" class="faq">
+    <!-- FAQ Page -->
+    <section id="faq" class="page">
         <div class="container">
-            <h2 class="section-title">أسئلة شائعة</h2>
+            <h1 class="section-title">الأسئلة الشائعة</h1>
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
@@ -677,7 +761,7 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>يهدف التحدي إلى بناء عادة الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتاليًا.</p>
+                        <p>يهدف التحدي إلى بناء عادة الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتاليًا. يساعدك التحدي على تطوير قدرتك على الالتزام وتحسين صحتك الجسدية والعقلية.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -686,7 +770,7 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>إذا قمت بتفعيل خيار "الإعادة عند الفشل" في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي مخالفة للقواعد.</p>
+                        <p>إذا قمت بتفعيل خيار "الإعادة عند الفشل" في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي مخالفة للقواعد. يمكنك تعطيل هذا الخيار إذا أردت الاستمرار من حيث توقفت.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -695,118 +779,133 @@
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>نعم، يمكن للمبتدئين البدء بالتحدي مع تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي.</p>
+                        <p>نعم، يمكن للمبتدئين البدء بالتحدي مع تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي. ننصح بالبدء تدريجيًا وزيادة الصعوبة مع الوقت.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كيف يتم حساب الأيام المكتملة؟</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>اليوم يعتبر مكتملاً عند إنجاز جميع المهام الخمسة: النظام الغذائي، التمرينين، شرب كمية الماء المطلوبة، القراءة، ورفع الصورة اليومية.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يمكنني تعديل الأيام السابقة؟</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكنك تعديل البيانات الخاصة بالأيام السابقة، لكن سيتم وضع علامة "تم التعديل يدوياً" للحفاظ على مصداقية التحدي.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
+    <!-- Contact Page -->
+    <section id="contact" class="page">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>روابط سريعة</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">الرئيسية</a></li>
-                        <li><a href="#features">الميزات</a></li>
-                        <li><a href="#faq">الأسئلة الشائعة</a></li>
-                    </ul>
+            <h1 class="section-title">اتصل بنا</h1>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>معلومات الاتصال</h3>
+                    <p>البريد الإلكتروني: info@75hard.com</p>
+                    <p>الهاتف: +966 123 456 789</p>
+                    <p>ساعات العمل: 9:00 ص - 5:00 م</p>
                 </div>
-                <div class="footer-column">
-                    <h3>الدعم</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">سياسة الخصوصية</a></li>
-                        <li><a href="#">شروط الاستخدام</a></li>
-                        <li><a href="#">اتصل بنا</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>تابعنا</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">تويتر</a></li>
-                        <li><a href="#">فيسبوك</a></li>
-                        <li><a href="#">إنستغرام</a></li>
+                <div class="feature-card">
+                    <h3>روابط مهمة</h3>
+                    <ul class="footer-links" style="color: var(--text-color);">
+                        <li><a>سياسة الخصوصية</a></li>
+                        <li><a>شروط الاستخدام</a></li>
+                        <li><a>الدعم الفني</a></li>
+                        <li><a>الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2023 تحدي 75 يوم. جميع الحقوق محفوظة.</p>
-            </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="auth-container hidden">
-        <h2 class="auth-title">تسجيل الدخول</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="loginEmail">البريد الإلكتروني</label>
-                <input type="email" id="loginEmail" class="form-control" required>
+    <!-- Login Page -->
+    <section id="login" class="page">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="auth-title">تسجيل الدخول</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">البريد الإلكتروني</label>
+                        <input type="email" id="loginEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">كلمة المرور</label>
+                        <input type="password" id="loginPassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
+                </form>
+                <div class="auth-divider">
+                    <span>أو</span>
+                </div>
+                <button class="btn-google">
+                    <span>تسجيل الدخول بحساب Google</span>
+                </button>
+                <div class="auth-link">
+                    <p>ليس لديك حساب؟ <a onclick="showPage('signup')">إنشاء حساب</a></p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="loginPassword">كلمة المرور</label>
-                <input type="password" id="loginPassword" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
-        </form>
-        <div class="auth-divider">
-            <span>أو</span>
         </div>
-        <button class="btn-google">
-            <span>تسجيل الدخول بحساب Google</span>
-        </button>
-        <div class="auth-link">
-            <p>ليس لديك حساب؟ <a href="#" id="showSignup">إنشاء حساب</a></p>
-        </div>
-    </div>
+    </section>
 
-    <!-- Signup Modal -->
-    <div id="signupModal" class="auth-container hidden">
-        <h2 class="auth-title">إنشاء حساب</h2>
-        <form id="signupForm">
-            <div class="form-group">
-                <label for="signupName">الاسم الكامل</label>
-                <input type="text" id="signupName" class="form-control" required>
+    <!-- Signup Page -->
+    <section id="signup" class="page">
+        <div class="container">
+            <div class="auth-container">
+                <h2 class="auth-title">إنشاء حساب</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupName">الاسم الكامل</label>
+                        <input type="text" id="signupName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupEmail">البريد الإلكتروني</label>
+                        <input type="email" id="signupEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">كلمة المرور</label>
+                        <input type="password" id="signupPassword" class="form-control" required minlength="8">
+                        <small style="color: var(--light-text);">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">إنشاء حساب</button>
+                </form>
+                <div class="auth-divider">
+                    <span>أو</span>
+                </div>
+                <button class="btn-google">
+                    <span>التسجيل بحساب Google</span>
+                </button>
+                <div class="auth-link">
+                    <p>لديك حساب بالفعل؟ <a onclick="showPage('login')">تسجيل الدخول</a></p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="signupEmail">البريد الإلكتروني</label>
-                <input type="email" id="signupEmail" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="signupPassword">كلمة المرور</label>
-                <input type="password" id="signupPassword" class="form-control" required minlength="8">
-                <small style="color: var(--light-text);">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;">إنشاء حساب</button>
-        </form>
-        <div class="auth-divider">
-            <span>أو</span>
         </div>
-        <button class="btn-google">
-            <span>التسجيل بحساب Google</span>
-        </button>
-        <div class="auth-link">
-            <p>لديك حساب بالفعل؟ <a href="#" id="showLogin">تسجيل الدخول</a></p>
-        </div>
-    </div>
+    </section>
 
-    <!-- Dashboard (Hidden by default) -->
-    <div id="dashboard" class="dashboard hidden">
+    <!-- Dashboard Page -->
+    <section id="dashboard" class="page">
         <div class="container">
             <div class="dashboard-header">
                 <h1>لوحة المتابعة</h1>
                 <div class="user-menu">
                     <span>مرحباً، أحمد</span>
-                    <button class="btn btn-outline">الإعدادات</button>
-                    <button class="btn btn-outline">تسجيل الخروج</button>
+                    <button class="btn btn-outline" onclick="showPage('settings')">الإعدادات</button>
+                    <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
                 </div>
             </div>
             
             <div class="progress-card">
                 <h2>تقدمك في التحدي</h2>
-                <div class="progress-info">
+                <div class="progress-info" style="display: flex; justify-content: space-between;">
                     <span>اليوم 23 من 75</span>
                     <span>30.6% مكتمل</span>
                 </div>
@@ -815,14 +914,15 @@
                 </div>
                 
                 <h3 class="mt-2">شبكة الأيام</h3>
-                <div class="days-grid">
+                <div class="days-grid" id="daysGrid">
                     <!-- Days 1-75 will be generated here -->
                 </div>
                 
                 <div class="dashboard-actions">
-                    <button class="btn btn-primary">اذهب إلى اليوم 23</button>
+                    <button class="btn btn-primary" onclick="showPage('dayView')">اذهب إلى اليوم الحالي</button>
                     <button class="btn btn-outline">تصدير CSV</button>
-                    <button class="btn btn-outline">إعادة ضبط التحدي</button>
+                    <button class="btn btn-outline" onclick="showPage('reports')">التقارير</button>
+                    <button class="btn btn-outline" id="resetChallengeBtn">إعادة ضبط التحدي</button>
                 </div>
             </div>
             
@@ -830,14 +930,14 @@
                 <!-- Statistics will be displayed here -->
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Day View (Hidden by default) -->
-    <div id="dayView" class="day-view hidden">
+    <!-- Day View Page -->
+    <section id="dayView" class="page">
         <div class="container">
             <div class="day-header">
                 <h1>اليوم 23 - 15 أكتوبر 2023</h1>
-                <button class="btn btn-outline">العودة إلى اللوحة</button>
+                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
             </div>
             
             <div class="task-card">
@@ -845,12 +945,12 @@
                     <div class="task-title">النظام الغذائي</div>
                     <div class="task-status">
                         <label class="toggle-switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="dietCheckbox">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="اختصار النظام الغذائي (اختياري)">
+                <input type="text" class="form-control" placeholder="اختصار النظام الغذائي (اختياري)" id="dietInput">
             </div>
             
             <div class="task-card">
@@ -858,12 +958,12 @@
                     <div class="task-title">التمرين 1 (45 دقيقة)</div>
                     <div class="task-status">
                         <label class="toggle-switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="workout1Checkbox">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="نوع التمرين">
+                <input type="text" class="form-control" placeholder="نوع التمرين" id="workout1Input">
             </div>
             
             <div class="task-card">
@@ -871,7 +971,7 @@
                     <div class="task-title">التمرين 2 (45 دقيقة - مطلوب واحد خارجي)</div>
                     <div class="task-status">
                         <label class="toggle-switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="workout2Checkbox">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
@@ -891,8 +991,8 @@
                     <div class="task-title">الماء</div>
                 </div>
                 <div class="water-input">
-                    <input type="number" class="form-control" placeholder="كمية الماء (مل)" value="3700">
-                    <button class="water-quick-btn">املأ غالون (3.7 لتر)</button>
+                    <input type="number" class="form-control" placeholder="كمية الماء (مل)" value="3700" id="waterInput">
+                    <button class="water-quick-btn" onclick="fillWater()">املأ غالون (3.7 لتر)</button>
                 </div>
             </div>
             
@@ -901,19 +1001,19 @@
                     <div class="task-title">القراءة</div>
                     <div class="task-status">
                         <label class="toggle-switch">
-                            <input type="checkbox">
+                            <input type="checkbox" id="readingCheckbox">
                             <span class="toggle-slider"></span>
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="اسم الكتاب/الصفحات">
+                <input type="text" class="form-control" placeholder="اسم الكتاب/الصفحات" id="readingInput">
             </div>
             
             <div class="task-card">
                 <div class="task-header">
                     <div class="task-title">الصورة اليومية</div>
                 </div>
-                <div class="photo-upload" id="photoUpload">
+                <div class="photo-upload" id="photoUploadArea">
                     <p>انقر لرفع صورة أو اسحبها هنا</p>
                     <input type="file" id="photoInput" accept="image/*" style="display: none;">
                     <img id="photoPreview" class="photo-preview" src="" alt="معاينة الصورة">
@@ -924,130 +1024,383 @@
                 <div class="task-header">
                     <div class="task-title">ملاحظات</div>
                 </div>
-                <textarea class="notes-textarea" placeholder="اكتب ملاحظاتك اليومية هنا..."></textarea>
+                <textarea class="notes-textarea" placeholder="اكتب ملاحظاتك اليومية هنا..." id="notesTextarea"></textarea>
             </div>
             
             <div class="day-actions">
-                <button class="btn btn-primary">حفظ التحديث</button>
-                <button class="btn btn-outline">إعادة تعيين هذا اليوم</button>
+                <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التحديث</button>
+                <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Settings Page -->
+    <section id="settings" class="page">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>الإعدادات</h1>
+                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
+            </div>
+            
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <h2>إعدادات الحساب</h2>
+                    <div class="settings-group">
+                        <label for="userName">الاسم</label>
+                        <input type="text" id="userName" class="form-control" value="أحمد">
+                    </div>
+                    <div class="settings-group">
+                        <label for="userEmail">البريد الإلكتروني</label>
+                        <input type="email" id="userEmail" class="form-control" value="ahmed@example.com">
+                    </div>
+                    <button class="btn btn-primary">حفظ التغييرات</button>
+                </div>
+                
+                <div class="settings-card">
+                    <h2>إعدادات التحدي</h2>
+                    <div class="settings-group">
+                        <label>
+                            <input type="checkbox" id="resetOnFail" checked> 
+                            الإعادة إلى اليوم الأول عند الفشل
+                        </label>
+                    </div>
+                    <div class="settings-group">
+                        <label for="waterGoal">هدف الماء اليومي (لتر)</label>
+                        <input type="number" id="waterGoal" class="form-control" value="3.7" step="0.1">
+                    </div>
+                    <div class="settings-group">
+                        <label for="language">لغة الواجهة</label>
+                        <select id="language" class="form-control">
+                            <option value="ar">العربية</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary">حفظ الإعدادات</button>
+                </div>
+                
+                <div class="settings-card">
+                    <h2>الإشعارات</h2>
+                    <div class="settings-group">
+                        <label>
+                            <input type="checkbox" id="morningNotifications" checked> 
+                            تذكيرات الصباح (8:00)
+                        </label>
+                    </div>
+                    <div class="settings-group">
+                        <label>
+                            <input type="checkbox" id="eveningNotifications" checked> 
+                            تذكيرات المساء (20:00)
+                        </label>
+                    </div>
+                    <div class="settings-group">
+                        <label>نوع الإشعارات:</label>
+                        <label>
+                            <input type="radio" name="notificationType" value="email" checked> 
+                            بريد إلكتروني
+                        </label>
+                        <label>
+                            <input type="radio" name="notificationType" value="browser"> 
+                            إشعارات المتصفح
+                        </label>
+                    </div>
+                    <button class="btn btn-primary">حفظ الإعدادات</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Page -->
+    <section id="reports" class="page">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>التقارير والتصدير</h1>
+                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
+            </div>
+            
+            <div class="progress-card">
+                <h2>تصدير بيانات التحدي</h2>
+                <p>يمكنك تصدير بيانات تقدمك في التحدي بصيغ مختلفة لمشاركتها أو حفظها.</p>
+                
+                <div class="dashboard-actions">
+                    <button class="btn btn-primary">تصدير CSV</button>
+                    <button class="btn btn-primary">تصدير PDF</button>
+                </div>
+                
+                <div class="settings-group mt-2">
+                    <h3>خيارات التصفية</h3>
+                    <label for="dateFrom">من تاريخ:</label>
+                    <input type="date" id="dateFrom" class="form-control">
+                    
+                    <label for="dateTo" class="mt-1">إلى تاريخ:</label>
+                    <input type="date" id="dateTo" class="form-control">
+                    
+                    <label class="mt-1">
+                        <input type="checkbox" id="completedOnly"> 
+                        عرض الأيام المكتملة فقط
+                    </label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a onclick="showPage('home')">الرئيسية</a></li>
+                        <li><a onclick="showPage('features')">الميزات</a></li>
+                        <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a>سياسة الخصوصية</a></li>
+                        <li><a>شروط الاستخدام</a></li>
+                        <li><a onclick="showPage('contact')">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تابعنا</h3>
+                    <ul class="footer-links">
+                        <li><a>تويتر</a></li>
+                        <li><a>فيسبوك</a></li>
+                        <li><a>إنستغرام</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 تحدي 75 يوم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // DOM Elements
-        const loginBtn = document.getElementById('loginBtn');
-        const signupBtn = document.getElementById('signupBtn');
-        const loginModal = document.getElementById('loginModal');
-        const signupModal = document.getElementById('signupModal');
-        const showSignup = document.getElementById('showSignup');
-        const showLogin = document.getElementById('showLogin');
-        const dashboard = document.getElementById('dashboard');
-        const dayView = document.getElementById('dayView');
-        const photoUpload = document.getElementById('photoUpload');
-        const photoInput = document.getElementById('photoInput');
-        const photoPreview = document.getElementById('photoPreview');
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        const daysGrid = document.querySelector('.days-grid');
-
-        // Generate days grid
-        for (let i = 1; i <= 75; i++) {
-            const dayBox = document.createElement('div');
-            dayBox.className = 'day-box';
-            dayBox.textContent = i;
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Generate days grid for dashboard
+            generateDaysGrid();
             
-            // Random status for demo (in real app, this would come from backend)
-            const status = Math.random();
-            if (status < 0.7 && i <= 23) {
-                dayBox.classList.add('day-completed');
-            } else if (status < 0.85 && i <= 23) {
-                dayBox.classList.add('day-partial');
-            } else if (status < 0.9 && i <= 23) {
-                dayBox.classList.add('day-failed');
-            } else {
-                dayBox.classList.add('day-pending');
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Check if user is logged in (for demo purposes)
+            checkAuthStatus();
+        });
+
+        // Page navigation function
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Special handling for dashboard pages (require login)
+            if (['dashboard', 'dayView', 'settings', 'reports'].includes(pageId)) {
+                if (!isLoggedIn()) {
+                    showPage('login');
+                    return;
+                }
             }
             
-            daysGrid.appendChild(dayBox);
+            // Scroll to top when changing pages
+            window.scrollTo(0, 0);
         }
 
-        // Event Listeners
-        loginBtn.addEventListener('click', () => {
-            loginModal.classList.remove('hidden');
-            signupModal.classList.add('hidden');
-        });
+        // Check if user is logged in (demo function)
+        function isLoggedIn() {
+            return localStorage.getItem('75hard_user') !== null;
+        }
 
-        signupBtn.addEventListener('click', () => {
-            signupModal.classList.remove('hidden');
-            loginModal.classList.add('hidden');
-        });
-
-        showSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            signupModal.classList.remove('hidden');
-            loginModal.classList.add('hidden');
-        });
-
-        showLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.classList.remove('hidden');
-            signupModal.classList.add('hidden');
-        });
-
-        // Demo login (for presentation)
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            loginModal.classList.add('hidden');
-            dashboard.classList.remove('hidden');
-        });
-
-        // Demo signup (for presentation)
-        document.getElementById('signupForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            signupModal.classList.add('hidden');
-            dashboard.classList.remove('hidden');
-        });
-
-        // FAQ toggle
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling;
-                answer.classList.toggle('active');
-                
-                // Toggle icon
-                const icon = question.querySelector('span:last-child');
-                icon.textContent = answer.classList.contains('active') ? '-' : '+';
-            });
-        });
-
-        // Photo upload
-        photoUpload.addEventListener('click', () => {
-            photoInput.click();
-        });
-
-        photoInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    photoPreview.src = e.target.result;
-                    photoPreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
+        // Check authentication status and show appropriate pages
+        function checkAuthStatus() {
+            if (isLoggedIn()) {
+                document.querySelector('.auth-buttons').innerHTML = `
+                    <button class="btn btn-outline" onclick="showPage('dashboard')">لوحة التحكم</button>
+                    <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
+                `;
+            } else {
+                document.querySelector('.auth-buttons').innerHTML = `
+                    <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
+                `;
             }
-        });
+        }
 
-        // Demo navigation to day view
-        document.querySelector('.btn-primary').addEventListener('click', () => {
-            dashboard.classList.add('hidden');
-            dayView.classList.remove('hidden');
-        });
+        // Generate days grid for dashboard
+        function generateDaysGrid() {
+            const daysGrid = document.getElementById('daysGrid');
+            if (!daysGrid) return;
+            
+            daysGrid.innerHTML = '';
+            
+            for (let i = 1; i <= 75; i++) {
+                const dayBox = document.createElement('div');
+                dayBox.className = 'day-box';
+                dayBox.textContent = i;
+                dayBox.onclick = () => showDayDetails(i);
+                
+                // Random status for demo (in real app, this would come from backend)
+                const status = Math.random();
+                if (status < 0.7 && i <= 23) {
+                    dayBox.classList.add('day-completed');
+                } else if (status < 0.85 && i <= 23) {
+                    dayBox.classList.add('day-partial');
+                } else if (status < 0.9 && i <= 23) {
+                    dayBox.classList.add('day-failed');
+                } else {
+                    dayBox.classList.add('day-pending');
+                }
+                
+                daysGrid.appendChild(dayBox);
+            }
+        }
 
-        // Demo navigation back to dashboard
-        document.querySelector('.btn-outline').addEventListener('click', () => {
-            dayView.classList.add('hidden');
-            dashboard.classList.remove('hidden');
-        });
+        // Show day details (for demo)
+        function showDayDetails(dayNumber) {
+            alert(`تفاصيل اليوم ${dayNumber} - هذه ميزة تجريبية. في التطبيق الحقيقي، ستظهر هنا تفاصيل اليوم المحدد.`);
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // FAQ toggle
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    answer.classList.toggle('active');
+                    
+                    // Toggle icon
+                    const icon = question.querySelector('span:last-child');
+                    icon.textContent = answer.classList.contains('active') ? '-' : '+';
+                });
+            });
+
+            // Photo upload
+            const photoUploadArea = document.getElementById('photoUploadArea');
+            const photoInput = document.getElementById('photoInput');
+            const photoPreview = document.getElementById('photoPreview');
+
+            if (photoUploadArea && photoInput) {
+                photoUploadArea.addEventListener('click', () => {
+                    photoInput.click();
+                });
+
+                photoInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            photoPreview.src = e.target.result;
+                            photoPreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Login form
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    
+                    // Demo login - in real app, this would call an API
+                    if (email && password) {
+                        localStorage.setItem('75hard_user', JSON.stringify({
+                            name: 'أحمد',
+                            email: email
+                        }));
+                        checkAuthStatus();
+                        showPage('dashboard');
+                        alert('تم تسجيل الدخول بنجاح!');
+                    } else {
+                        alert('يرجى ملء جميع الحقول');
+                    }
+                });
+            }
+
+            // Signup form
+            const signupForm = document.getElementById('signupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('signupName').value;
+                    const email = document.getElementById('signupEmail').value;
+                    const password = document.getElementById('signupPassword').value;
+                    
+                    // Demo signup - in real app, this would call an API
+                    if (name && email && password) {
+                        localStorage.setItem('75hard_user', JSON.stringify({
+                            name: name,
+                            email: email
+                        }));
+                        checkAuthStatus();
+                        showPage('dashboard');
+                        alert('تم إنشاء الحساب بنجاح!');
+                    } else {
+                        alert('يرجى ملء جميع الحقول');
+                    }
+                });
+            }
+
+            // Reset challenge button
+            const resetChallengeBtn = document.getElementById('resetChallengeBtn');
+            if (resetChallengeBtn) {
+                resetChallengeBtn.addEventListener('click', () => {
+                    if (confirm('تحذير: إعادة الضبط ستمسح كل بيانات التقدم. هل أنت متأكد؟')) {
+                        alert('تم إعادة ضبط التحدي بنجاح!');
+                        generateDaysGrid(); // Regenerate with initial state
+                    }
+                });
+            }
+
+            // Reset day button
+            const resetDayBtn = document.getElementById('resetDayBtn');
+            if (resetDayBtn) {
+                resetDayBtn.addEventListener('click', () => {
+                    if (confirm('هل تريد إعادة تعيين هذا اليوم؟ سيتم مسح جميع البيانات الخاصة بهذا اليوم.')) {
+                        // Reset all inputs for the day
+                        document.getElementById('dietCheckbox').checked = false;
+                        document.getElementById('workout1Checkbox').checked = false;
+                        document.getElementById('workout2Checkbox').checked = false;
+                        document.getElementById('waterInput').value = '0';
+                        document.getElementById('readingCheckbox').checked = false;
+                        document.getElementById('photoPreview').style.display = 'none';
+                        document.getElementById('notesTextarea').value = '';
+                        
+                        alert('تم إعادة تعيين اليوم بنجاح!');
+                    }
+                });
+            }
+        }
+
+        // Fill water goal
+        function fillWater() {
+            document.getElementById('waterInput').value = '3700';
+        }
+
+        // Save day progress
+        function saveDayProgress() {
+            // In a real app, this would save to a backend
+            alert('تم حفظ تقدم اليوم بنجاح!');
+            showPage('dashboard');
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('75hard_user');
+            checkAuthStatus();
+            showPage('home');
+            alert('تم تسجيل الخروج بنجاح!');
+        }
     </script>
 </body>
 </html>
