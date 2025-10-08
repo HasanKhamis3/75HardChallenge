@@ -407,7 +407,7 @@
         /* Updated Days Grid */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
+            grid-template-columns: repeat(7, 1fr);
             gap: 10px;
             margin-top: 1.5rem;
         }
@@ -431,20 +431,11 @@
             font-weight: bold;
         }
 
-        .day-label {
-            font-size: 0.7rem;
-            margin-top: 2px;
-        }
-
-        .day-date {
-            font-size: 0.6rem;
-            color: var(--light-text);
-            margin-top: 5px;
-        }
-
         .day-tasks {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3px;
             width: 100%;
             margin-top: 5px;
         }
@@ -695,7 +686,13 @@
             }
             
             .days-grid {
-                grid-template-columns: repeat(5, 1fr);
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .days-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
@@ -1326,16 +1323,9 @@
                 dayBox.className = 'day-box';
                 dayBox.onclick = () => showDayDetails(i);
                 
-                // Calculate date for this day
-                const dayDate = new Date(startDate);
-                dayDate.setDate(startDate.getDate() + i - 1);
-                const formattedDate = dayDate.toLocaleDateString('ar-EG');
-                
                 // Create day content
                 dayBox.innerHTML = `
                     <div class="day-number">${i}</div>
-                    <div class="day-label">اليوم</div>
-                    <div class="day-date">${formattedDate}</div>
                     <div class="day-tasks">
                         <div class="task-indicator" id="task-diet-${i}"></div>
                         <div class="task-indicator" id="task-workout1-${i}"></div>
