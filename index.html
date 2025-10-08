@@ -404,9 +404,10 @@
             transition: width 0.5s ease;
         }
 
+        /* Updated Days Grid */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            grid-template-columns: repeat(10, 1fr);
             gap: 10px;
             margin-top: 1.5rem;
         }
@@ -414,11 +415,58 @@
         .day-box {
             aspect-ratio: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             border-radius: 5px;
             font-weight: 500;
             cursor: pointer;
+            padding: 5px;
+            position: relative;
+            border: 1px solid #ddd;
+        }
+
+        .day-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .day-label {
+            font-size: 0.7rem;
+            margin-top: 2px;
+        }
+
+        .day-date {
+            font-size: 0.6rem;
+            color: var(--light-text);
+            margin-top: 5px;
+        }
+
+        .day-tasks {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .task-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid transparent;
+        }
+
+        .task-pending {
+            background-color: transparent;
+            border-color: #ddd;
+        }
+
+        .task-completed {
+            background-color: var(--primary-color);
+        }
+
+        .task-failed {
+            background-color: var(--danger-color);
         }
 
         .day-completed {
@@ -598,6 +646,22 @@
             color: var(--text-color);
         }
 
+        /* Challenge Start Date */
+        .challenge-start {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .start-date-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .navbar {
@@ -628,6 +692,10 @@
             
             .dashboard-actions, .day-actions {
                 flex-direction: column;
+            }
+            
+            .days-grid {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
 
@@ -903,6 +971,14 @@
                 </div>
             </div>
             
+            <div class="challenge-start">
+                <h2>تاريخ بدء التحدي</h2>
+                <div class="start-date-input">
+                    <input type="date" id="startDate" class="form-control">
+                    <button class="btn btn-primary" onclick="updateStartDate()">حفظ</button>
+                </div>
+            </div>
+            
             <div class="progress-card">
                 <h2>تقدمك في التحدي</h2>
                 <div class="progress-info" style="display: flex; justify-content: space-between;">
@@ -919,7 +995,6 @@
                 </div>
                 
                 <div class="dashboard-actions">
-                    <button class="btn btn-primary" onclick="showPage('dayView')">اذهب إلى اليوم الحالي</button>
                     <button class="btn btn-outline">تصدير CSV</button>
                     <button class="btn btn-outline" onclick="showPage('reports')">التقارير</button>
                     <button class="btn btn-outline" id="resetChallengeBtn">إعادة ضبط التحدي</button>
@@ -936,7 +1011,7 @@
     <section id="dayView" class="page">
         <div class="container">
             <div class="day-header">
-                <h1>اليوم 23 - 15 أكتوبر 2023</h1>
+                <h1 id="dayViewTitle">اليوم 23 - 15 أكتوبر 2023</h1>
                 <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
             </div>
             
@@ -1189,6 +1264,10 @@
             
             // Check if user is logged in (for demo purposes)
             checkAuthStatus();
+            
+            // Set default start date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('startDate').value = today;
         });
 
         // Page navigation function
@@ -1240,31 +1319,105 @@
             
             daysGrid.innerHTML = '';
             
+            const startDate = new Date(document.getElementById('startDate').value);
+            
             for (let i = 1; i <= 75; i++) {
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day-box';
-                dayBox.textContent = i;
                 dayBox.onclick = () => showDayDetails(i);
+                
+                // Calculate date for this day
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i - 1);
+                const formattedDate = dayDate.toLocaleDateString('ar-EG');
+                
+                // Create day content
+                dayBox.innerHTML = `
+                    <div class="day-number">${i}</div>
+                    <div class="day-label">اليوم</div>
+                    <div class="day-date">${formattedDate}</div>
+                    <div class="day-tasks">
+                        <div class="task-indicator" id="task-diet-${i}"></div>
+                        <div class="task-indicator" id="task-workout1-${i}"></div>
+                        <div class="task-indicator" id="task-workout2-${i}"></div>
+                        <div class="task-indicator" id="task-water-${i}"></div>
+                        <div class="task-indicator" id="task-reading-${i}"></div>
+                        <div class="task-indicator" id="task-photo-${i}"></div>
+                    </div>
+                `;
                 
                 // Random status for demo (in real app, this would come from backend)
                 const status = Math.random();
                 if (status < 0.7 && i <= 23) {
                     dayBox.classList.add('day-completed');
+                    updateTaskIndicators(i, 'completed');
                 } else if (status < 0.85 && i <= 23) {
                     dayBox.classList.add('day-partial');
+                    updateTaskIndicators(i, 'partial');
                 } else if (status < 0.9 && i <= 23) {
                     dayBox.classList.add('day-failed');
+                    updateTaskIndicators(i, 'failed');
                 } else {
                     dayBox.classList.add('day-pending');
+                    updateTaskIndicators(i, 'pending');
                 }
                 
                 daysGrid.appendChild(dayBox);
             }
         }
 
-        // Show day details (for demo)
+        // Update task indicators based on day status
+        function updateTaskIndicators(dayNumber, status) {
+            const tasks = ['diet', 'workout1', 'workout2', 'water', 'reading', 'photo'];
+            
+            tasks.forEach(task => {
+                const indicator = document.getElementById(`task-${task}-${dayNumber}`);
+                if (indicator) {
+                    if (status === 'completed') {
+                        indicator.className = 'task-indicator task-completed';
+                    } else if (status === 'partial') {
+                        // Random partial completion for demo
+                        indicator.className = Math.random() > 0.5 ? 
+                            'task-indicator task-completed' : 'task-indicator task-failed';
+                    } else if (status === 'failed') {
+                        indicator.className = 'task-indicator task-failed';
+                    } else {
+                        indicator.className = 'task-indicator task-pending';
+                    }
+                }
+            });
+        }
+
+        // Show day details
         function showDayDetails(dayNumber) {
-            alert(`تفاصيل اليوم ${dayNumber} - هذه ميزة تجريبية. في التطبيق الحقيقي، ستظهر هنا تفاصيل اليوم المحدد.`);
+            // Calculate date for this day
+            const startDate = new Date(document.getElementById('startDate').value);
+            const dayDate = new Date(startDate);
+            dayDate.setDate(startDate.getDate() + dayNumber - 1);
+            const formattedDate = dayDate.toLocaleDateString('ar-EG', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Update day view title
+            document.getElementById('dayViewTitle').textContent = `اليوم ${dayNumber} - ${formattedDate}`;
+            
+            // In a real app, we would load the day's data from storage/backend
+            // For demo, we'll just show the page with some random data
+            showPage('dayView');
+        }
+
+        // Update start date
+        function updateStartDate() {
+            const startDate = document.getElementById('startDate').value;
+            if (startDate) {
+                generateDaysGrid();
+                alert('تم تحديث تاريخ بدء التحدي بنجاح!');
+            } else {
+                alert('يرجى اختيار تاريخ بدء التحدي');
+            }
         }
 
         // Setup event listeners
