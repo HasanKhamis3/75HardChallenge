@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحدي 75 يوم - قوّي انضباطك</title>
+    <style>
+        :root {
+            --primary-color: #2E8B57;
+            --secondary-color: #F5F5F5;
+            --accent-color: #FFA500;
+            --danger-color: #DC3545;
+            --text-color: #333;
+            --light-text: #777;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: var(--border-radius);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #267349;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--light-text);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #267349;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--text-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        /* Auth Forms */
+        .auth-container {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .auth-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .auth-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .auth-divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #ddd;
+        }
+
+        .auth-divider span {
+            background-color: white;
+            padding: 0 10px;
+            color: var(--light-text);
+        }
+
+        .btn-google {
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-google:hover {
+            background-color: #f5f5f5;
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .auth-link a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            padding: 2rem 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .progress-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .day-box {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .day-completed {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .day-partial {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .day-failed {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .day-pending {
+            background-color: #e9ecef;
+            color: var(--text-color);
+        }
+
+        .dashboard-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        /* Day View */
+        .day-view {
+            padding: 2rem 0;
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .task-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .task-title {
+            font-weight: 500;
+        }
+
+        .task-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary-color);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .water-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .water-quick-btn {
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+
+        .photo-upload {
+            border: 2px dashed #ddd;
+            padding: 2rem;
+            text-align: center;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+
+        .photo-preview {
+            max-width: 200px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+        }
+
+        .day-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .day-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-1 {
+            margin-top: 1rem;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">75Hard</div>
+                <ul class="nav-links">
+                    <li><a href="#home">الرئيسية</a></li>
+                    <li><a href="#features">الميزات</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <button class="btn btn-outline" id="loginBtn">تسجيل الدخول</button>
+                    <button class="btn btn-primary" id="signupBtn">إنشاء حساب</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Landing Page -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>ابدأ تحدي 75 يوم — قوّي انضباطك</h1>
+            <p>برنامج يومي مكوّن من 5 قواعد لبناء عادة الانضباط الذاتي — غذاء، تمرينين (أحدهما خارجي)، ماء، قراءة، صورة يومية.</p>
+            <button class="cta-button">ابدأ الآن — سجّل مجاناً</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">ميزات التطبيق</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>لوحة متابعة</h3>
+                    <p>تتبع تقدمك اليومي مع لوحة متابعة تفاعلية تعرض إنجازاتك ونسبة الإنجاز الكلية.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>تذكيرات ذكية</h3>
+                    <p>لا تفوت أي مهمة مع نظام التذكيرات اليومية الذي ينبهك لإكمال مهامك في الوقت المناسب.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📤</div>
+                    <h3>تصدير التقارير</h3>
+                    <p>احصل على تقارير مفصلة عن تقدمك بصيغ CSV وPDF لمشاركتها أو حفظها للأرشيف.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">أسئلة شائعة</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هو الهدف من تحدي 75 يوم؟</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يهدف التحدي إلى بناء عادة الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتاليًا.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ماذا يحدث إذا فشلت في أحد الأيام؟</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>إذا قمت بتفعيل خيار "الإعادة عند الفشل" في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي مخالفة للقواعد.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يناسب التحدي المبتدئين؟</span>
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكن للمبتدئين البدء بالتحدي مع تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#features">الميزات</a></li>
+                        <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>الدعم</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>تابعنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">تويتر</a></li>
+                        <li><a href="#">فيسبوك</a></li>
+                        <li><a href="#">إنستغرام</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2023 تحدي 75 يوم. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="auth-container hidden">
+        <h2 class="auth-title">تسجيل الدخول</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginEmail">البريد الإلكتروني</label>
+                <input type="email" id="loginEmail" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">كلمة المرور</label>
+                <input type="password" id="loginPassword" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
+        </form>
+        <div class="auth-divider">
+            <span>أو</span>
+        </div>
+        <button class="btn-google">
+            <span>تسجيل الدخول بحساب Google</span>
+        </button>
+        <div class="auth-link">
+            <p>ليس لديك حساب؟ <a href="#" id="showSignup">إنشاء حساب</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="auth-container hidden">
+        <h2 class="auth-title">إنشاء حساب</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="signupName">الاسم الكامل</label>
+                <input type="text" id="signupName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">البريد الإلكتروني</label>
+                <input type="email" id="signupEmail" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="signupPassword">كلمة المرور</label>
+                <input type="password" id="signupPassword" class="form-control" required minlength="8">
+                <small style="color: var(--light-text);">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">إنشاء حساب</button>
+        </form>
+        <div class="auth-divider">
+            <span>أو</span>
+        </div>
+        <button class="btn-google">
+            <span>التسجيل بحساب Google</span>
+        </button>
+        <div class="auth-link">
+            <p>لديك حساب بالفعل؟ <a href="#" id="showLogin">تسجيل الدخول</a></p>
+        </div>
+    </div>
+
+    <!-- Dashboard (Hidden by default) -->
+    <div id="dashboard" class="dashboard hidden">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>لوحة المتابعة</h1>
+                <div class="user-menu">
+                    <span>مرحباً، أحمد</span>
+                    <button class="btn btn-outline">الإعدادات</button>
+                    <button class="btn btn-outline">تسجيل الخروج</button>
+                </div>
+            </div>
+            
+            <div class="progress-card">
+                <h2>تقدمك في التحدي</h2>
+                <div class="progress-info">
+                    <span>اليوم 23 من 75</span>
+                    <span>30.6% مكتمل</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 30.6%"></div>
+                </div>
+                
+                <h3 class="mt-2">شبكة الأيام</h3>
+                <div class="days-grid">
+                    <!-- Days 1-75 will be generated here -->
+                </div>
+                
+                <div class="dashboard-actions">
+                    <button class="btn btn-primary">اذهب إلى اليوم 23</button>
+                    <button class="btn btn-outline">تصدير CSV</button>
+                    <button class="btn btn-outline">إعادة ضبط التحدي</button>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <!-- Statistics will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Day View (Hidden by default) -->
+    <div id="dayView" class="day-view hidden">
+        <div class="container">
+            <div class="day-header">
+                <h1>اليوم 23 - 15 أكتوبر 2023</h1>
+                <button class="btn btn-outline">العودة إلى اللوحة</button>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">النظام الغذائي</div>
+                    <div class="task-status">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <input type="text" class="form-control" placeholder="اختصار النظام الغذائي (اختياري)">
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">التمرين 1 (45 دقيقة)</div>
+                    <div class="task-status">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <input type="text" class="form-control" placeholder="نوع التمرين">
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">التمرين 2 (45 دقيقة - مطلوب واحد خارجي)</div>
+                    <div class="task-status">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="workout2" value="inside"> داخل المنزل
+                    </label>
+                    <label>
+                        <input type="radio" name="workout2" value="outside"> خارج المنزل
+                    </label>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">الماء</div>
+                </div>
+                <div class="water-input">
+                    <input type="number" class="form-control" placeholder="كمية الماء (مل)" value="3700">
+                    <button class="water-quick-btn">املأ غالون (3.7 لتر)</button>
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">القراءة</div>
+                    <div class="task-status">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <input type="text" class="form-control" placeholder="اسم الكتاب/الصفحات">
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">الصورة اليومية</div>
+                </div>
+                <div class="photo-upload" id="photoUpload">
+                    <p>انقر لرفع صورة أو اسحبها هنا</p>
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    <img id="photoPreview" class="photo-preview" src="" alt="معاينة الصورة">
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-header">
+                    <div class="task-title">ملاحظات</div>
+                </div>
+                <textarea class="notes-textarea" placeholder="اكتب ملاحظاتك اليومية هنا..."></textarea>
+            </div>
+            
+            <div class="day-actions">
+                <button class="btn btn-primary">حفظ التحديث</button>
+                <button class="btn btn-outline">إعادة تعيين هذا اليوم</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const dashboard = document.getElementById('dashboard');
+        const dayView = document.getElementById('dayView');
+        const photoUpload = document.getElementById('photoUpload');
+        const photoInput = document.getElementById('photoInput');
+        const photoPreview = document.getElementById('photoPreview');
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const daysGrid = document.querySelector('.days-grid');
+
+        // Generate days grid
+        for (let i = 1; i <= 75; i++) {
+            const dayBox = document.createElement('div');
+            dayBox.className = 'day-box';
+            dayBox.textContent = i;
+            
+            // Random status for demo (in real app, this would come from backend)
+            const status = Math.random();
+            if (status < 0.7 && i <= 23) {
+                dayBox.classList.add('day-completed');
+            } else if (status < 0.85 && i <= 23) {
+                dayBox.classList.add('day-partial');
+            } else if (status < 0.9 && i <= 23) {
+                dayBox.classList.add('day-failed');
+            } else {
+                dayBox.classList.add('day-pending');
+            }
+            
+            daysGrid.appendChild(dayBox);
+        }
+
+        // Event Listeners
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.remove('hidden');
+            signupModal.classList.add('hidden');
+        });
+
+        signupBtn.addEventListener('click', () => {
+            signupModal.classList.remove('hidden');
+            loginModal.classList.add('hidden');
+        });
+
+        showSignup.addEventListener('click', (e) => {
+            e.preventDefault();
+            signupModal.classList.remove('hidden');
+            loginModal.classList.add('hidden');
+        });
+
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('hidden');
+            signupModal.classList.add('hidden');
+        });
+
+        // Demo login (for presentation)
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+        });
+
+        // Demo signup (for presentation)
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            signupModal.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+        });
+
+        // FAQ toggle
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                // Toggle icon
+                const icon = question.querySelector('span:last-child');
+                icon.textContent = answer.classList.contains('active') ? '-' : '+';
+            });
+        });
+
+        // Photo upload
+        photoUpload.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photoPreview.src = e.target.result;
+                    photoPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Demo navigation to day view
+        document.querySelector('.btn-primary').addEventListener('click', () => {
+            dashboard.classList.add('hidden');
+            dayView.classList.remove('hidden');
+        });
+
+        // Demo navigation back to dashboard
+        document.querySelector('.btn-outline').addEventListener('click', () => {
+            dayView.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
