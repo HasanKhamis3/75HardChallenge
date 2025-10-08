@@ -6,14 +6,19 @@
     <title>تحدي 75 يوم - قوّي انضباطك</title>
     <style>
         :root {
-            --primary-color: #2E8B57;
-            --secondary-color: #F5F5F5;
-            --accent-color: #FFA500;
-            --danger-color: #DC3545;
-            --text-color: #333;
-            --light-text: #777;
-            --border-radius: 8px;
-            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --primary-color: #8A2BE2;
+            --primary-light: #9B4DFF;
+            --primary-dark: #6A1B9A;
+            --secondary-color: #F8F7FC;
+            --accent-color: #FF6B8B;
+            --accent-light: #FFA5B7;
+            --danger-color: #FF4757;
+            --success-color: #2ED573;
+            --text-color: #333344;
+            --light-text: #777788;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 20px rgba(138, 43, 226, 0.15);
+            --transition: all 0.3s ease;
         }
 
         * {
@@ -24,9 +29,10 @@
         }
 
         body {
-            background-color: #f9f9f9;
+            background: linear-gradient(135deg, #F8F7FC 0%, #F0EDF5 100%);
             color: var(--text-color);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -43,6 +49,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
         }
 
         .navbar {
@@ -53,10 +60,18 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: var(--primary-color);
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "💜";
+            font-size: 1.5rem;
         }
 
         .nav-links {
@@ -72,12 +87,15 @@
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: var(--transition);
             cursor: pointer;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
         }
 
         .nav-links a:hover {
             color: var(--primary-color);
+            background-color: rgba(138, 43, 226, 0.05);
         }
 
         .auth-buttons {
@@ -86,32 +104,36 @@
         }
 
         .btn {
-            padding: 8px 16px;
+            padding: 10px 20px;
             border-radius: var(--border-radius);
             border: none;
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: #267349;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(138, 43, 226, 0.4);
         }
 
         .btn-outline {
             background-color: transparent;
-            border: 1px solid var(--primary-color);
+            border: 2px solid var(--primary-color);
             color: var(--primary-color);
         }
 
         .btn-outline:hover {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: rgba(138, 43, 226, 0.05);
         }
 
         /* Page Sections */
@@ -123,43 +145,57 @@
 
         .page.active {
             display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Hero Section */
         .hero {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05) 0%, rgba(255, 107, 139, 0.05) 100%);
             text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
             color: var(--text-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             color: var(--light-text);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.8;
         }
 
         .cta-button {
-            padding: 12px 30px;
+            padding: 14px 35px;
             font-size: 1.1rem;
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
         }
 
         .cta-button:hover {
-            background-color: #267349;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
         }
 
         /* Features Section */
@@ -170,8 +206,21 @@
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--text-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
         }
 
         .features-grid {
@@ -182,27 +231,38 @@
 
         .feature-card {
             background-color: white;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.2);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .feature-card h3 {
             margin-bottom: 1rem;
             color: var(--text-color);
+            font-size: 1.4rem;
         }
 
         /* FAQ Section */
         .faq {
             padding: 4rem 0;
             background-color: var(--secondary-color);
+            border-radius: 30px;
         }
 
         .faq-item {
@@ -211,6 +271,11 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 6px 18px rgba(138, 43, 226, 0.15);
         }
 
         .faq-question {
@@ -220,6 +285,12 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 500;
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(138, 43, 226, 0.03);
         }
 
         .faq-answer {
@@ -236,9 +307,10 @@
 
         /* Footer */
         footer {
-            background-color: #333;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
             color: white;
             padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
         }
 
         .footer-content {
@@ -251,6 +323,18 @@
         .footer-column h3 {
             margin-bottom: 1.5rem;
             font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            right: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-light);
         }
 
         .footer-links {
@@ -262,37 +346,40 @@
         }
 
         .footer-links a {
-            color: #ddd;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .footer-links a:hover {
             color: white;
+            padding-right: 5px;
         }
 
         .copyright {
             text-align: center;
             padding-top: 1.5rem;
-            border-top: 1px solid #444;
-            color: #aaa;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Auth Forms */
         .auth-container {
-            max-width: 400px;
+            max-width: 450px;
             margin: 2rem auto;
-            padding: 2rem;
+            padding: 2.5rem;
             background-color: white;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
+            border-top: 4px solid var(--primary-color);
         }
 
         .auth-title {
             text-align: center;
             margin-bottom: 1.5rem;
             color: var(--text-color);
+            font-size: 1.8rem;
         }
 
         .form-group {
@@ -303,19 +390,22 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--text-color);
         }
 
         .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
             font-size: 1rem;
+            transition: var(--transition);
         }
 
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
         }
 
         .auth-divider {
@@ -331,31 +421,33 @@
             left: 0;
             right: 0;
             height: 1px;
-            background-color: #ddd;
+            background-color: #e0e0e0;
         }
 
         .auth-divider span {
             background-color: white;
-            padding: 0 10px;
+            padding: 0 15px;
             color: var(--light-text);
         }
 
         .btn-google {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: white;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            font-weight: 500;
         }
 
         .btn-google:hover {
             background-color: #f5f5f5;
+            border-color: #d0d0d0;
         }
 
         .auth-link {
@@ -367,6 +459,7 @@
             color: var(--primary-color);
             text-decoration: none;
             cursor: pointer;
+            font-weight: 500;
         }
 
         /* Dashboard */
@@ -379,6 +472,10 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
         .progress-card {
@@ -387,6 +484,7 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             margin-bottom: 2rem;
+            border-top: 4px solid var(--primary-color);
         }
 
         .progress-bar {
@@ -395,20 +493,39 @@
             border-radius: 10px;
             overflow: hidden;
             margin: 1rem 0;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .progress-fill {
             height: 100%;
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             border-radius: 10px;
             transition: width 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         /* Updated Days Grid */
         .days-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
+            gap: 12px;
             margin-top: 1.5rem;
         }
 
@@ -418,66 +535,83 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius: 5px;
+            border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 5px;
+            padding: 10px 5px;
             position: relative;
-            border: 1px solid #ddd;
+            border: 2px solid #e0e0e0;
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        .day-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
+            border-color: var(--primary-light);
         }
 
         .day-number {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-color);
         }
 
         .day-tasks {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 3px;
+            gap: 4px;
             width: 100%;
-            margin-top: 5px;
         }
 
         .task-indicator {
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             border: 1px solid transparent;
+            transition: var(--transition);
         }
 
         .task-pending {
             background-color: transparent;
-            border-color: #ddd;
+            border-color: #e0e0e0;
         }
 
         .task-completed {
-            background-color: var(--primary-color);
+            background-color: var(--success-color);
+            border-color: var(--success-color);
         }
 
         .task-failed {
             background-color: var(--danger-color);
+            border-color: var(--danger-color);
         }
 
         .day-completed {
-            background-color: var(--primary-color);
-            color: white;
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.1), rgba(46, 213, 115, 0.05));
+            border-color: var(--success-color);
         }
 
         .day-partial {
-            background-color: var(--accent-color);
-            color: white;
+            background: linear-gradient(135deg, rgba(255, 171, 0, 0.1), rgba(255, 171, 0, 0.05));
+            border-color: var(--accent-color);
         }
 
         .day-failed {
-            background-color: var(--danger-color);
-            color: white;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.05));
+            border-color: var(--danger-color);
         }
 
         .day-pending {
-            background-color: #e9ecef;
+            background-color: white;
             color: var(--text-color);
+        }
+
+        .day-current {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
         }
 
         .dashboard-actions {
@@ -497,6 +631,10 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
         }
 
         .task-card {
@@ -505,6 +643,12 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             margin-bottom: 1.5rem;
+            transition: var(--transition);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .task-card:hover {
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.1);
         }
 
         .task-header {
@@ -516,6 +660,8 @@
 
         .task-title {
             font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--text-color);
         }
 
         .task-status {
@@ -562,7 +708,7 @@
         }
 
         input:checked + .toggle-slider {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
         }
 
         input:checked + .toggle-slider:before {
@@ -576,35 +722,58 @@
         }
 
         .water-quick-btn {
-            padding: 5px 10px;
-            background-color: #e9ecef;
+            padding: 8px 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .water-quick-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(138, 43, 226, 0.3);
         }
 
         .photo-upload {
-            border: 2px dashed #ddd;
+            border: 2px dashed #e0e0e0;
             padding: 2rem;
             text-align: center;
             border-radius: var(--border-radius);
             cursor: pointer;
             margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .photo-upload:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(138, 43, 226, 0.03);
         }
 
         .photo-preview {
             max-width: 200px;
             margin-top: 1rem;
             display: none;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .notes-textarea {
             width: 100%;
             min-height: 100px;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
             font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .notes-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
         }
 
         .day-actions {
@@ -626,6 +795,7 @@
             padding: 2rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
+            border-top: 4px solid var(--primary-color);
         }
 
         .settings-group {
@@ -635,6 +805,7 @@
         .settings-group h3 {
             margin-bottom: 1rem;
             color: var(--text-color);
+            font-size: 1.2rem;
         }
 
         /* Challenge Start Date */
@@ -644,6 +815,7 @@
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             margin-bottom: 2rem;
+            border-top: 4px solid var(--primary-color);
         }
 
         .start-date-input {
@@ -693,6 +865,10 @@
         @media (max-width: 480px) {
             .days-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .auth-container {
+                padding: 1.5rem;
             }
         }
 
@@ -1317,11 +1493,22 @@
             daysGrid.innerHTML = '';
             
             const startDate = new Date(document.getElementById('startDate').value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
             
             for (let i = 1; i <= 75; i++) {
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day-box';
                 dayBox.onclick = () => showDayDetails(i);
+                
+                // Calculate date for this day
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i - 1);
+                
+                // Check if this is the current day
+                if (dayDate.getTime() === today.getTime()) {
+                    dayBox.classList.add('day-current');
+                }
                 
                 // Create day content
                 dayBox.innerHTML = `
@@ -1336,23 +1523,32 @@
                     </div>
                 `;
                 
-                // Random status for demo (in real app, this would come from backend)
-                const status = Math.random();
-                if (status < 0.7 && i <= 23) {
-                    dayBox.classList.add('day-completed');
-                    updateTaskIndicators(i, 'completed');
-                } else if (status < 0.85 && i <= 23) {
-                    dayBox.classList.add('day-partial');
-                    updateTaskIndicators(i, 'partial');
-                } else if (status < 0.9 && i <= 23) {
-                    dayBox.classList.add('day-failed');
-                    updateTaskIndicators(i, 'failed');
-                } else {
-                    dayBox.classList.add('day-pending');
-                    updateTaskIndicators(i, 'pending');
-                }
+                // Determine day status based on date
+                const dayStatus = getDayStatus(i, dayDate, today);
+                dayBox.classList.add(dayStatus.class);
+                updateTaskIndicators(i, dayStatus.taskStatus);
                 
                 daysGrid.appendChild(dayBox);
+            }
+        }
+
+        // Determine day status based on date and current day
+        function getDayStatus(dayNumber, dayDate, today) {
+            // If day is in the future
+            if (dayDate > today) {
+                return { class: 'day-pending', taskStatus: 'pending' };
+            }
+            
+            // If day is today or in the past, generate random status for demo
+            const status = Math.random();
+            if (status < 0.7 && dayNumber <= 23) {
+                return { class: 'day-completed', taskStatus: 'completed' };
+            } else if (status < 0.85 && dayNumber <= 23) {
+                return { class: 'day-partial', taskStatus: 'partial' };
+            } else if (status < 0.9 && dayNumber <= 23) {
+                return { class: 'day-failed', taskStatus: 'failed' };
+            } else {
+                return { class: 'day-pending', taskStatus: 'pending' };
             }
         }
 
