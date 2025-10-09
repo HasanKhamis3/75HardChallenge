@@ -525,7 +525,7 @@
         .days-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
+            gap: 12px;
             margin-top: 1.5rem;
         }
 
@@ -538,7 +538,7 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 15px 10px;
+            padding: 10px 8px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
@@ -553,14 +553,14 @@
         }
 
         .day-number {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: var(--text-color);
             border: 2px solid var(--primary-light);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -568,10 +568,21 @@
             color: white;
         }
 
+        .day-date {
+            font-size: 0.7rem;
+            color: var(--light-text);
+            margin-bottom: 8px;
+            font-weight: 500;
+            height: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .day-tasks {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
             width: 100%;
             align-items: center;
         }
@@ -579,13 +590,13 @@
         .task-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
             justify-content: space-between;
-            font-size: 0.8rem;
-            padding: 4px 8px;
+            font-size: 0.7rem;
+            padding: 3px 6px;
             border: 1px solid #e0e0e0;
-            border-radius: 6px;
+            border-radius: 4px;
             background-color: #f9f9f9;
         }
 
@@ -594,13 +605,14 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 70px;
+            max-width: 55px;
             font-weight: bold;
+            font-size: 0.65rem;
         }
 
         .task-indicator {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: var(--transition);
@@ -623,18 +635,18 @@
         }
 
         .day-completed {
-            background: linear-gradient(135deg, rgba(46, 213, 115, 0.1), rgba(46, 213, 115, 0.05));
             border-color: var(--success-color);
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.1), rgba(46, 213, 115, 0.05));
         }
 
         .day-partial {
-            background: linear-gradient(135deg, rgba(255, 171, 0, 0.1), rgba(255, 171, 0, 0.05));
             border-color: var(--accent-color);
+            background: linear-gradient(135deg, rgba(255, 171, 0, 0.1), rgba(255, 171, 0, 0.05));
         }
 
         .day-failed {
-            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.05));
             border-color: var(--danger-color);
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.05));
         }
 
         .day-pending {
@@ -923,12 +935,18 @@
             }
             
             .task-name {
-                max-width: 60px;
-                font-size: 0.7rem;
+                max-width: 50px;
+                font-size: 0.6rem;
             }
             
             .task-row {
-                padding: 3px 6px;
+                padding: 2px 4px;
+            }
+            
+            .day-number {
+                width: 30px;
+                height: 30px;
+                font-size: 1.2rem;
             }
         }
 
@@ -1569,6 +1587,10 @@
                 // Calculate date for this day
                 const dayDate = new Date(startDate);
                 dayDate.setDate(startDate.getDate() + i - 1);
+                const formattedDate = dayDate.toLocaleDateString('ar-EG', {
+                    day: 'numeric',
+                    month: 'short'
+                });
                 
                 // Check if this is the current day
                 const isCurrentDay = dayDate.getTime() === today.getTime();
@@ -1580,6 +1602,7 @@
                 // Create day content with task names and indicators
                 dayBox.innerHTML = `
                     <div class="day-number">${i}</div>
+                    <div class="day-date">${formattedDate}</div>
                     <div class="day-tasks">
                         <div class="task-row">
                             <span class="task-name">النظام الغذائي</span>
@@ -1608,7 +1631,7 @@
                     </div>
                 `;
                 
-                // Determine day status based on date
+                // Determine day status based on date and completion
                 const dayStatus = getDayStatus(i, dayDate, today);
                 dayBox.classList.add(dayStatus.class);
                 updateTaskIndicators(i, dayStatus.taskStatus);
