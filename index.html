@@ -560,18 +560,36 @@
 
         .day-tasks {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 4px;
+            flex-direction: column;
+            gap: 3px;
             width: 100%;
+            align-items: center;
+        }
+
+        .task-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            width: 100%;
+            justify-content: space-between;
+            font-size: 0.7rem;
+        }
+
+        .task-name {
+            color: var(--light-text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60px;
         }
 
         .task-indicator {
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             border: 1px solid transparent;
             transition: var(--transition);
+            flex-shrink: 0;
         }
 
         .task-pending {
@@ -869,6 +887,11 @@
             
             .auth-container {
                 padding: 1.5rem;
+            }
+            
+            .task-name {
+                max-width: 50px;
+                font-size: 0.65rem;
             }
         }
 
@@ -1510,16 +1533,34 @@
                     dayBox.classList.add('day-current');
                 }
                 
-                // Create day content
+                // Create day content with task names and indicators
                 dayBox.innerHTML = `
                     <div class="day-number">${i}</div>
                     <div class="day-tasks">
-                        <div class="task-indicator" id="task-diet-${i}"></div>
-                        <div class="task-indicator" id="task-workout1-${i}"></div>
-                        <div class="task-indicator" id="task-workout2-${i}"></div>
-                        <div class="task-indicator" id="task-water-${i}"></div>
-                        <div class="task-indicator" id="task-reading-${i}"></div>
-                        <div class="task-indicator" id="task-photo-${i}"></div>
+                        <div class="task-row">
+                            <span class="task-name">النظام الغذائي</span>
+                            <div class="task-indicator" id="task-diet-${i}"></div>
+                        </div>
+                        <div class="task-row">
+                            <span class="task-name">التمرين 1</span>
+                            <div class="task-indicator" id="task-workout1-${i}"></div>
+                        </div>
+                        <div class="task-row">
+                            <span class="task-name">التمرين 2</span>
+                            <div class="task-indicator" id="task-workout2-${i}"></div>
+                        </div>
+                        <div class="task-row">
+                            <span class="task-name">الماء</span>
+                            <div class="task-indicator" id="task-water-${i}"></div>
+                        </div>
+                        <div class="task-row">
+                            <span class="task-name">القراءة</span>
+                            <div class="task-indicator" id="task-reading-${i}"></div>
+                        </div>
+                        <div class="task-row">
+                            <span class="task-name">الصورة</span>
+                            <div class="task-indicator" id="task-photo-${i}"></div>
+                        </div>
                     </div>
                 `;
                 
