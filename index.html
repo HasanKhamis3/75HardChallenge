@@ -521,11 +521,11 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Updated Days Grid */
+        /* Updated Days Grid - 5 مربعات في السطر */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
             margin-top: 1.5rem;
         }
 
@@ -538,11 +538,12 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 10px 5px;
+            padding: 15px 10px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
             transition: var(--transition);
+            text-align: center;
         }
 
         .day-box:hover {
@@ -552,16 +553,25 @@
         }
 
         .day-number {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--text-color);
+            border: 2px solid var(--primary-light);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
         }
 
         .day-tasks {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 6px;
             width: 100%;
             align-items: center;
         }
@@ -569,25 +579,30 @@
         .task-row {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             width: 100%;
             justify-content: space-between;
-            font-size: 0.7rem;
+            font-size: 0.8rem;
+            padding: 4px 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background-color: #f9f9f9;
         }
 
         .task-name {
-            color: var(--light-text);
+            color: var(--text-color);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 60px;
+            max-width: 70px;
+            font-weight: bold;
         }
 
         .task-indicator {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             border-radius: 50%;
-            border: 1px solid transparent;
+            border: 2px solid transparent;
             transition: var(--transition);
             flex-shrink: 0;
         }
@@ -628,8 +643,9 @@
         }
 
         .day-current {
-            border: 2px solid var(--primary-color);
+            border: 3px solid var(--primary-color);
             box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(138, 43, 226, 0.02));
         }
 
         .dashboard-actions {
@@ -637,6 +653,23 @@
             gap: 10px;
             margin-top: 1.5rem;
             flex-wrap: wrap;
+        }
+
+        .go-to-today-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3);
+        }
+
+        .go-to-today-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 107, 139, 0.4);
         }
 
         /* Day View */
@@ -876,13 +909,13 @@
             }
             
             .days-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 480px) {
             .days-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .auth-container {
@@ -890,8 +923,12 @@
             }
             
             .task-name {
-                max-width: 50px;
-                font-size: 0.65rem;
+                max-width: 60px;
+                font-size: 0.7rem;
+            }
+            
+            .task-row {
+                padding: 3px 6px;
             }
         }
 
@@ -1176,9 +1213,12 @@
             </div>
             
             <div class="progress-card">
-                <h2>تقدمك في التحدي</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h2>تقدمك في التحدي</h2>
+                    <button class="go-to-today-btn" onclick="goToToday()">اذهب إلى اليوم الحالي</button>
+                </div>
                 <div class="progress-info" style="display: flex; justify-content: space-between;">
-                    <span>اليوم 23 من 75</span>
+                    <span>اليوم <span id="currentDay">23</span> من 75</span>
                     <span>30.6% مكتمل</span>
                 </div>
                 <div class="progress-bar">
@@ -1519,6 +1559,8 @@
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             
+            let currentDayNumber = 0;
+            
             for (let i = 1; i <= 75; i++) {
                 const dayBox = document.createElement('div');
                 dayBox.className = 'day-box';
@@ -1529,8 +1571,10 @@
                 dayDate.setDate(startDate.getDate() + i - 1);
                 
                 // Check if this is the current day
-                if (dayDate.getTime() === today.getTime()) {
+                const isCurrentDay = dayDate.getTime() === today.getTime();
+                if (isCurrentDay) {
                     dayBox.classList.add('day-current');
+                    currentDayNumber = i;
                 }
                 
                 // Create day content with task names and indicators
@@ -1571,6 +1615,9 @@
                 
                 daysGrid.appendChild(dayBox);
             }
+            
+            // Update current day display
+            document.getElementById('currentDay').textContent = currentDayNumber || 23;
         }
 
         // Determine day status based on date and current day
@@ -1634,6 +1681,23 @@
             // In a real app, we would load the day's data from storage/backend
             // For demo, we'll just show the page with some random data
             showPage('dayView');
+        }
+
+        // Go to today's day
+        function goToToday() {
+            const startDate = new Date(document.getElementById('startDate').value);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Calculate which day number is today
+            const diffTime = today - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            if (diffDays >= 1 && diffDays <= 75) {
+                showDayDetails(diffDays);
+            } else {
+                alert('اليوم الحالي خارج نطاق التحدي (75 يوم)');
+            }
         }
 
         // Update start date
