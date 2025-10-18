@@ -544,6 +544,8 @@
             background-color: white;
             transition: var(--transition);
             text-align: center;
+            width: 100%;
+            min-height: 120px;
         }
 
         .day-box:hover {
@@ -598,6 +600,7 @@
             border: 1px solid #e0e0e0;
             border-radius: 4px;
             background-color: #f9f9f9;
+            text-align: center;
         }
 
         .task-name {
@@ -605,9 +608,11 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 55px;
+            max-width: 70px;
             font-weight: bold;
             font-size: 0.65rem;
+            text-align: center;
+            flex: 1;
         }
 
         .task-indicator {
@@ -935,7 +940,7 @@
             }
             
             .task-name {
-                max-width: 50px;
+                max-width: 65px;
                 font-size: 0.6rem;
             }
             
@@ -1382,7 +1387,7 @@
                         <label for="userEmail">البريد الإلكتروني</label>
                         <input type="email" id="userEmail" class="form-control" value="ahmed@example.com">
                     </div>
-                    <button class="btn btn-primary">حفظ التغييرات</button>
+                    <button class="btn btn-primary" onclick="saveAccountSettings()">حفظ التغييرات</button>
                 </div>
                 
                 <div class="settings-card">
@@ -1404,7 +1409,7 @@
                             <option value="en">English</option>
                         </select>
                     </div>
-                    <button class="btn btn-primary">حفظ الإعدادات</button>
+                    <button class="btn btn-primary" onclick="saveChallengeSettings()">حفظ الإعدادات</button>
                 </div>
                 
                 <div class="settings-card">
@@ -1432,7 +1437,7 @@
                             إشعارات المتصفح
                         </label>
                     </div>
-                    <button class="btn btn-primary">حفظ الإعدادات</button>
+                    <button class="btn btn-primary" onclick="saveNotificationSettings()">حفظ الإعدادات</button>
                 </div>
             </div>
         </div>
@@ -1522,6 +1527,9 @@
             // Set default start date to today
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('startDate').value = today;
+            
+            // Load saved settings
+            loadSettings();
         });
 
         // Page navigation function
@@ -1613,7 +1621,7 @@
                             <div class="task-indicator" id="task-workout1-${i}"></div>
                         </div>
                         <div class="task-row">
-                            <span class="task-name">التمرين 2</span>
+                            <span class="task-name">التمرين 2 (خارجي)</span>
                             <div class="task-indicator" id="task-workout2-${i}"></div>
                         </div>
                         <div class="task-row">
@@ -1625,7 +1633,7 @@
                             <div class="task-indicator" id="task-reading-${i}"></div>
                         </div>
                         <div class="task-row">
-                            <span class="task-name">الصورة</span>
+                            <span class="task-name">الصورة اليومية</span>
                             <div class="task-indicator" id="task-photo-${i}"></div>
                         </div>
                     </div>
@@ -1727,10 +1735,104 @@
         function updateStartDate() {
             const startDate = document.getElementById('startDate').value;
             if (startDate) {
+                // Save to localStorage
+                localStorage.setItem('75hard_startDate', startDate);
                 generateDaysGrid();
                 alert('تم تحديث تاريخ بدء التحدي بنجاح!');
             } else {
                 alert('يرجى اختيار تاريخ بدء التحدي');
+            }
+        }
+
+        // Save account settings
+        function saveAccountSettings() {
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            
+            // Save to localStorage
+            localStorage.setItem('75hard_userName', userName);
+            localStorage.setItem('75hard_userEmail', userEmail);
+            
+            alert('تم حفظ إعدادات الحساب بنجاح!');
+        }
+
+        // Save challenge settings
+        function saveChallengeSettings() {
+            const resetOnFail = document.getElementById('resetOnFail').checked;
+            const waterGoal = document.getElementById('waterGoal').value;
+            const language = document.getElementById('language').value;
+            
+            // Save to localStorage
+            localStorage.setItem('75hard_resetOnFail', resetOnFail);
+            localStorage.setItem('75hard_waterGoal', waterGoal);
+            localStorage.setItem('75hard_language', language);
+            
+            alert('تم حفظ إعدادات التحدي بنجاح!');
+        }
+
+        // Save notification settings
+        function saveNotificationSettings() {
+            const morningNotifications = document.getElementById('morningNotifications').checked;
+            const eveningNotifications = document.getElementById('eveningNotifications').checked;
+            const notificationType = document.querySelector('input[name="notificationType"]:checked').value;
+            
+            // Save to localStorage
+            localStorage.setItem('75hard_morningNotifications', morningNotifications);
+            localStorage.setItem('75hard_eveningNotifications', eveningNotifications);
+            localStorage.setItem('75hard_notificationType', notificationType);
+            
+            alert('تم حفظ إعدادات الإشعارات بنجاح!');
+        }
+
+        // Load settings from localStorage
+        function loadSettings() {
+            // Load start date
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            if (savedStartDate) {
+                document.getElementById('startDate').value = savedStartDate;
+            }
+            
+            // Load account settings
+            const savedUserName = localStorage.getItem('75hard_userName');
+            if (savedUserName) {
+                document.getElementById('userName').value = savedUserName;
+            }
+            
+            const savedUserEmail = localStorage.getItem('75hard_userEmail');
+            if (savedUserEmail) {
+                document.getElementById('userEmail').value = savedUserEmail;
+            }
+            
+            // Load challenge settings
+            const savedResetOnFail = localStorage.getItem('75hard_resetOnFail');
+            if (savedResetOnFail !== null) {
+                document.getElementById('resetOnFail').checked = savedResetOnFail === 'true';
+            }
+            
+            const savedWaterGoal = localStorage.getItem('75hard_waterGoal');
+            if (savedWaterGoal) {
+                document.getElementById('waterGoal').value = savedWaterGoal;
+            }
+            
+            const savedLanguage = localStorage.getItem('75hard_language');
+            if (savedLanguage) {
+                document.getElementById('language').value = savedLanguage;
+            }
+            
+            // Load notification settings
+            const savedMorningNotifications = localStorage.getItem('75hard_morningNotifications');
+            if (savedMorningNotifications !== null) {
+                document.getElementById('morningNotifications').checked = savedMorningNotifications === 'true';
+            }
+            
+            const savedEveningNotifications = localStorage.getItem('75hard_eveningNotifications');
+            if (savedEveningNotifications !== null) {
+                document.getElementById('eveningNotifications').checked = savedEveningNotifications === 'true';
+            }
+            
+            const savedNotificationType = localStorage.getItem('75hard_notificationType');
+            if (savedNotificationType) {
+                document.querySelector(`input[name="notificationType"][value="${savedNotificationType}"]`).checked = true;
             }
         }
 
