@@ -522,11 +522,11 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Updated Days Grid - 2 مربعات في السطر */
+        /* Updated Days Grid - 5 مربعات في السطر */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
             margin-top: 1.5rem;
         }
 
@@ -539,14 +539,14 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 15px 10px;
+            padding: 10px 8px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
             transition: var(--transition);
             text-align: center;
             width: 100%;
-            min-height: 180px;
+            min-height: 140px;
         }
 
         .day-box:hover {
@@ -556,14 +556,14 @@
         }
 
         .day-number {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: bold;
             margin-bottom: 8px;
             color: var(--text-color);
             border: 2px solid var(--primary-light);
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -572,53 +572,57 @@
         }
 
         .day-date {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--light-text);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             font-weight: 500;
-            height: 20px;
+            height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .day-tasks {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(3, 1fr);
-            gap: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
             width: 100%;
+            align-items: center;
         }
 
         .task-row {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 4px;
-            font-size: 0.75rem;
-            padding: 6px 4px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
+            gap: 6px;
+            width: 100%;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            padding: 3px 6px;
+            border-radius: 4px;
             background-color: #f9f9f9;
             text-align: center;
-            min-height: 45px;
+            transition: var(--transition);
         }
 
         .task-name {
             color: var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 70px;
             font-weight: bold;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-align: center;
-            line-height: 1.2;
+            flex: 1;
         }
 
         .task-indicator {
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: var(--transition);
+            flex-shrink: 0;
         }
 
         .task-pending {
@@ -634,6 +638,16 @@
         .task-failed {
             background-color: var(--danger-color);
             border-color: var(--danger-color);
+        }
+
+        .task-row-completed {
+            border: 1px solid var(--success-color);
+            background-color: rgba(46, 213, 115, 0.1);
+        }
+
+        .task-row-failed {
+            border: 1px solid var(--danger-color);
+            background-color: rgba(255, 71, 87, 0.1);
         }
 
         .day-completed {
@@ -907,6 +921,57 @@
             margin-top: 10px;
         }
 
+        /* Admin Users Page */
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+
+        .users-table th,
+        .users-table td {
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .users-table th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+        }
+
+        .users-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .users-table tr:hover {
+            background-color: rgba(138, 43, 226, 0.03);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-danger:hover {
+            background-color: #ff2e43;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .navbar {
@@ -934,23 +999,32 @@
             }
             
             .days-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 480px) {
+            .days-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .auth-container {
                 padding: 1.5rem;
             }
             
             .task-name {
-                font-size: 0.65rem;
+                max-width: 60px;
+                font-size: 0.6rem;
+            }
+            
+            .task-row {
+                padding: 2px 4px;
             }
             
             .day-number {
-                width: 40px;
-                height: 40px;
-                font-size: 1.5rem;
+                width: 35px;
+                height: 35px;
+                font-size: 1.4rem;
             }
         }
 
@@ -991,6 +1065,8 @@
                     <li><a onclick="showPage('features')">الميزات</a></li>
                     <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
                     <li><a onclick="showPage('contact')">اتصل بنا</a></li>
+                    <li id="challengeLink" class="hidden"><a onclick="showPage('dashboard')">التحدي</a></li>
+                    <li id="adminLink" class="hidden"><a onclick="showPage('adminUsers')">إدارة العملاء</a></li>
                 </ul>
                 <div class="auth-buttons" id="authButtons">
                     <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
@@ -1431,6 +1507,30 @@
         </div>
     </section>
 
+    <!-- Admin Users Page -->
+    <section id="adminUsers" class="page">
+        <div class="container">
+            <div class="progress-card">
+                <h2>إدارة حسابات العملاء</h2>
+                <p>هذه الصفحة خاصة بمدير النظام فقط لعرض وإدارة حسابات العملاء.</p>
+                
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>البريد الإلكتروني</th>
+                            <th>تاريخ التسجيل</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <!-- Users will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
     <!-- Reports Page -->
     <section id="reports" class="page">
         <div class="container">
@@ -1498,6 +1598,9 @@
     <script>
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize admin account
+            initializeAdminAccount();
+            
             // Check if user is logged in (for demo purposes)
             checkAuthStatus();
             
@@ -1511,6 +1614,26 @@
             setupEventListeners();
         });
 
+        // Initialize admin account
+        function initializeAdminAccount() {
+            const adminAccount = {
+                name: "Admin",
+                email: "admin@75hard.com",
+                password: "@dmin12",
+                role: "admin",
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if admin account exists, if not create it
+            const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+            const adminExists = users.some(user => user.role === 'admin');
+            
+            if (!adminExists) {
+                users.push(adminAccount);
+                localStorage.setItem('75hard_users', JSON.stringify(users));
+            }
+        }
+
         // Page navigation function
         function showPage(pageId) {
             // Hide all pages
@@ -1522,7 +1645,7 @@
             document.getElementById(pageId).classList.add('active');
             
             // Special handling for dashboard pages (require login)
-            if (['dashboard', 'dayView', 'settings', 'reports'].includes(pageId)) {
+            if (['dashboard', 'dayView', 'settings', 'reports', 'adminUsers'].includes(pageId)) {
                 if (!isLoggedIn()) {
                     showPage('login');
                     return;
@@ -1532,22 +1655,36 @@
                 if (pageId === 'dashboard') {
                     checkStartDate();
                 }
+                
+                // Load users for admin page
+                if (pageId === 'adminUsers') {
+                    loadUsersTable();
+                }
             }
             
             // Scroll to top when changing pages
             window.scrollTo(0, 0);
         }
 
-        // Check if user is logged in (demo function)
+        // Check if user is logged in
         function isLoggedIn() {
-            return localStorage.getItem('75hard_user') !== null;
+            return localStorage.getItem('75hard_currentUser') !== null;
+        }
+
+        // Get current user
+        function getCurrentUser() {
+            const userStr = localStorage.getItem('75hard_currentUser');
+            return userStr ? JSON.parse(userStr) : null;
         }
 
         // Check authentication status and show appropriate pages
         function checkAuthStatus() {
             const authButtons = document.getElementById('authButtons');
+            const challengeLink = document.getElementById('challengeLink');
+            const adminLink = document.getElementById('adminLink');
+            
             if (isLoggedIn()) {
-                const user = JSON.parse(localStorage.getItem('75hard_user'));
+                const user = getCurrentUser();
                 const currentHour = new Date().getHours();
                 const greeting = currentHour < 12 ? 'صباح الخير' : 'مساء الخير';
                 
@@ -1558,11 +1695,25 @@
                         <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
                     </div>
                 `;
+                
+                // Show challenge link for logged in users
+                challengeLink.classList.remove('hidden');
+                
+                // Show admin link only for admin users
+                if (user.role === 'admin') {
+                    adminLink.classList.remove('hidden');
+                } else {
+                    adminLink.classList.add('hidden');
+                }
             } else {
                 authButtons.innerHTML = `
                     <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
                 `;
+                
+                // Hide challenge and admin links for non-logged in users
+                challengeLink.classList.add('hidden');
+                adminLink.classList.add('hidden');
             }
         }
 
@@ -1626,27 +1777,27 @@
                     <div class="day-number">${i}</div>
                     <div class="day-date">${formattedDate}</div>
                     <div class="day-tasks">
-                        <div class="task-row">
+                        <div class="task-row" id="task-row-diet-${i}">
                             <span class="task-name">النظام الغذائي</span>
                             <div class="task-indicator" id="task-diet-${i}"></div>
                         </div>
-                        <div class="task-row">
+                        <div class="task-row" id="task-row-water-${i}">
                             <span class="task-name">الماء</span>
                             <div class="task-indicator" id="task-water-${i}"></div>
                         </div>
-                        <div class="task-row">
+                        <div class="task-row" id="task-row-workout1-${i}">
                             <span class="task-name">التمرين 1</span>
                             <div class="task-indicator" id="task-workout1-${i}"></div>
                         </div>
-                        <div class="task-row">
+                        <div class="task-row" id="task-row-workout2-${i}">
                             <span class="task-name">التمرين 2 (خارجي)</span>
                             <div class="task-indicator" id="task-workout2-${i}"></div>
                         </div>
-                        <div class="task-row">
+                        <div class="task-row" id="task-row-reading-${i}">
                             <span class="task-name">القراءة</span>
                             <div class="task-indicator" id="task-reading-${i}"></div>
                         </div>
-                        <div class="task-row">
+                        <div class="task-row" id="task-row-photo-${i}">
                             <span class="task-name">الصورة اليومية</span>
                             <div class="task-indicator" id="task-photo-${i}"></div>
                         </div>
@@ -1714,17 +1865,25 @@
             
             tasks.forEach(task => {
                 const indicator = document.getElementById(`task-${task}-${dayNumber}`);
-                if (indicator) {
+                const taskRow = document.getElementById(`task-row-${task}-${dayNumber}`);
+                
+                if (indicator && taskRow) {
                     if (status === 'completed') {
                         indicator.className = 'task-indicator task-completed';
+                        taskRow.className = 'task-row task-row-completed';
                     } else if (status === 'partial') {
                         // Random partial completion for demo
-                        indicator.className = Math.random() > 0.5 ? 
+                        const isCompleted = Math.random() > 0.5;
+                        indicator.className = isCompleted ? 
                             'task-indicator task-completed' : 'task-indicator task-failed';
+                        taskRow.className = isCompleted ? 
+                            'task-row task-row-completed' : 'task-row task-row-failed';
                     } else if (status === 'failed') {
                         indicator.className = 'task-indicator task-failed';
+                        taskRow.className = 'task-row task-row-failed';
                     } else {
                         indicator.className = 'task-indicator task-pending';
+                        taskRow.className = 'task-row';
                     }
                 }
             });
@@ -1798,6 +1957,23 @@
             localStorage.setItem('75hard_userName', userName);
             localStorage.setItem('75hard_userEmail', userEmail);
             
+            // Update current user data
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                currentUser.name = userName;
+                currentUser.email = userEmail;
+                localStorage.setItem('75hard_currentUser', JSON.stringify(currentUser));
+                
+                // Update user in users list
+                const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+                const userIndex = users.findIndex(user => user.email === currentUser.email);
+                if (userIndex !== -1) {
+                    users[userIndex].name = userName;
+                    users[userIndex].email = userEmail;
+                    localStorage.setItem('75hard_users', JSON.stringify(users));
+                }
+            }
+            
             // Update user info in header
             checkAuthStatus();
             
@@ -1832,6 +2008,49 @@
             alert('تم حفظ إعدادات الإشعارات بنجاح!');
         }
 
+        // Load users table for admin
+        function loadUsersTable() {
+            const usersTableBody = document.getElementById('usersTableBody');
+            if (!usersTableBody) return;
+            
+            const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+            const currentUser = getCurrentUser();
+            
+            usersTableBody.innerHTML = '';
+            
+            users.forEach(user => {
+                // Don't show current user in the list
+                if (user.email === currentUser.email) return;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${new Date(user.createdAt).toLocaleDateString('ar-EG')}</td>
+                    <td class="user-actions">
+                        <button class="btn-danger" onclick="deleteUser('${user.email}')">حذف</button>
+                    </td>
+                `;
+                
+                usersTableBody.appendChild(row);
+            });
+        }
+
+        // Delete user (admin only)
+        function deleteUser(email) {
+            if (!confirm('هل أنت متأكد من حذف هذا المستخدم؟')) return;
+            
+            const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+            const updatedUsers = users.filter(user => user.email !== email);
+            
+            localStorage.setItem('75hard_users', JSON.stringify(updatedUsers));
+            
+            // Reload users table
+            loadUsersTable();
+            
+            alert('تم حذف المستخدم بنجاح!');
+        }
+
         // Load settings from localStorage
         function loadSettings() {
             // Load start date
@@ -1841,14 +2060,10 @@
             }
             
             // Load account settings
-            const savedUserName = localStorage.getItem('75hard_userName');
-            if (savedUserName) {
-                document.getElementById('userName').value = savedUserName;
-            }
-            
-            const savedUserEmail = localStorage.getItem('75hard_userEmail');
-            if (savedUserEmail) {
-                document.getElementById('userEmail').value = savedUserEmail;
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                document.getElementById('userName').value = currentUser.name;
+                document.getElementById('userEmail').value = currentUser.email;
             }
             
             // Load challenge settings
@@ -1929,17 +2144,21 @@
                     const email = document.getElementById('loginEmail').value;
                     const password = document.getElementById('loginPassword').value;
                     
-                    // Demo login - in real app, this would call an API
-                    if (email && password) {
-                        localStorage.setItem('75hard_user', JSON.stringify({
-                            name: 'أحمد',
-                            email: email
-                        }));
+                    // Validate login credentials
+                    const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+                    const user = users.find(u => u.email === email && u.password === password);
+                    
+                    if (user) {
+                        localStorage.setItem('75hard_currentUser', JSON.stringify(user));
                         checkAuthStatus();
                         showPage('dashboard');
                         alert('تم تسجيل الدخول بنجاح!');
                     } else {
-                        alert('يرجى ملء جميع الحقول');
+                        alert('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+                    document.getElementById('loginPassword').value = '';
+                    document.getElementById('loginEmail').focus();
+                    document.getElementById('loginEmail').select();
+                    return;
                     }
                 });
             }
@@ -1953,18 +2172,31 @@
                     const email = document.getElementById('signupEmail').value;
                     const password = document.getElementById('signupPassword').value;
                     
-                    // Demo signup - in real app, this would call an API
-                    if (name && email && password) {
-                        localStorage.setItem('75hard_user', JSON.stringify({
-                            name: name,
-                            email: email
-                        }));
-                        checkAuthStatus();
-                        showPage('dashboard');
-                        alert('تم إنشاء الحساب بنجاح!');
-                    } else {
-                        alert('يرجى ملء جميع الحقول');
+                    // Check if user already exists
+                    const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+                    const userExists = users.some(user => user.email === email);
+                    
+                    if (userExists) {
+                        alert('هذا البريد الإلكتروني مسجل بالفعل');
+                        return;
                     }
+                    
+                    // Create new user
+                    const newUser = {
+                        name: name,
+                        email: email,
+                        password: password,
+                        role: 'user',
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    users.push(newUser);
+                    localStorage.setItem('75hard_users', JSON.stringify(users));
+                    localStorage.setItem('75hard_currentUser', JSON.stringify(newUser));
+                    
+                    checkAuthStatus();
+                    showPage('dashboard');
+                    alert('تم إنشاء الحساب بنجاح!');
                 });
             }
 
@@ -2013,7 +2245,7 @@
 
         // Logout function
         function logout() {
-            localStorage.removeItem('75hard_user');
+            localStorage.removeItem('75hard_currentUser');
             checkAuthStatus();
             showPage('home');
             alert('تم تسجيل الخروج بنجاح!');
