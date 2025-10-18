@@ -101,6 +101,18 @@
         .auth-buttons {
             display: flex;
             gap: 10px;
+            align-items: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-greeting {
+            font-weight: 500;
+            color: var(--text-color);
         }
 
         .btn {
@@ -467,17 +479,6 @@
             padding: 2rem 0;
         }
 
-        .dashboard-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-        }
-
         .progress-card {
             background-color: white;
             padding: 2rem;
@@ -521,11 +522,11 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Updated Days Grid - 5 مربعات في السطر */
+        /* Updated Days Grid - 2 مربعات في السطر */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 1.5rem;
         }
 
@@ -538,14 +539,14 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 10px 8px;
+            padding: 15px 10px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
             transition: var(--transition);
             text-align: center;
             width: 100%;
-            min-height: 120px;
+            min-height: 180px;
         }
 
         .day-box:hover {
@@ -555,14 +556,14 @@
         }
 
         .day-number {
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 8px;
             color: var(--text-color);
             border: 2px solid var(--primary-light);
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -571,57 +572,53 @@
         }
 
         .day-date {
-            font-size: 0.7rem;
+            font-size: 0.9rem;
             color: var(--light-text);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: 500;
-            height: 16px;
+            height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .day-tasks {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(3, 1fr);
+            gap: 8px;
             width: 100%;
-            align-items: center;
         }
 
         .task-row {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 6px;
-            width: 100%;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            padding: 3px 6px;
+            justify-content: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            padding: 6px 4px;
             border: 1px solid #e0e0e0;
-            border-radius: 4px;
+            border-radius: 6px;
             background-color: #f9f9f9;
             text-align: center;
+            min-height: 45px;
         }
 
         .task-name {
             color: var(--text-color);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 70px;
             font-weight: bold;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             text-align: center;
-            flex: 1;
+            line-height: 1.2;
         }
 
         .task-indicator {
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: var(--transition);
-            flex-shrink: 0;
         }
 
         .task-pending {
@@ -665,6 +662,13 @@
             background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(138, 43, 226, 0.02));
         }
 
+        .day-emoji {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 1.2rem;
+        }
+
         .dashboard-actions {
             display: flex;
             gap: 10px;
@@ -687,6 +691,16 @@
         .go-to-today-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 16px rgba(255, 107, 139, 0.4);
+        }
+
+        .error-message {
+            background-color: #ffe6e6;
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
         /* Day View */
@@ -909,12 +923,6 @@
                 font-size: 2rem;
             }
             
-            .dashboard-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            
             .day-header {
                 flex-direction: column;
                 align-items: flex-start;
@@ -926,32 +934,23 @@
             }
             
             .days-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .days-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
             .auth-container {
                 padding: 1.5rem;
             }
             
             .task-name {
-                max-width: 65px;
-                font-size: 0.6rem;
-            }
-            
-            .task-row {
-                padding: 2px 4px;
+                font-size: 0.65rem;
             }
             
             .day-number {
-                width: 30px;
-                height: 30px;
-                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
             }
         }
 
@@ -993,7 +992,7 @@
                     <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
                     <li><a onclick="showPage('contact')">اتصل بنا</a></li>
                 </ul>
-                <div class="auth-buttons">
+                <div class="auth-buttons" id="authButtons">
                     <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
                 </div>
@@ -1218,21 +1217,8 @@
     <!-- Dashboard Page -->
     <section id="dashboard" class="page">
         <div class="container">
-            <div class="dashboard-header">
-                <h1>لوحة المتابعة</h1>
-                <div class="user-menu">
-                    <span>مرحباً، أحمد</span>
-                    <button class="btn btn-outline" onclick="showPage('settings')">الإعدادات</button>
-                    <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
-                </div>
-            </div>
-            
-            <div class="challenge-start">
-                <h2>تاريخ بدء التحدي</h2>
-                <div class="start-date-input">
-                    <input type="date" id="startDate" class="form-control">
-                    <button class="btn btn-primary" onclick="updateStartDate()">حفظ</button>
-                </div>
+            <div id="startDateError" class="error-message hidden">
+                <p>لم يتم تحديد تاريخ بدء التحدي بعد. يرجى تحديد تاريخ البدء في <a href="#" onclick="showPage('settings')">الإعدادات</a>.</p>
             </div>
             
             <div class="progress-card">
@@ -1242,10 +1228,10 @@
                 </div>
                 <div class="progress-info" style="display: flex; justify-content: space-between;">
                     <span>اليوم <span id="currentDay">23</span> من 75</span>
-                    <span>30.6% مكتمل</span>
+                    <span><span id="progressPercentage">30.6</span>% مكتمل</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 30.6%"></div>
+                    <div class="progress-fill" id="progressFill" style="width: 30.6%"></div>
                 </div>
                 
                 <h3 class="mt-2">شبكة الأيام</h3>
@@ -1371,11 +1357,6 @@
     <!-- Settings Page -->
     <section id="settings" class="page">
         <div class="container">
-            <div class="dashboard-header">
-                <h1>الإعدادات</h1>
-                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
-            </div>
-            
             <div class="settings-grid">
                 <div class="settings-card">
                     <h2>إعدادات الحساب</h2>
@@ -1392,6 +1373,13 @@
                 
                 <div class="settings-card">
                     <h2>إعدادات التحدي</h2>
+                    <div class="challenge-start">
+                        <h3>تاريخ بدء التحدي</h3>
+                        <div class="start-date-input">
+                            <input type="date" id="startDate" class="form-control">
+                            <button class="btn btn-primary" onclick="updateStartDate()">حفظ</button>
+                        </div>
+                    </div>
                     <div class="settings-group">
                         <label>
                             <input type="checkbox" id="resetOnFail" checked> 
@@ -1446,11 +1434,6 @@
     <!-- Reports Page -->
     <section id="reports" class="page">
         <div class="container">
-            <div class="dashboard-header">
-                <h1>التقارير والتصدير</h1>
-                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
-            </div>
-            
             <div class="progress-card">
                 <h2>تصدير بيانات التحدي</h2>
                 <p>يمكنك تصدير بيانات تقدمك في التحدي بصيغ مختلفة لمشاركتها أو حفظها.</p>
@@ -1515,21 +1498,17 @@
     <script>
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in (for demo purposes)
+            checkAuthStatus();
+            
+            // Load saved settings
+            loadSettings();
+            
             // Generate days grid for dashboard
             generateDaysGrid();
             
             // Set up event listeners
             setupEventListeners();
-            
-            // Check if user is logged in (for demo purposes)
-            checkAuthStatus();
-            
-            // Set default start date to today
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('startDate').value = today;
-            
-            // Load saved settings
-            loadSettings();
         });
 
         // Page navigation function
@@ -1548,6 +1527,11 @@
                     showPage('login');
                     return;
                 }
+                
+                // Check if start date is set for dashboard
+                if (pageId === 'dashboard') {
+                    checkStartDate();
+                }
             }
             
             // Scroll to top when changing pages
@@ -1561,16 +1545,36 @@
 
         // Check authentication status and show appropriate pages
         function checkAuthStatus() {
+            const authButtons = document.getElementById('authButtons');
             if (isLoggedIn()) {
-                document.querySelector('.auth-buttons').innerHTML = `
-                    <button class="btn btn-outline" onclick="showPage('dashboard')">لوحة التحكم</button>
-                    <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
+                const user = JSON.parse(localStorage.getItem('75hard_user'));
+                const currentHour = new Date().getHours();
+                const greeting = currentHour < 12 ? 'صباح الخير' : 'مساء الخير';
+                
+                authButtons.innerHTML = `
+                    <div class="user-info">
+                        <span class="user-greeting">${greeting}، ${user.name}</span>
+                        <button class="btn btn-outline" onclick="showPage('settings')">الإعدادات</button>
+                        <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
+                    </div>
                 `;
             } else {
-                document.querySelector('.auth-buttons').innerHTML = `
+                authButtons.innerHTML = `
                     <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
                 `;
+            }
+        }
+
+        // Check if start date is set
+        function checkStartDate() {
+            const startDateError = document.getElementById('startDateError');
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            
+            if (!savedStartDate) {
+                startDateError.classList.remove('hidden');
+            } else {
+                startDateError.classList.add('hidden');
             }
         }
 
@@ -1581,11 +1585,13 @@
             
             daysGrid.innerHTML = '';
             
-            const startDate = new Date(document.getElementById('startDate').value);
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            const startDate = savedStartDate ? new Date(savedStartDate) : new Date();
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             
             let currentDayNumber = 0;
+            let completedDays = 0;
             
             for (let i = 1; i <= 75; i++) {
                 const dayBox = document.createElement('div');
@@ -1607,8 +1613,16 @@
                     currentDayNumber = i;
                 }
                 
+                // Determine day status based on date and completion
+                const dayStatus = getDayStatus(i, dayDate, today);
+                dayBox.classList.add(dayStatus.class);
+                
+                // Add emoji based on day status
+                const emoji = getDayEmoji(dayStatus);
+                
                 // Create day content with task names and indicators
                 dayBox.innerHTML = `
+                    <div class="day-emoji">${emoji}</div>
                     <div class="day-number">${i}</div>
                     <div class="day-date">${formattedDate}</div>
                     <div class="day-tasks">
@@ -1617,16 +1631,16 @@
                             <div class="task-indicator" id="task-diet-${i}"></div>
                         </div>
                         <div class="task-row">
+                            <span class="task-name">الماء</span>
+                            <div class="task-indicator" id="task-water-${i}"></div>
+                        </div>
+                        <div class="task-row">
                             <span class="task-name">التمرين 1</span>
                             <div class="task-indicator" id="task-workout1-${i}"></div>
                         </div>
                         <div class="task-row">
                             <span class="task-name">التمرين 2 (خارجي)</span>
                             <div class="task-indicator" id="task-workout2-${i}"></div>
-                        </div>
-                        <div class="task-row">
-                            <span class="task-name">الماء</span>
-                            <div class="task-indicator" id="task-water-${i}"></div>
                         </div>
                         <div class="task-row">
                             <span class="task-name">القراءة</span>
@@ -1639,16 +1653,23 @@
                     </div>
                 `;
                 
-                // Determine day status based on date and completion
-                const dayStatus = getDayStatus(i, dayDate, today);
-                dayBox.classList.add(dayStatus.class);
                 updateTaskIndicators(i, dayStatus.taskStatus);
+                
+                // Count completed days for progress calculation
+                if (dayStatus.class === 'day-completed') {
+                    completedDays++;
+                }
                 
                 daysGrid.appendChild(dayBox);
             }
             
             // Update current day display
             document.getElementById('currentDay').textContent = currentDayNumber || 23;
+            
+            // Update progress percentage and bar
+            const progressPercentage = ((completedDays / 75) * 100).toFixed(1);
+            document.getElementById('progressPercentage').textContent = progressPercentage;
+            document.getElementById('progressFill').style.width = `${progressPercentage}%`;
         }
 
         // Determine day status based on date and current day
@@ -1671,9 +1692,25 @@
             }
         }
 
+        // Get emoji based on day status
+        function getDayEmoji(dayStatus) {
+            switch(dayStatus.class) {
+                case 'day-completed':
+                    return '😊';
+                case 'day-partial':
+                    return '😐';
+                case 'day-failed':
+                    return '😞';
+                case 'day-current':
+                    return '🎯';
+                default:
+                    return '📅';
+            }
+        }
+
         // Update task indicators based on day status
         function updateTaskIndicators(dayNumber, status) {
-            const tasks = ['diet', 'workout1', 'workout2', 'water', 'reading', 'photo'];
+            const tasks = ['diet', 'water', 'workout1', 'workout2', 'reading', 'photo'];
             
             tasks.forEach(task => {
                 const indicator = document.getElementById(`task-${task}-${dayNumber}`);
@@ -1696,7 +1733,8 @@
         // Show day details
         function showDayDetails(dayNumber) {
             // Calculate date for this day
-            const startDate = new Date(document.getElementById('startDate').value);
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            const startDate = savedStartDate ? new Date(savedStartDate) : new Date();
             const dayDate = new Date(startDate);
             dayDate.setDate(startDate.getDate() + dayNumber - 1);
             const formattedDate = dayDate.toLocaleDateString('ar-EG', {
@@ -1716,7 +1754,14 @@
 
         // Go to today's day
         function goToToday() {
-            const startDate = new Date(document.getElementById('startDate').value);
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            if (!savedStartDate) {
+                alert('يرجى تحديد تاريخ بدء التحدي أولاً في الإعدادات');
+                showPage('settings');
+                return;
+            }
+            
+            const startDate = new Date(savedStartDate);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
             
@@ -1752,6 +1797,9 @@
             // Save to localStorage
             localStorage.setItem('75hard_userName', userName);
             localStorage.setItem('75hard_userEmail', userEmail);
+            
+            // Update user info in header
+            checkAuthStatus();
             
             alert('تم حفظ إعدادات الحساب بنجاح!');
         }
