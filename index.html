@@ -184,6 +184,18 @@
             display: none;
         }
 
+        .success-message {
+            background: #efe;
+            border: 1px solid #cfc;
+            color: #363;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: right;
+            display: none;
+        }
+
         @media (max-width: 480px) {
             .login-container {
                 padding: 30px 20px;
@@ -201,6 +213,7 @@
         <h1>تسجيل الدخول</h1>
         
         <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
         
         <form id="loginForm">
             <div class="form-group">
@@ -253,38 +266,74 @@
         function initializeAdminAccount() {
             const adminAccount = {
                 name: "Admin",
-                email: "Hshmk3@gmail.com",
+                email: "hshmk3@gmail.com", // تم تغييره إلى أحرف صغيرة
                 password: "Admin@1288",
                 role: "admin",
                 createdAt: new Date().toISOString()
             };
-            users.push(adminAccount);
+            
+            // التحقق إذا كان الحساب موجوداً مسبقاً
+            const existingAdmin = users.find(u => u.email === adminAccount.email);
+            if (!existingAdmin) {
+                users.push(adminAccount);
+                console.log('تم إنشاء حساب المدير:', adminAccount);
+            }
         }
 
         // دالة تسجيل الدخول المعدلة
         function login(email, password) {
-            // جعل البريد الإلكتروني بأحرف صغيرة للمقارنة
-            const normalizedEmail = email.toLowerCase();
+            // تنظيف البريد الإلكتروني (إزالة المسافات وجعله بأحرف صغيرة)
+            const cleanEmail = email.trim().toLowerCase();
             
-            // البحث عن المستخدم (البريد الإلكتروني غير حساس لحالة الأحرف)
-            const user = users.find(u => u.email.toLowerCase() === normalizedEmail);
+            console.log('محاولة تسجيل الدخول بـ:', cleanEmail);
+            console.log('المستخدمون المسجلون:', users);
             
-            // كلمة المرور تبقى حساسة لحالة الأحرف
-            if (user && user.password === password) {
-                return { success: true, user: user };
+            // البحث عن المستخدم
+            const user = users.find(u => u.email.toLowerCase() === cleanEmail);
+            
+            if (user) {
+                console.log('تم العثور على المستخدم:', user);
+                console.log('كلمة المرور المدخلة:', password);
+                console.log('كلمة المرور المخزنة:', user.password);
+                
+                // كلمة المرور تبقى حساسة لحالة الأحرف
+                if (user.password === password) {
+                    return { success: true, user: user };
+                } else {
+                    return { success: false, message: "كلمة المرور غير صحيحة" };
+                }
+            } else {
+                return { success: false, message: "البريد الإلكتروني غير مسجل" };
             }
-            return { success: false, message: "البريد الإلكتروني أو كلمة المرور غير صحيحة" };
         }
 
         // عرض رسالة الخطأ
         function showError(message) {
             const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            
+            successDiv.style.display = 'none';
             errorDiv.textContent = message;
             errorDiv.style.display = 'block';
             
             // إخفاء الرسالة بعد 5 ثواني
             setTimeout(() => {
                 errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // عرض رسالة النجاح
+        function showSuccess(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            const successDiv = document.getElementById('successMessage');
+            
+            errorDiv.style.display = 'none';
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            
+            // إخفاء الرسالة بعد 5 ثواني
+            setTimeout(() => {
+                successDiv.style.display = 'none';
             }, 5000);
         }
 
@@ -295,9 +344,15 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             
+            // التحقق من الحقول الفارغة
+            if (!email || !password) {
+                showError('جميع الحقول مطلوبة');
+                return;
+            }
+            
             // التحقق من صحة البريد الإلكتروني
-            if (!email.includes('@')) {
-                showError('يجب أن يحتوي البريد الإلكتروني على علامة @');
+            if (!email.includes('@') || !email.includes('.')) {
+                showError('يجب إدخال بريد إلكتروني صحيح');
                 return;
             }
             
@@ -306,9 +361,16 @@
             
             if (result.success) {
                 // تسجيل الدخول ناجح
-                alert(`مرحباً ${result.user.name}! تم تسجيل الدخول بنجاح.`);
-                // هنا يمكنك توجيه المستخدم إلى الصفحة الرئيسية
+                showSuccess(`مرحباً ${result.user.name}! تم تسجيل الدخول بنجاح.`);
                 console.log('تم تسجيل الدخول بنجاح:', result.user);
+                
+                // تفريغ الحقول بعد التسجيل الناجح
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+                
+                // هنا يمكنك توجيه المستخدم إلى الصفحة الرئيسية
+                // window.location.href = 'dashboard.html';
+                
             } else {
                 // فشل تسجيل الدخول
                 showError(result.message);
@@ -327,15 +389,38 @@
             // هنا يمكنك توجيه المستخدم إلى صفحة التسجيل
         }
 
+        // إضافة مستخدم جديد (لأغراض الاختبار)
+        function addTestUser() {
+            const testUser = {
+                name: "مستخدم تجريبي",
+                email: "test@example.com",
+                password: "Test123",
+                role: "user",
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(testUser);
+            console.log('تم إضافة مستخدم تجريبي:', testUser);
+        }
+
         // تهيئة التطبيق
         function initializeApp() {
             initializeAdminAccount();
+            addTestUser(); // إضافة مستخدم تجريبي للاختبار
             
             // إضافة event listener للنموذج
             document.getElementById('loginForm').addEventListener('submit', handleLogin);
             
             console.log('تم تهيئة التطبيق بنجاح');
-            console.log('حساب المدير:', users[0]);
+            console.log('حساب المدير:', users.find(u => u.role === 'admin'));
+            console.log('جميع المستخدمين:', users);
+            
+            // عرض بيانات الاختبار في الكونسول للمساعدة في التصحيح
+            console.log('--- بيانات الاختبار ---');
+            console.log('بريد المدير: hshmk3@gmail.com');
+            console.log('كلمة مرور المدير: Admin@1288');
+            console.log('بريد المستخدم التجريبي: test@example.com');
+            console.log('كلمة مرور المستخدم التجريبي: Test123');
         }
 
         // تشغيل التطبيق عند تحميل الصفحة
