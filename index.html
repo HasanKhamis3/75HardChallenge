@@ -19,9 +19,16 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            transition: all 0.3s ease;
         }
 
-        .login-container {
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .login-container, .register-container, .dashboard-container {
             background: white;
             border-radius: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
@@ -29,6 +36,13 @@
             max-width: 400px;
             padding: 40px 30px;
             text-align: center;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .active {
+            display: block;
         }
 
         .logo {
@@ -52,6 +66,13 @@
             font-weight: 600;
         }
 
+        h2 {
+            color: #444;
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
         .form-group {
             margin-bottom: 20px;
             text-align: right;
@@ -65,7 +86,7 @@
             font-size: 14px;
         }
 
-        input {
+        input, select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e1e1e1;
@@ -75,17 +96,16 @@
             background: #f8f9fa;
         }
 
-        input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: #667eea;
             background: white;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        .login-btn {
+        .btn {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 10px;
@@ -96,12 +116,20 @@
             margin-top: 10px;
         }
 
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        .login-btn, .register-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
-        .login-btn:active {
+        .logout-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
             transform: translateY(0);
         }
 
@@ -156,19 +184,20 @@
             height: 18px;
         }
 
-        .create-account {
+        .switch-form {
             margin-top: 25px;
             color: #666;
             font-size: 14px;
         }
 
-        .create-account a {
+        .switch-form a {
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
+            cursor: pointer;
         }
 
-        .create-account a:hover {
+        .switch-form a:hover {
             text-decoration: underline;
         }
 
@@ -192,111 +221,328 @@
             border-radius: 8px;
             margin-bottom: 20px;
             font-size: 14px;
-            text-align: right;
+            text-align: center;
             display: none;
         }
 
+        .user-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .user-info p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .user-info strong {
+            color: #333;
+        }
+
+        .admin-panel {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .admin-panel h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .users-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .user-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 18px;
+        }
+
+        .dark-theme {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        }
+
+        .dark-theme .login-container,
+        .dark-theme .register-container,
+        .dark-theme .dashboard-container {
+            background: #34495e;
+            color: #ecf0f1;
+        }
+
+        .dark-theme h1,
+        .dark-theme h2,
+        .dark-theme label {
+            color: #ecf0f1;
+        }
+
+        .dark-theme input,
+        .dark-theme select {
+            background: #2c3e50;
+            border-color: #4a5f7a;
+            color: #ecf0f1;
+        }
+
+        .dark-theme input:focus,
+        .dark-theme select:focus {
+            background: #2c3e50;
+            border-color: #3498db;
+        }
+
+        .dark-theme .user-info {
+            background: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        .dark-theme .admin-panel {
+            background: #2c3e50;
+        }
+
+        .dark-theme .user-item {
+            background: #3a506b;
+            color: #ecf0f1;
+        }
+
         @media (max-width: 480px) {
-            .login-container {
+            .login-container, .register-container, .dashboard-container {
                 padding: 30px 20px;
             }
             
             h1 {
                 font-size: 24px;
             }
+            
+            .theme-toggle {
+                top: 10px;
+                left: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">ش</div>
-        <h1>تسجيل الدخول</h1>
-        
-        <div id="errorMessage" class="error-message"></div>
-        <div id="successMessage" class="success-message"></div>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني</label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    placeholder="ادخل بريدك الإلكتروني" 
-                    required
-                >
+    <button class="theme-toggle" id="themeToggle">🌙</button>
+    
+    <div class="container">
+        <!-- صفحة تسجيل الدخول -->
+        <div class="login-container active" id="loginPage">
+            <div class="logo">ش</div>
+            <h1>تسجيل الدخول</h1>
+            
+            <div id="loginErrorMessage" class="error-message"></div>
+            <div id="loginSuccessMessage" class="success-message"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">البريد الإلكتروني</label>
+                    <input 
+                        type="email" 
+                        id="loginEmail" 
+                        placeholder="ادخل بريدك الإلكتروني" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">كلمة المرور</label>
+                    <input 
+                        type="password" 
+                        id="loginPassword" 
+                        placeholder="ادخل كلمة المرور" 
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="btn login-btn">تسجيل الدخول</button>
+            </form>
+            
+            <div class="separator">
+                <span>أو</span>
             </div>
             
-            <div class="form-group">
-                <label for="password">كلمة المرور</label>
-                <input 
-                    type="password" 
-                    id="password" 
-                    placeholder="ادخل كلمة المرور" 
-                    required
-                >
-            </div>
+            <button class="google-btn" onclick="loginWithGoogle()">
+                <svg class="google-icon" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                تسجيل الدخول بحساب Google
+            </button>
             
-            <button type="submit" class="login-btn">تسجيل الدخول</button>
-        </form>
-        
-        <div class="separator">
-            <span>أو</span>
+            <div class="switch-form">
+                ليس لديك حساب؟ <a onclick="showRegisterPage()">إنشاء حساب</a>
+            </div>
         </div>
         
-        <button class="google-btn" onclick="loginWithGoogle()">
-            <svg class="google-icon" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            تسجيل الدخول بحساب Google
-        </button>
+        <!-- صفحة إنشاء حساب -->
+        <div class="register-container" id="registerPage">
+            <div class="logo">ش</div>
+            <h1>إنشاء حساب جديد</h1>
+            
+            <div id="registerErrorMessage" class="error-message"></div>
+            <div id="registerSuccessMessage" class="success-message"></div>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">الاسم الكامل</label>
+                    <input 
+                        type="text" 
+                        id="registerName" 
+                        placeholder="ادخل اسمك الكامل" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerEmail">البريد الإلكتروني</label>
+                    <input 
+                        type="email" 
+                        id="registerEmail" 
+                        placeholder="ادخل بريدك الإلكتروني" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerPassword">كلمة المرور</label>
+                    <input 
+                        type="password" 
+                        id="registerPassword" 
+                        placeholder="ادخل كلمة المرور" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerConfirmPassword">تأكيد كلمة المرور</label>
+                    <input 
+                        type="password" 
+                        id="registerConfirmPassword" 
+                        placeholder="أعد إدخال كلمة المرور" 
+                        required
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="registerRole">الدور</label>
+                    <select id="registerRole" required>
+                        <option value="">اختر دور المستخدم</option>
+                        <option value="user">مستخدم عادي</option>
+                        <option value="admin">مدير</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn register-btn">إنشاء حساب</button>
+            </form>
+            
+            <div class="switch-form">
+                لديك حساب بالفعل؟ <a onclick="showLoginPage()">تسجيل الدخول</a>
+            </div>
+        </div>
         
-        <div class="create-account">
-            ليس لديك حساب؟ <a href="#" onclick="createAccount()">إنشاء حساب</a>
+        <!-- صفحة لوحة التحكم -->
+        <div class="dashboard-container" id="dashboardPage">
+            <div class="logo">ش</div>
+            <h1>لوحة التحكم</h1>
+            
+            <div id="dashboardMessage" class="success-message"></div>
+            
+            <div class="user-info" id="userInfo">
+                <!-- سيتم تعبئة معلومات المستخدم هنا -->
+            </div>
+            
+            <div class="admin-panel" id="adminPanel" style="display: none;">
+                <h3>لوحة إدارة المستخدمين</h3>
+                <p>إجمالي المستخدمين: <span id="totalUsers">0</span></p>
+                <div class="users-list" id="usersList">
+                    <!-- قائمة المستخدمين ستظهر هنا -->
+                </div>
+            </div>
+            
+            <button class="btn logout-btn" onclick="logout()">تسجيل الخروج</button>
         </div>
     </div>
 
     <script>
-        // بيانات المستخدمين المخزنة
-        let users = [];
+        // بيانات التطبيق
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+        let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
 
-        // تهيئة حساب المدير
+        // تهيئة حساب المدير إذا لم يكن موجوداً
         function initializeAdminAccount() {
-            const adminAccount = {
-                name: "Admin",
-                email: "hshmk3@gmail.com", // تم تغييره إلى أحرف صغيرة
-                password: "Admin@1288",
-                role: "admin",
-                createdAt: new Date().toISOString()
-            };
+            const adminEmail = "hshmk3@gmail.com";
+            const adminExists = users.some(user => user.email.toLowerCase() === adminEmail.toLowerCase());
             
-            // التحقق إذا كان الحساب موجوداً مسبقاً
-            const existingAdmin = users.find(u => u.email === adminAccount.email);
-            if (!existingAdmin) {
+            if (!adminExists) {
+                const adminAccount = {
+                    id: Date.now(),
+                    name: "Admin",
+                    email: adminEmail,
+                    password: "Admin@1288",
+                    role: "admin",
+                    createdAt: new Date().toISOString()
+                };
                 users.push(adminAccount);
+                saveUsers();
                 console.log('تم إنشاء حساب المدير:', adminAccount);
             }
         }
 
-        // دالة تسجيل الدخول المعدلة
+        // حفظ المستخدمين في localStorage
+        function saveUsers() {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // حفظ المستخدم الحالي
+        function saveCurrentUser() {
+            if (currentUser) {
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            } else {
+                localStorage.removeItem('currentUser');
+            }
+        }
+
+        // دالة تسجيل الدخول
         function login(email, password) {
-            // تنظيف البريد الإلكتروني (إزالة المسافات وجعله بأحرف صغيرة)
             const cleanEmail = email.trim().toLowerCase();
             
-            console.log('محاولة تسجيل الدخول بـ:', cleanEmail);
-            console.log('المستخدمون المسجلون:', users);
+            console.log('البريد المدخل:', cleanEmail);
+            console.log('كلمة المرور المدخلة:', password);
+            console.log('المستخدمون المتاحون:', users);
             
             // البحث عن المستخدم
             const user = users.find(u => u.email.toLowerCase() === cleanEmail);
             
             if (user) {
                 console.log('تم العثور على المستخدم:', user);
-                console.log('كلمة المرور المدخلة:', password);
-                console.log('كلمة المرور المخزنة:', user.password);
-                
-                // كلمة المرور تبقى حساسة لحالة الأحرف
                 if (user.password === password) {
                     return { success: true, user: user };
                 } else {
@@ -307,10 +553,46 @@
             }
         }
 
+        // دالة إنشاء حساب جديد
+        function register(name, email, password, confirmPassword, role) {
+            const cleanEmail = email.trim().toLowerCase();
+            
+            // التحقق من تطابق كلمات المرور
+            if (password !== confirmPassword) {
+                return { success: false, message: "كلمات المرور غير متطابقة" };
+            }
+            
+            // التحقق من قوة كلمة المرور
+            if (password.length < 6) {
+                return { success: false, message: "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل" };
+            }
+            
+            // التحقق من عدم وجود حساب بنفس البريد
+            const userExists = users.some(user => user.email.toLowerCase() === cleanEmail);
+            if (userExists) {
+                return { success: false, message: "هذا البريد الإلكتروني مسجل بالفعل" };
+            }
+            
+            // إنشاء حساب جديد
+            const newUser = {
+                id: Date.now(),
+                name: name,
+                email: cleanEmail,
+                password: password,
+                role: role,
+                createdAt: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            saveUsers();
+            
+            return { success: true, user: newUser };
+        }
+
         // عرض رسالة الخطأ
-        function showError(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            const successDiv = document.getElementById('successMessage');
+        function showError(message, type = 'login') {
+            const errorDiv = document.getElementById(`${type}ErrorMessage`);
+            const successDiv = document.getElementById(`${type}SuccessMessage`);
             
             successDiv.style.display = 'none';
             errorDiv.textContent = message;
@@ -323,36 +605,36 @@
         }
 
         // عرض رسالة النجاح
-        function showSuccess(message) {
-            const errorDiv = document.getElementById('errorMessage');
-            const successDiv = document.getElementById('successMessage');
+        function showSuccess(message, type = 'login') {
+            const errorDiv = document.getElementById(`${type}ErrorMessage`);
+            const successDiv = document.getElementById(`${type}SuccessMessage`);
             
             errorDiv.style.display = 'none';
             successDiv.textContent = message;
             successDiv.style.display = 'block';
             
-            // إخفاء الرسالة بعد 5 ثواني
+            // إخفاء الرسالة بعد 3 ثواني
             setTimeout(() => {
                 successDiv.style.display = 'none';
-            }, 5000);
+            }, 3000);
         }
 
         // معالجة تسجيل الدخول
         function handleLogin(event) {
             event.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
             
             // التحقق من الحقول الفارغة
             if (!email || !password) {
-                showError('جميع الحقول مطلوبة');
+                showError('جميع الحقول مطلوبة', 'login');
                 return;
             }
             
             // التحقق من صحة البريد الإلكتروني
-            if (!email.includes('@') || !email.includes('.')) {
-                showError('يجب إدخال بريد إلكتروني صحيح');
+            if (!email.includes('@')) {
+                showError('يجب إدخال بريد إلكتروني صحيح', 'login');
                 return;
             }
             
@@ -361,69 +643,192 @@
             
             if (result.success) {
                 // تسجيل الدخول ناجح
-                showSuccess(`مرحباً ${result.user.name}! تم تسجيل الدخول بنجاح.`);
-                console.log('تم تسجيل الدخول بنجاح:', result.user);
-                
-                // تفريغ الحقول بعد التسجيل الناجح
-                document.getElementById('email').value = '';
-                document.getElementById('password').value = '';
-                
-                // هنا يمكنك توجيه المستخدم إلى الصفحة الرئيسية
-                // window.location.href = 'dashboard.html';
-                
+                currentUser = result.user;
+                saveCurrentUser();
+                showDashboard();
+                showSuccess(`مرحباً ${result.user.name}! تم تسجيل الدخول بنجاح.`, 'dashboard');
             } else {
-                // فشل تسجيل الدخول
-                showError(result.message);
+                showError(result.message, 'login');
             }
         }
 
-        // تسجيل الدخول بحساب Google (وهمي للعرض)
-        function loginWithGoogle() {
-            alert('سيتم توجيهك إلى صفحة تسجيل الدخول بحساب Google');
-            // هنا يمكنك إضافة تكامل مع Google OAuth
-        }
-
-        // إنشاء حساب جديد
-        function createAccount() {
-            alert('سيتم توجيهك إلى صفحة إنشاء حساب جديد');
-            // هنا يمكنك توجيه المستخدم إلى صفحة التسجيل
-        }
-
-        // إضافة مستخدم جديد (لأغراض الاختبار)
-        function addTestUser() {
-            const testUser = {
-                name: "مستخدم تجريبي",
-                email: "test@example.com",
-                password: "Test123",
-                role: "user",
-                createdAt: new Date().toISOString()
-            };
+        // معالجة إنشاء حساب
+        function handleRegister(event) {
+            event.preventDefault();
             
-            users.push(testUser);
-            console.log('تم إضافة مستخدم تجريبي:', testUser);
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const role = document.getElementById('registerRole').value;
+            
+            // التحقق من الحقول الفارغة
+            if (!name || !email || !password || !confirmPassword || !role) {
+                showError('جميع الحقول مطلوبة', 'register');
+                return;
+            }
+            
+            // التحقق من صحة البريد الإلكتروني
+            if (!email.includes('@')) {
+                showError('يجب إدخال بريد إلكتروني صحيح', 'register');
+                return;
+            }
+            
+            // إنشاء حساب جديد
+            const result = register(name, email, password, confirmPassword, role);
+            
+            if (result.success) {
+                // إنشاء الحساب ناجح
+                showSuccess('تم إنشاء الحساب بنجاح! يمكنك تسجيل الدخول الآن.', 'register');
+                document.getElementById('registerForm').reset();
+                setTimeout(() => {
+                    showLoginPage();
+                }, 2000);
+            } else {
+                showError(result.message, 'register');
+            }
+        }
+
+        // تسجيل الدخول بحساب Google
+        function loginWithGoogle() {
+            showError('هذه الخاصية غير متاحة حالياً. استخدم تسجيل الدخول العادي.', 'login');
+        }
+
+        // تسجيل الخروج
+        function logout() {
+            currentUser = null;
+            saveCurrentUser();
+            showLoginPage();
+            showSuccess('تم تسجيل الخروج بنجاح', 'login');
+        }
+
+        // عرض صفحة تسجيل الدخول
+        function showLoginPage() {
+            document.getElementById('loginPage').classList.add('active');
+            document.getElementById('registerPage').classList.remove('active');
+            document.getElementById('dashboardPage').classList.remove('active');
+            document.getElementById('loginForm').reset();
+        }
+
+        // عرض صفحة إنشاء حساب
+        function showRegisterPage() {
+            document.getElementById('loginPage').classList.remove('active');
+            document.getElementById('registerPage').classList.add('active');
+            document.getElementById('dashboardPage').classList.remove('active');
+            document.getElementById('registerForm').reset();
+        }
+
+        // عرض لوحة التحكم
+        function showDashboard() {
+            document.getElementById('loginPage').classList.remove('active');
+            document.getElementById('registerPage').classList.remove('active');
+            document.getElementById('dashboardPage').classList.add('active');
+            
+            // عرض معلومات المستخدم
+            const userInfoDiv = document.getElementById('userInfo');
+            userInfoDiv.innerHTML = `
+                <p><strong>الاسم:</strong> ${currentUser.name}</p>
+                <p><strong>البريد الإلكتروني:</strong> ${currentUser.email}</p>
+                <p><strong>الدور:</strong> ${currentUser.role === 'admin' ? 'مدير' : 'مستخدم عادي'}</p>
+                <p><strong>تاريخ الإنشاء:</strong> ${new Date(currentUser.createdAt).toLocaleDateString('ar-EG')}</p>
+            `;
+            
+            // إذا كان المستخدم مديراً، عرض لوحة الإدارة
+            if (currentUser.role === 'admin') {
+                document.getElementById('adminPanel').style.display = 'block';
+                updateAdminPanel();
+            } else {
+                document.getElementById('adminPanel').style.display = 'none';
+            }
+        }
+
+        // تحديث لوحة الإدارة للمدير
+        function updateAdminPanel() {
+            document.getElementById('totalUsers').textContent = users.length;
+            
+            const usersListDiv = document.getElementById('usersList');
+            usersListDiv.innerHTML = '';
+            
+            users.forEach(user => {
+                const userItem = document.createElement('div');
+                userItem.className = 'user-item';
+                userItem.innerHTML = `
+                    <p><strong>${user.name}</strong> (${user.email})</p>
+                    <p>الدور: ${user.role === 'admin' ? 'مدير' : 'مستخدم عادي'}</p>
+                    <p>تاريخ الإنشاء: ${new Date(user.createdAt).toLocaleDateString('ar-EG')}</p>
+                `;
+                usersListDiv.appendChild(userItem);
+            });
+        }
+
+        // تبديل السمة
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            document.body.classList.toggle('dark-theme', isDarkTheme);
+            localStorage.setItem('darkTheme', isDarkTheme);
+            
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.textContent = isDarkTheme ? '☀️' : '🌙';
+        }
+
+        // إضافة مستخدم تجريبي
+        function addTestUser() {
+            const testEmail = "test@example.com";
+            const userExists = users.some(user => user.email.toLowerCase() === testEmail.toLowerCase());
+            
+            if (!userExists) {
+                const testUser = {
+                    id: Date.now() + 1,
+                    name: "مستخدم تجريبي",
+                    email: testEmail,
+                    password: "Test123",
+                    role: "user",
+                    createdAt: new Date().toISOString()
+                };
+                users.push(testUser);
+                saveUsers();
+                console.log('تم إضافة مستخدم تجريبي:', testUser);
+            }
+        }
+
+        // عرض بيانات المساعدة
+        function showHelpInfo() {
+            console.log('=== بيانات الاختبار ===');
+            console.log('حساب المدير:');
+            console.log('  - البريد: hshmk3@gmail.com');
+            console.log('  - كلمة المرور: Admin@1288');
+            console.log('حساب تجريبي:');
+            console.log('  - البريد: test@example.com');
+            console.log('  - كلمة المرور: Test123');
+            console.log('====================');
         }
 
         // تهيئة التطبيق
         function initializeApp() {
             initializeAdminAccount();
-            addTestUser(); // إضافة مستخدم تجريبي للاختبار
+            addTestUser();
+            showHelpInfo();
             
-            // إضافة event listener للنموذج
+            // تطبيق السمة
+            document.body.classList.toggle('dark-theme', isDarkTheme);
+            document.getElementById('themeToggle').textContent = isDarkTheme ? '☀️' : '🌙';
+            
+            // إضافة event listeners
             document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             
-            console.log('تم تهيئة التطبيق بنجاح');
-            console.log('حساب المدير:', users.find(u => u.role === 'admin'));
-            console.log('جميع المستخدمين:', users);
+            // إذا كان هناك مستخدم مسجل دخوله، عرض لوحة التحكم
+            if (currentUser) {
+                showDashboard();
+            } else {
+                showLoginPage();
+            }
             
-            // عرض بيانات الاختبار في الكونسول للمساعدة في التصحيح
-            console.log('--- بيانات الاختبار ---');
-            console.log('بريد المدير: hshmk3@gmail.com');
-            console.log('كلمة مرور المدير: Admin@1288');
-            console.log('بريد المستخدم التجريبي: test@example.com');
-            console.log('كلمة مرور المستخدم التجريبي: Test123');
+            console.log('التطبيق جاهز للاستخدام');
         }
 
-        // تشغيل التطبيق عند تحميل الصفحة
+        // تشغيل التطبيق
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 </body>
