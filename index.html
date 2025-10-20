@@ -522,11 +522,11 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Updated Days Grid - 5 مربعات في السطر */
+        /* Updated Days Grid - 2 مربعات في السطر */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 1.5rem;
         }
 
@@ -539,14 +539,14 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 10px 8px;
+            padding: 15px 12px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
             transition: var(--transition);
             text-align: center;
             width: 100%;
-            min-height: 140px;
+            min-height: 180px;
         }
 
         .day-box:hover {
@@ -556,14 +556,14 @@
         }
 
         .day-number {
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             font-weight: bold;
             margin-bottom: 8px;
             color: var(--text-color);
             border: 2px solid var(--primary-light);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -572,11 +572,11 @@
         }
 
         .day-date {
-            font-size: 0.8rem;
+            font-size: 1.1rem;
             color: var(--light-text);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             font-weight: 500;
-            height: 18px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -585,7 +585,7 @@
         .day-tasks {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 6px;
             width: 100%;
             align-items: center;
         }
@@ -593,12 +593,12 @@
         .task-row {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             width: 100%;
             justify-content: space-between;
-            font-size: 0.7rem;
-            padding: 3px 6px;
-            border-radius: 4px;
+            font-size: 0.85rem;
+            padding: 5px 8px;
+            border-radius: 6px;
             background-color: #f9f9f9;
             text-align: center;
             transition: var(--transition);
@@ -609,16 +609,16 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 70px;
+            max-width: 120px;
             font-weight: bold;
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             text-align: center;
             flex: 1;
         }
 
         .task-indicator {
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: var(--transition);
@@ -640,6 +640,11 @@
             border-color: var(--danger-color);
         }
 
+        .task-today {
+            background-color: #FFD700; /* اللون الأصفر ليوم التحدي */
+            border-color: #FFD700;
+        }
+
         .task-row-completed {
             border: 1px solid var(--success-color);
             background-color: rgba(46, 213, 115, 0.1);
@@ -648,6 +653,11 @@
         .task-row-failed {
             border: 1px solid var(--danger-color);
             background-color: rgba(255, 71, 87, 0.1);
+        }
+
+        .task-row-today {
+            border: 1px solid #FFD700;
+            background-color: rgba(255, 215, 0, 0.1);
         }
 
         .day-completed {
@@ -999,32 +1009,45 @@
             }
             
             .days-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .day-box {
+                min-height: 160px;
+                padding: 12px 10px;
+            }
+            
+            .day-number {
+                font-size: 1.8rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .day-date {
+                font-size: 1rem;
+            }
+            
+            .task-name {
+                max-width: 100px;
+                font-size: 0.75rem;
             }
         }
 
         @media (max-width: 480px) {
             .days-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
             
             .auth-container {
                 padding: 1.5rem;
             }
             
+            .day-box {
+                min-height: 150px;
+            }
+            
             .task-name {
-                max-width: 60px;
-                font-size: 0.6rem;
-            }
-            
-            .task-row {
-                padding: 2px 4px;
-            }
-            
-            .day-number {
-                width: 35px;
-                height: 35px;
-                font-size: 1.4rem;
+                max-width: 110px;
             }
         }
 
@@ -1804,7 +1827,7 @@
                     </div>
                 `;
                 
-                updateTaskIndicators(i, dayStatus.taskStatus);
+                updateTaskIndicators(i, dayStatus.taskStatus, isCurrentDay);
                 
                 // Count completed days for progress calculation
                 if (dayStatus.class === 'day-completed') {
@@ -1860,7 +1883,7 @@
         }
 
         // Update task indicators based on day status
-        function updateTaskIndicators(dayNumber, status) {
+        function updateTaskIndicators(dayNumber, status, isCurrentDay) {
             const tasks = ['diet', 'water', 'workout1', 'workout2', 'reading', 'photo'];
             
             tasks.forEach(task => {
@@ -1881,6 +1904,10 @@
                     } else if (status === 'failed') {
                         indicator.className = 'task-indicator task-failed';
                         taskRow.className = 'task-row task-row-failed';
+                    } else if (isCurrentDay) {
+                        // Today's tasks get yellow indicators
+                        indicator.className = 'task-indicator task-today';
+                        taskRow.className = 'task-row task-row-today';
                     } else {
                         indicator.className = 'task-indicator task-pending';
                         taskRow.className = 'task-row';
