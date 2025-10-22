@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحدي 75 يوم - قوّي انضباطك</title>
+    <title>75Hard Challenge - Strengthen Your Discipline</title>
     <style>
         :root {
             --primary-color: #8A2BE2;
@@ -540,14 +540,14 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 12px 8px;
+            padding: 8px 6px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
             transition: var(--transition);
             text-align: center;
             width: 100%;
-            min-height: 140px;
+            min-height: 120px;
         }
 
         .day-box:hover {
@@ -557,14 +557,14 @@
         }
 
         .day-number {
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             color: white;
             border: 2px solid var(--primary-light);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -572,11 +572,11 @@
         }
 
         .day-date {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--light-text);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 500;
-            height: 18px;
+            height: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -585,7 +585,7 @@
         .day-tasks {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
+            gap: 4px;
             width: 100%;
         }
 
@@ -594,27 +594,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            padding: 6px 4px;
-            border-radius: 6px;
+            gap: 3px;
+            padding: 4px 2px;
+            border-radius: 4px;
             background-color: #f9f9f9;
             text-align: center;
             transition: var(--transition);
-            min-height: 45px;
+            min-height: 35px;
             position: relative;
         }
 
         .task-name {
             color: var(--text-color);
             font-weight: bold;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-align: center;
-            line-height: 1.1;
+            line-height: 1;
         }
 
         .task-indicator {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: var(--transition);
@@ -683,9 +683,9 @@
 
         .day-emoji {
             position: absolute;
-            top: 5px;
-            left: 5px;
-            font-size: 1rem;
+            top: 3px;
+            left: 3px;
+            font-size: 0.9rem;
         }
 
         .dashboard-actions {
@@ -1184,22 +1184,22 @@
             }
             
             .day-box {
-                min-height: 130px;
-                padding: 10px 6px;
+                min-height: 110px;
+                padding: 6px 4px;
             }
             
             .day-number {
-                font-size: 1.4rem;
-                width: 35px;
-                height: 35px;
+                font-size: 1.2rem;
+                width: 30px;
+                height: 30px;
             }
             
             .day-date {
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
             
             .task-name {
-                font-size: 0.6rem;
+                font-size: 0.55rem;
             }
 
             .meal-item {
@@ -1223,11 +1223,11 @@
             }
             
             .day-box {
-                min-height: 120px;
+                min-height: 100px;
             }
             
             .task-name {
-                font-size: 0.55rem;
+                font-size: 0.5rem;
             }
         }
 
@@ -1264,16 +1264,16 @@
             <nav class="navbar">
                 <div class="logo" onclick="showPage('home')">75Hard</div>
                 <ul class="nav-links">
-                    <li><a onclick="showPage('home')">الرئيسية</a></li>
-                    <li><a onclick="showPage('features')">الميزات</a></li>
-                    <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
-                    <li><a onclick="showPage('contact')">اتصل بنا</a></li>
-                    <li id="challengeLink" class="hidden"><a onclick="showPage('dashboard')">التحدي</a></li>
-                    <li id="adminLink" class="hidden"><a onclick="showPage('adminUsers')">إدارة العملاء</a></li>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><a onclick="showPage('features')">Features</a></li>
+                    <li><a onclick="showPage('faq')">FAQ</a></li>
+                    <li><a onclick="showPage('contact')">Contact</a></li>
+                    <li id="challengeLink" class="hidden"><a onclick="showPage('dashboard')">Challenge</a></li>
+                    <li id="adminLink" class="hidden"><a onclick="showPage('adminUsers')">Admin</a></li>
                 </ul>
                 <div class="auth-buttons" id="authButtons">
-                    <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
-                    <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
+                    <button class="btn btn-outline" onclick="showPage('login')">Login</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')">Sign Up</button>
                 </div>
             </nav>
         </div>
@@ -1283,30 +1283,30 @@
     <section id="home" class="page active">
         <div class="hero">
             <div class="container">
-                <h1>ابدأ تحدي 75 يوم — قوّي انضباطك</h1>
-                <p>برنامج يومي مكوّن من 5 قواعد لبناء عادة الانضباط الذاتي — غذاء، تمرينين (أحدهما خارجي)، ماء، قراءة، صورة يومية.</p>
-                <button class="cta-button" onclick="showPage('signup')">ابدأ الآن — سجّل مجاناً</button>
+                <h1>Start 75 Day Challenge - Strengthen Your Discipline</h1>
+                <p>A daily program of 5 rules to build self-discipline habits - diet, two workouts (one outdoor), water, reading, daily photo.</p>
+                <button class="cta-button" onclick="showPage('signup')">Start Now - Sign Up Free</button>
             </div>
         </div>
 
         <div class="features">
             <div class="container">
-                <h2 class="section-title">ميزات التطبيق</h2>
+                <h2 class="section-title">App Features</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📊</div>
-                        <h3>لوحة متابعة</h3>
-                        <p>تتبع تقدمك اليومي مع لوحة متابعة تفاعلية تعرض إنجازاتك ونسبة الإنجاز الكلية.</p>
+                        <h3>Dashboard</h3>
+                        <p>Track your daily progress with an interactive dashboard showing your achievements and completion percentage.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🔔</div>
-                        <h3>تذكيرات ذكية</h3>
-                        <p>لا تفوت أي مهمة مع نظام التذكيرات اليومية الذي ينبهك لإكمال مهامك في الوقت المناسب.</p>
+                        <h3>Smart Reminders</h3>
+                        <p>Don't miss any task with the daily reminder system that alerts you to complete your tasks on time.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📤</div>
-                        <h3>تصدير التقارير</h3>
-                        <p>احصل على تقارير مفصلة عن تقدمك بصيغ CSV وPDF لمشاركتها أو حفظها للأرشيف.</p>
+                        <h3>Export Reports</h3>
+                        <p>Get detailed reports of your progress in CSV and PDF formats to share or archive.</p>
                     </div>
                 </div>
             </div>
@@ -1316,37 +1316,37 @@
     <!-- Features Page -->
     <section id="features" class="page">
         <div class="container">
-            <h1 class="section-title">ميزات تحدي 75 يوم</h1>
+            <h1 class="section-title">75Hard Challenge Features</h1>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>لوحة متابعة شاملة</h3>
-                    <p>تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز الكلية بشكل مرئي وجذاب.</p>
+                    <h3>Comprehensive Dashboard</h3>
+                    <p>Track your daily progress with an interactive dashboard showing your achievements and completion percentage visually and attractively.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔔</div>
-                    <h3>تذكيرات ذكية</h3>
-                    <p>لا تفوت أي مهمة مع نظام التذكيرات اليومية الذي ينبهك لإكمال مهامك في الوقت المناسب.</p>
+                    <h3>Smart Reminders</h3>
+                    <p>Don't miss any task with the daily reminder system that alerts you to complete your tasks on time.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📤</div>
-                    <h3>تصدير التقارير</h3>
-                    <p>احصل على تقارير مفصلة عن تقدمك بصيغ CSV وPDF لمشاركتها أو حفظها للأرشيف.</p>
+                    <h3>Export Reports</h3>
+                    <p>Get detailed reports of your progress in CSV and PDF formats to share or archive.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3>واجهة متجاوبة</h3>
-                    <p>استخدم التطبيق على جميع الأجهزة من الهواتف إلى أجهزة الكمبيوتر المكتبية.</p>
+                    <h3>Responsive Interface</h3>
+                    <p>Use the app on all devices from phones to desktop computers.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <h3>حماية البيانات</h3>
-                    <p>بياناتك وصورك محمية ومشفرة، مع خيارات خصوصية متقدمة.</p>
+                    <h3>Data Protection</h3>
+                    <p>Your data and photos are protected and encrypted, with advanced privacy options.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌐</div>
-                    <h3>دعم متعدد اللغات</h3>
-                    <p>استخدم التطبيق باللغة العربية أو الإنجليزية حسب تفضيلاتك.</p>
+                    <h3>Multi-language Support</h3>
+                    <p>Use the app in Arabic or English according to your preferences.</p>
                 </div>
             </div>
         </div>
@@ -1355,51 +1355,51 @@
     <!-- FAQ Page -->
     <section id="faq" class="page">
         <div class="container">
-            <h1 class="section-title">الأسئلة الشائعة</h1>
+            <h1 class="section-title">Frequently Asked Questions</h1>
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ما هو الهدف من تحدي 75 يوم؟</span>
+                        <span>What is the goal of the 75 day challenge?</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>يهدف التحدي إلى بناء عادة الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتاليًا. يساعدك التحدي على تطوير قدرتك على الالتزام وتحسين صحتك الجسدية والعقلية.</p>
+                        <p>The challenge aims to build self-discipline habits through commitment to five daily tasks for 75 consecutive days. The challenge helps you develop your ability to commit and improve your physical and mental health.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>ماذا يحدث إذا فشلت في أحد الأيام؟</span>
+                        <span>What happens if I fail one day?</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>إذا قمت بتفعيل خيار "الإعادة عند الفشل" في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي مخالفة للقواعد. يمكنك تعطيل هذا الخيار إذا أردت الاستمرار من حيث توقفت.</p>
+                        <p>If you activate the "Restart on Failure" option in settings, you will be returned to day one upon any rule violation. You can disable this option if you want to continue from where you left off.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>هل يناسب التحدي المبتدئين؟</span>
+                        <span>Is the challenge suitable for beginners?</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>نعم، يمكن للمبتدئين البدء بالتحدي مع تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي. ننصح بالبدء تدريجيًا وزيادة الصعوبة مع الوقت.</p>
+                        <p>Yes, beginners can start the challenge by adjusting some tasks to suit their level, while maintaining the essence of the challenge which is daily commitment. We recommend starting gradually and increasing difficulty over time.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>كيف يتم حساب الأيام المكتملة؟</span>
+                        <span>How are completed days calculated?</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>اليوم يعتبر مكتملاً عند إنجاز جميع المهام الخمسة: النظام الغذائي، التمرينين، شرب كمية الماء المطلوبة، القراءة، ورفع الصورة اليومية.</p>
+                        <p>A day is considered complete when all five tasks are accomplished: diet, two workouts, drinking required water amount, reading, and uploading daily photo.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>هل يمكنني تعديل الأيام السابقة؟</span>
+                        <span>Can I modify previous days?</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>نعم، يمكنك تعديل البيانات الخاصة بالأيام السابقة، لكن سيتم وضع علامة "تم التعديل يدوياً" للحفاظ على مصداقية التحدي.</p>
+                        <p>Yes, you can modify data for previous days, but "Manually Modified" mark will be placed to maintain challenge credibility.</p>
                     </div>
                 </div>
             </div>
@@ -1409,21 +1409,21 @@
     <!-- Contact Page -->
     <section id="contact" class="page">
         <div class="container">
-            <h1 class="section-title">اتصل بنا</h1>
+            <h1 class="section-title">Contact Us</h1>
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>معلومات الاتصال</h3>
-                    <p>البريد الإلكتروني: info@75hard.com</p>
-                    <p>الهاتف: +966 123 456 789</p>
-                    <p>ساعات العمل: 9:00 ص - 5:00 م</p>
+                    <h3>Contact Information</h3>
+                    <p>Email: info@75hard.com</p>
+                    <p>Phone: +966 123 456 789</p>
+                    <p>Working Hours: 9:00 AM - 5:00 PM</p>
                 </div>
                 <div class="feature-card">
-                    <h3>روابط مهمة</h3>
+                    <h3>Important Links</h3>
                     <ul class="footer-links" style="color: var(--text-color);">
-                        <li><a>سياسة الخصوصية</a></li>
-                        <li><a>شروط الاستخدام</a></li>
-                        <li><a>الدعم الفني</a></li>
-                        <li><a>الأسئلة الشائعة</a></li>
+                        <li><a>Privacy Policy</a></li>
+                        <li><a>Terms of Use</a></li>
+                        <li><a>Technical Support</a></li>
+                        <li><a>FAQ</a></li>
                     </ul>
                 </div>
             </div>
@@ -1434,26 +1434,26 @@
     <section id="login" class="page">
         <div class="container">
             <div class="auth-container">
-                <h2 class="auth-title">تسجيل الدخول</h2>
+                <h2 class="auth-title">Login</h2>
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="loginEmail">البريد الإلكتروني</label>
+                        <label for="loginEmail">Email</label>
                         <input type="email" id="loginEmail" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">كلمة المرور</label>
+                        <label for="loginPassword">Password</label>
                         <input type="password" id="loginPassword" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
                 </form>
                 <div class="auth-divider">
-                    <span>أو</span>
+                    <span>or</span>
                 </div>
                 <button class="btn-google">
-                    <span>تسجيل الدخول بحساب Google</span>
+                    <span>Login with Google</span>
                 </button>
                 <div class="auth-link">
-                    <p>ليس لديك حساب؟ <a onclick="showPage('signup')">إنشاء حساب</a></p>
+                    <p>Don't have an account? <a onclick="showPage('signup')">Create Account</a></p>
                 </div>
             </div>
         </div>
@@ -1463,31 +1463,31 @@
     <section id="signup" class="page">
         <div class="container">
             <div class="auth-container">
-                <h2 class="auth-title">إنشاء حساب</h2>
+                <h2 class="auth-title">Create Account</h2>
                 <form id="signupForm">
                     <div class="form-group">
-                        <label for="signupName">الاسم الكامل</label>
+                        <label for="signupName">Full Name</label>
                         <input type="text" id="signupName" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupEmail">البريد الإلكتروني</label>
+                        <label for="signupEmail">Email</label>
                         <input type="email" id="signupEmail" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupPassword">كلمة المرور</label>
+                        <label for="signupPassword">Password</label>
                         <input type="password" id="signupPassword" class="form-control" required minlength="8">
-                        <small style="color: var(--light-text);">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
+                        <small style="color: var(--light-text);">Password must contain at least 8 characters</small>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">إنشاء حساب</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
                 </form>
                 <div class="auth-divider">
-                    <span>أو</span>
+                    <span>or</span>
                 </div>
                 <button class="btn-google">
-                    <span>التسجيل بحساب Google</span>
+                    <span>Sign up with Google</span>
                 </button>
                 <div class="auth-link">
-                    <p>لديك حساب بالفعل؟ <a onclick="showPage('login')">تسجيل الدخول</a></p>
+                    <p>Already have an account? <a onclick="showPage('login')">Login</a></p>
                 </div>
             </div>
         </div>
@@ -1497,31 +1497,31 @@
     <section id="dashboard" class="page">
         <div class="container">
             <div id="startDateError" class="error-message hidden">
-                <p>لم يتم تحديد تاريخ بدء التحدي بعد. يرجى تحديد تاريخ البدء في <a href="#" onclick="showPage('settings')">الإعدادات</a>.</p>
+                <p>Challenge start date not set yet. Please set start date in <a href="#" onclick="showPage('settings')">Settings</a>.</p>
             </div>
             
             <div class="progress-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2>تقدمك في التحدي</h2>
-                    <button class="go-to-today-btn" onclick="goToToday()">اذهب إلى اليوم الحالي</button>
+                    <h2>Your Challenge Progress</h2>
+                    <button class="go-to-today-btn" onclick="goToToday()">Go to Today</button>
                 </div>
                 <div class="progress-info" style="display: flex; justify-content: space-between;">
-                    <span>اليوم <span id="currentDay">23</span> من 75</span>
-                    <span><span id="progressPercentage">30.6</span>% مكتمل</span>
+                    <span>Day <span id="currentDay">23</span> of 75</span>
+                    <span><span id="progressPercentage">30.6</span>% Complete</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill" style="width: 30.6%"></div>
                 </div>
                 
-                <h3 class="mt-2">شبكة الأيام</h3>
+                <h3 class="mt-2">Days Grid</h3>
                 <div class="days-grid" id="daysGrid">
                     <!-- Days 1-75 will be generated here -->
                 </div>
                 
                 <div class="dashboard-actions">
-                    <button class="btn btn-outline">تصدير CSV</button>
-                    <button class="btn btn-outline" onclick="showPage('reports')">التقارير</button>
-                    <button class="btn btn-outline" id="resetChallengeBtn">إعادة ضبط التحدي</button>
+                    <button class="btn btn-outline">Export CSV</button>
+                    <button class="btn btn-outline" onclick="showPage('reports')">Reports</button>
+                    <button class="btn btn-outline" id="resetChallengeBtn">Reset Challenge</button>
                 </div>
             </div>
             
@@ -1535,14 +1535,14 @@
     <section id="dayView" class="page">
         <div class="container">
             <div class="day-header">
-                <h1 id="dayViewTitle">اليوم 23 - 15 أكتوبر 2023</h1>
-                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى اللوحة</button>
+                <h1 id="dayViewTitle">Day 23 - October 15, 2023</h1>
+                <button class="btn btn-outline" onclick="showPage('dashboard')">Back to Dashboard</button>
             </div>
             
-            <!-- النظام الغذائي -->
+            <!-- Diet -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">النظام الغذائي</div>
+                    <div class="task-title">Diet</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="dietCheckbox">
@@ -1558,11 +1558,11 @@
                                 <input type="checkbox" id="breakfastCheckbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>وجبة الفطور</span>
+                            <span>Breakfast</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="breakfastCalories" placeholder="سعرات">
-                            <span>سعرة</span>
+                            <input type="number" class="calories-input" id="breakfastCalories" placeholder="Calories">
+                            <span>cal</span>
                         </div>
                     </div>
                     
@@ -1572,11 +1572,11 @@
                                 <input type="checkbox" id="snack1Checkbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>سناك</span>
+                            <span>Snack</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="snack1Calories" placeholder="سعرات">
-                            <span>سعرة</span>
+                            <input type="number" class="calories-input" id="snack1Calories" placeholder="Calories">
+                            <span>cal</span>
                         </div>
                     </div>
                     
@@ -1586,11 +1586,11 @@
                                 <input type="checkbox" id="lunchCheckbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>وجبة الغداء</span>
+                            <span>Lunch</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="lunchCalories" placeholder="سعرات">
-                            <span>سعرة</span>
+                            <input type="number" class="calories-input" id="lunchCalories" placeholder="Calories">
+                            <span>cal</span>
                         </div>
                     </div>
                     
@@ -1600,11 +1600,11 @@
                                 <input type="checkbox" id="snack2Checkbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>سناك</span>
+                            <span>Snack</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="snack2Calories" placeholder="سعرات">
-                            <span>سعرة</span>
+                            <input type="number" class="calories-input" id="snack2Calories" placeholder="Calories">
+                            <span>cal</span>
                         </div>
                     </div>
                     
@@ -1614,26 +1614,26 @@
                                 <input type="checkbox" id="dinnerCheckbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>وجبة العشاء</span>
+                            <span>Dinner</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="dinnerCalories" placeholder="سعرات">
-                            <span>سعرة</span>
+                            <input type="number" class="calories-input" id="dinnerCalories" placeholder="Calories">
+                            <span>cal</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="total-calories">
-                    <span>المجموع الكلي للسعرات الحرارية: </span>
+                    <span>Total Calories: </span>
                     <span id="totalCalories">0</span>
-                    <span> سعرة</span>
+                    <span> cal</span>
                 </div>
             </div>
             
-            <!-- التمرين داخلي -->
+            <!-- Indoor Workout -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">التمرين داخلي (45 دقيقة)</div>
+                    <div class="task-title">Indoor Workout (45 minutes)</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="workout1Checkbox">
@@ -1641,13 +1641,13 @@
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="نوع التمرين" id="workout1Input">
+                <input type="text" class="form-control" placeholder="Workout type" id="workout1Input">
             </div>
             
-            <!-- التمرين خارجي -->
+            <!-- Outdoor Workout -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">التمرين خارجي (45 دقيقة)</div>
+                    <div class="task-title">Outdoor Workout (45 minutes)</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="workout2Checkbox">
@@ -1655,53 +1655,53 @@
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="نوع التمرين" id="workout2Input">
+                <input type="text" class="form-control" placeholder="Workout type" id="workout2Input">
             </div>
             
-            <!-- الماء -->
+            <!-- Water -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">الماء</div>
+                    <div class="task-title">Water</div>
                 </div>
                 
                 <div class="water-bottles">
                     <div class="bottle-row">
                         <span class="bottle-icon">💧</span>
-                        <span>200 مل</span>
-                        <button class="bottle-btn" onclick="addWater(200)">شرب</button>
+                        <span>200 ml</span>
+                        <button class="bottle-btn" onclick="addWater(200)">Drink</button>
                     </div>
                     
                     <div class="bottle-row">
                         <span class="bottle-icon">💧</span>
-                        <span>500 مل</span>
-                        <button class="bottle-btn" onclick="addWater(500)">شرب</button>
+                        <span>500 ml</span>
+                        <button class="bottle-btn" onclick="addWater(500)">Drink</button>
                     </div>
                     
                     <div class="bottle-row">
                         <span class="bottle-icon">💧</span>
-                        <span>1000 مل</span>
-                        <button class="bottle-btn" onclick="addWater(1000)">شرب</button>
+                        <span>1000 ml</span>
+                        <button class="bottle-btn" onclick="addWater(1000)">Drink</button>
                     </div>
                 </div>
                 
                 <div class="water-target">
-                    <span>الهدف اليومي: 3700 مل</span>
+                    <span>Daily Goal: 3700 ml</span>
                     <div class="target-bottles" id="targetBottles">
                         <!-- سيتم إضافة الرموز هنا تلقائياً -->
                     </div>
                 </div>
                 
                 <div class="total-calories mt-1">
-                    <span>إجمالي الماء المستهلك: </span>
+                    <span>Total Water Consumed: </span>
                     <span id="totalWater">0</span>
-                    <span> مل</span>
+                    <span> ml</span>
                 </div>
             </div>
             
-            <!-- القراءة -->
+            <!-- Reading -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">القراءة</div>
+                    <div class="task-title">Reading</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="readingCheckbox">
@@ -1710,15 +1710,15 @@
                     </div>
                 </div>
                 <div class="reading-input-group">
-                    <input type="number" class="pages-input" id="pagesInput" placeholder="عدد الصفحات">
-                    <span>صفحة</span>
+                    <input type="number" class="pages-input" id="pagesInput" placeholder="Pages read">
+                    <span>pages</span>
                 </div>
             </div>
             
-            <!-- الصورة اليومية -->
+            <!-- Daily Photo -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">الصورة اليومية</div>
+                    <div class="task-title">Daily Photo</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="photoTakenCheckbox">
@@ -1729,25 +1729,25 @@
                 
                 <div class="photo-section">
                     <div class="photo-toggle">
-                        <span>هل تم التقاط الصورة؟</span>
+                        <span>Was photo taken?</span>
                     </div>
                     
                     <div class="photo-upload" id="photoUploadArea">
-                        <p>انقر لرفع صورة أو اسحبها هنا</p>
+                        <p>Click to upload photo or drag here</p>
                         <input type="file" id="photoInput" accept="image/*" style="display: none;">
                     </div>
                     
                     <div class="photo-preview-container" id="photoPreviewContainer" style="display: none;">
-                        <img id="photoPreview" class="photo-preview" src="" alt="معاينة الصورة">
-                        <p class="text-center mt-1">انقر على الصورة لعرضها بالحجم الكامل</p>
+                        <img id="photoPreview" class="photo-preview" src="" alt="Photo preview">
+                        <p class="text-center mt-1">Click on photo to view full size</p>
                     </div>
                 </div>
             </div>
             
-            <!-- الأعمال اليومية -->
+            <!-- Daily Tasks -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">الأعمال اليومية</div>
+                    <div class="task-title">Daily Tasks</div>
                 </div>
                 
                 <div class="todo-list" id="todoList">
@@ -1755,14 +1755,14 @@
                 </div>
                 
                 <div class="add-todo">
-                    <input type="text" class="form-control" id="newTodoInput" placeholder="أضف عمل جديد">
-                    <button class="btn btn-primary btn-small" onclick="addTodo()">إضافة</button>
+                    <input type="text" class="form-control" id="newTodoInput" placeholder="Add new task">
+                    <button class="btn btn-primary btn-small" onclick="addTodo()">Add</button>
                 </div>
             </div>
             
             <div class="day-actions">
-                <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التحديث</button>
-                <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
+                <button class="btn btn-primary" onclick="saveDayProgress()">Save Progress</button>
+                <button class="btn btn-outline" id="resetDayBtn">Reset This Day</button>
             </div>
         </div>
     </section>
@@ -1770,7 +1770,7 @@
     <!-- Modal للصورة -->
     <div class="photo-modal" id="photoModal">
         <span class="close-modal" onclick="closePhotoModal()">&times;</span>
-        <img id="modalImage" src="" alt="الصورة الكاملة">
+        <img id="modalImage" src="" alt="Full size photo">
     </div>
 
     <!-- باقي الصفحات (Settings, Admin, Reports) -->
@@ -1781,6 +1781,7 @@
         let totalWater = 0;
         let waterGoal = 3700;
         let todos = [];
+        let currentUser = null;
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -1807,7 +1808,338 @@
             
             // تحميل الأعمال اليومية
             loadTodos();
+            
+            // Load saved data
+            loadDayData();
         });
+
+        // Initialize admin account
+        function initializeAdminAccount() {
+            const adminAccount = {
+                name: "Admin",
+                email: "hshmk3@gmail.com",
+                password: "Admin@1288",
+                role: "admin",
+                createdAt: new Date().toISOString()
+            };
+            
+            // Check if admin account exists, if not create it
+            const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+            const adminExists = users.some(user => user.email === adminAccount.email);
+            
+            if (!adminExists) {
+                users.push(adminAccount);
+                localStorage.setItem('75hard_users', JSON.stringify(users));
+            }
+        }
+
+        // Page navigation function
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Special handling for dashboard pages (require login)
+            if (['dashboard', 'dayView', 'settings', 'reports', 'adminUsers'].includes(pageId)) {
+                if (!isLoggedIn()) {
+                    showPage('login');
+                    return;
+                }
+                
+                // Check if start date is set for dashboard
+                if (pageId === 'dashboard') {
+                    checkStartDate();
+                }
+                
+                // Load users for admin page
+                if (pageId === 'adminUsers') {
+                    loadUsersTable();
+                }
+            }
+            
+            // Scroll to top when changing pages
+            window.scrollTo(0, 0);
+        }
+
+        // Check if user is logged in
+        function isLoggedIn() {
+            return localStorage.getItem('75hard_currentUser') !== null;
+        }
+
+        // Get current user
+        function getCurrentUser() {
+            const userStr = localStorage.getItem('75hard_currentUser');
+            return userStr ? JSON.parse(userStr) : null;
+        }
+
+        // Check authentication status and show appropriate pages
+        function checkAuthStatus() {
+            const authButtons = document.getElementById('authButtons');
+            const challengeLink = document.getElementById('challengeLink');
+            const adminLink = document.getElementById('adminLink');
+            
+            if (isLoggedIn()) {
+                const user = getCurrentUser();
+                currentUser = user;
+                const currentHour = new Date().getHours();
+                const greeting = currentHour < 12 ? 'Good Morning' : 'Good Evening';
+                
+                authButtons.innerHTML = `
+                    <div class="user-info">
+                        <span class="user-greeting">${greeting}, ${user.name}</span>
+                        <button class="btn btn-outline" onclick="showPage('settings')">Settings</button>
+                        <button class="btn btn-outline" onclick="logout()">Logout</button>
+                    </div>
+                `;
+                
+                // Show challenge link for logged in users
+                challengeLink.classList.remove('hidden');
+                
+                // Show admin link only for admin users
+                if (user.role === 'admin') {
+                    adminLink.classList.remove('hidden');
+                } else {
+                    adminLink.classList.add('hidden');
+                }
+            } else {
+                authButtons.innerHTML = `
+                    <button class="btn btn-outline" onclick="showPage('login')">Login</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')">Sign Up</button>
+                `;
+                
+                // Hide challenge and admin links for non-logged in users
+                challengeLink.classList.add('hidden');
+                adminLink.classList.add('hidden');
+            }
+        }
+
+        // Check if start date is set
+        function checkStartDate() {
+            const startDateError = document.getElementById('startDateError');
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            
+            if (!savedStartDate) {
+                startDateError.classList.remove('hidden');
+            } else {
+                startDateError.classList.add('hidden');
+            }
+        }
+
+        // Generate days grid for dashboard
+        function generateDaysGrid() {
+            const daysGrid = document.getElementById('daysGrid');
+            if (!daysGrid) return;
+            
+            daysGrid.innerHTML = '';
+            
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            const startDate = savedStartDate ? new Date(savedStartDate) : new Date();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            let currentDayNumber = 0;
+            let completedDays = 0;
+            
+            for (let i = 1; i <= 75; i++) {
+                const dayBox = document.createElement('div');
+                dayBox.className = 'day-box';
+                dayBox.onclick = () => showDayDetails(i);
+                
+                // Calculate date for this day
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i - 1);
+                const formattedDate = dayDate.toLocaleDateString('en-US', {
+                    day: 'numeric',
+                    month: 'short'
+                });
+                
+                // Check if this is the current day
+                const isCurrentDay = dayDate.getTime() === today.getTime();
+                if (isCurrentDay) {
+                    dayBox.classList.add('day-current');
+                    currentDayNumber = i;
+                }
+                
+                // Determine day status based on date and completion
+                const dayStatus = getDayStatus(i, dayDate, today);
+                dayBox.classList.add(dayStatus.class);
+                
+                // Add emoji based on day status
+                const emoji = getDayEmoji(dayStatus);
+                
+                // Create day content with task names and indicators
+                dayBox.innerHTML = `
+                    <div class="day-emoji">${emoji}</div>
+                    <div class="day-number">${i}</div>
+                    <div class="day-date">${formattedDate}</div>
+                    <div class="day-tasks">
+                        <div class="task-item" id="task-item-diet-${i}">
+                            <span class="task-name">Diet</span>
+                            <div class="task-indicator" id="task-diet-${i}"></div>
+                        </div>
+                        <div class="task-item" id="task-item-water-${i}">
+                            <span class="task-name">Water</span>
+                            <div class="task-indicator" id="task-water-${i}"></div>
+                        </div>
+                        <div class="task-item" id="task-item-workout1-${i}">
+                            <span class="task-name">Workout 1</span>
+                            <div class="task-indicator" id="task-workout1-${i}"></div>
+                        </div>
+                        <div class="task-item" id="task-item-workout2-${i}">
+                            <span class="task-name">Workout 2</span>
+                            <div class="task-indicator" id="task-workout2-${i}"></div>
+                        </div>
+                        <div class="task-item" id="task-item-reading-${i}">
+                            <span class="task-name">Reading</span>
+                            <div class="task-indicator" id="task-reading-${i}"></div>
+                        </div>
+                        <div class="task-item" id="task-item-photo-${i}">
+                            <span class="task-name">Photo</span>
+                            <div class="task-indicator" id="task-photo-${i}"></div>
+                        </div>
+                    </div>
+                `;
+                
+                updateTaskIndicators(i, dayStatus.taskStatus, isCurrentDay);
+                
+                // Count completed days for progress calculation
+                if (dayStatus.class === 'day-completed') {
+                    completedDays++;
+                }
+                
+                daysGrid.appendChild(dayBox);
+            }
+            
+            // Update current day display
+            document.getElementById('currentDay').textContent = currentDayNumber || 23;
+            
+            // Update progress percentage and bar
+            const progressPercentage = ((completedDays / 75) * 100).toFixed(1);
+            document.getElementById('progressPercentage').textContent = progressPercentage;
+            document.getElementById('progressFill').style.width = `${progressPercentage}%`;
+        }
+
+        // Determine day status based on date and current day
+        function getDayStatus(dayNumber, dayDate, today) {
+            // If day is in the future
+            if (dayDate > today) {
+                return { class: 'day-pending', taskStatus: 'pending' };
+            }
+            
+            // If day is today or in the past, generate random status for demo
+            const status = Math.random();
+            if (status < 0.7 && dayNumber <= 23) {
+                return { class: 'day-completed', taskStatus: 'completed' };
+            } else if (status < 0.85 && dayNumber <= 23) {
+                return { class: 'day-partial', taskStatus: 'partial' };
+            } else if (status < 0.9 && dayNumber <= 23) {
+                return { class: 'day-failed', taskStatus: 'failed' };
+            } else {
+                return { class: 'day-pending', taskStatus: 'pending' };
+            }
+        }
+
+        // Get emoji based on day status
+        function getDayEmoji(dayStatus) {
+            switch(dayStatus.class) {
+                case 'day-completed':
+                    return '😊';
+                case 'day-partial':
+                    return '😐';
+                case 'day-failed':
+                    return '😞';
+                case 'day-current':
+                    return '🎯';
+                default:
+                    return '📅';
+            }
+        }
+
+        // Update task indicators based on day status
+        function updateTaskIndicators(dayNumber, status, isCurrentDay) {
+            const tasks = ['diet', 'water', 'workout1', 'workout2', 'reading', 'photo'];
+            
+            tasks.forEach(task => {
+                const indicator = document.getElementById(`task-${task}-${dayNumber}`);
+                const taskItem = document.getElementById(`task-item-${task}-${dayNumber}`);
+                
+                if (indicator && taskItem) {
+                    if (status === 'completed') {
+                        indicator.className = 'task-indicator task-completed';
+                        taskItem.className = 'task-item task-item-completed';
+                    } else if (status === 'partial') {
+                        // Random partial completion for demo
+                        const isCompleted = Math.random() > 0.5;
+                        indicator.className = isCompleted ? 
+                            'task-indicator task-completed' : 'task-indicator task-failed';
+                        taskItem.className = isCompleted ? 
+                            'task-item task-item-completed' : 'task-item task-item-failed';
+                    } else if (status === 'failed') {
+                        indicator.className = 'task-indicator task-failed';
+                        taskItem.className = 'task-item task-item-failed';
+                    } else if (isCurrentDay) {
+                        // Today's tasks get yellow indicators
+                        indicator.className = 'task-indicator task-today';
+                        taskItem.className = 'task-item task-item-today';
+                    } else {
+                        indicator.className = 'task-indicator task-pending';
+                        taskItem.className = 'task-item';
+                    }
+                }
+            });
+        }
+
+        // Show day details
+        function showDayDetails(dayNumber) {
+            // Calculate date for this day
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            const startDate = savedStartDate ? new Date(savedStartDate) : new Date();
+            const dayDate = new Date(startDate);
+            dayDate.setDate(startDate.getDate() + dayNumber - 1);
+            const formattedDate = dayDate.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            // Update day view title
+            document.getElementById('dayViewTitle').textContent = `Day ${dayNumber} - ${formattedDate}`;
+            
+            // Load saved data for this day
+            loadDayData(dayNumber);
+            
+            // Show the day view page
+            showPage('dayView');
+        }
+
+        // Go to today's day
+        function goToToday() {
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            if (!savedStartDate) {
+                alert('Please set challenge start date first in Settings');
+                showPage('settings');
+                return;
+            }
+            
+            const startDate = new Date(savedStartDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // Calculate which day number is today
+            const diffTime = today - startDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            if (diffDays >= 1 && diffDays <= 75) {
+                showDayDetails(diffDays);
+            } else {
+                alert('Current day is outside challenge range (75 days)');
+            }
+        }
 
         // إعداد تتبع السعرات الحرارية
         function setupCaloriesTracking() {
@@ -1820,7 +2152,10 @@
             ];
             
             calorieInputs.forEach(inputId => {
-                document.getElementById(inputId).addEventListener('input', updateTotalCalories);
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.addEventListener('input', updateTotalCalories);
+                }
             });
             
             updateTotalCalories();
@@ -1838,11 +2173,17 @@
             ];
             
             calorieInputs.forEach(inputId => {
-                const value = parseInt(document.getElementById(inputId).value) || 0;
-                total += value;
+                const input = document.getElementById(inputId);
+                if (input) {
+                    const value = parseInt(input.value) || 0;
+                    total += value;
+                }
             });
             
-            document.getElementById('totalCalories').textContent = total;
+            const totalCaloriesElement = document.getElementById('totalCalories');
+            if (totalCaloriesElement) {
+                totalCaloriesElement.textContent = total;
+            }
         }
 
         // إعداد تتبع الماء
@@ -1855,25 +2196,31 @@
             if (totalWater + amount <= waterGoal) {
                 totalWater += amount;
                 updateWaterDisplay();
+                saveDayData();
             } else {
-                alert('لا يمكن تجاوز الهدف اليومي للماء!');
+                alert('Cannot exceed daily water goal!');
             }
         }
 
         // تحديث عرض الماء
         function updateWaterDisplay() {
-            document.getElementById('totalWater').textContent = totalWater;
+            const totalWaterElement = document.getElementById('totalWater');
+            if (totalWaterElement) {
+                totalWaterElement.textContent = totalWater;
+            }
             
             // تحديث عرض العلب المستهدفة
             const targetBottles = document.getElementById('targetBottles');
-            targetBottles.innerHTML = '';
-            
-            const bottlesNeeded = Math.ceil(waterGoal / 1000);
-            for (let i = 0; i < bottlesNeeded; i++) {
-                const bottle = document.createElement('span');
-                bottle.className = 'target-bottle';
-                bottle.textContent = '💧';
-                targetBottles.appendChild(bottle);
+            if (targetBottles) {
+                targetBottles.innerHTML = '';
+                
+                const bottlesNeeded = Math.ceil(waterGoal / 1000);
+                for (let i = 0; i < bottlesNeeded; i++) {
+                    const bottle = document.createElement('span');
+                    bottle.className = 'target-bottle';
+                    bottle.textContent = '💧';
+                    targetBottles.appendChild(bottle);
+                }
             }
         }
 
@@ -1892,6 +2239,7 @@
                 todos.push(todo);
                 renderTodos();
                 input.value = '';
+                saveDayData();
             }
         }
 
@@ -1901,6 +2249,7 @@
             if (todo) {
                 todo.completed = !todo.completed;
                 renderTodos();
+                saveDayData();
             }
         }
 
@@ -1908,11 +2257,14 @@
         function deleteTodo(id) {
             todos = todos.filter(t => t.id !== id);
             renderTodos();
+            saveDayData();
         }
 
         // عرض الأعمال
         function renderTodos() {
             const todoList = document.getElementById('todoList');
+            if (!todoList) return;
+            
             todoList.innerHTML = '';
             
             todos.forEach(todo => {
@@ -1928,7 +2280,7 @@
                         <span class="todo-text" style="text-decoration: ${todo.completed ? 'line-through' : 'none'}; color: ${todo.completed ? '#777' : '#333'}">${todo.text}</span>
                     </div>
                     <div class="todo-actions">
-                        <button class="btn btn-danger btn-small" onclick="deleteTodo(${todo.id})">حذف</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteTodo(${todo.id})">Delete</button>
                     </div>
                 `;
                 
@@ -1961,30 +2313,141 @@
             document.getElementById('photoModal').style.display = 'none';
         }
 
-        // حفظ تقدم اليوم
-        function saveDayProgress() {
-            // حفظ الأعمال
-            saveTodos();
+        // حفظ بيانات اليوم
+        function saveDayData(dayNumber = null) {
+            if (!currentUser) return;
             
-            // حفظ بيانات الماء
-            localStorage.setItem('75hard_water', totalWater.toString());
-            
-            // حفظ بيانات السعرات
-            const calorieData = {
-                breakfast: document.getElementById('breakfastCalories').value,
-                snack1: document.getElementById('snack1Calories').value,
-                lunch: document.getElementById('lunchCalories').value,
-                snack2: document.getElementById('snack2Calories').value,
-                dinner: document.getElementById('dinnerCalories').value
+            const dayData = {
+                diet: {
+                    completed: document.getElementById('dietCheckbox')?.checked || false,
+                    meals: {
+                        breakfast: {
+                            completed: document.getElementById('breakfastCheckbox')?.checked || false,
+                            calories: parseInt(document.getElementById('breakfastCalories')?.value) || 0
+                        },
+                        snack1: {
+                            completed: document.getElementById('snack1Checkbox')?.checked || false,
+                            calories: parseInt(document.getElementById('snack1Calories')?.value) || 0
+                        },
+                        lunch: {
+                            completed: document.getElementById('lunchCheckbox')?.checked || false,
+                            calories: parseInt(document.getElementById('lunchCalories')?.value) || 0
+                        },
+                        snack2: {
+                            completed: document.getElementById('snack2Checkbox')?.checked || false,
+                            calories: parseInt(document.getElementById('snack2Calories')?.value) || 0
+                        },
+                        dinner: {
+                            completed: document.getElementById('dinnerCheckbox')?.checked || false,
+                            calories: parseInt(document.getElementById('dinnerCalories')?.value) || 0
+                        }
+                    }
+                },
+                workouts: {
+                    indoor: {
+                        completed: document.getElementById('workout1Checkbox')?.checked || false,
+                        type: document.getElementById('workout1Input')?.value || ''
+                    },
+                    outdoor: {
+                        completed: document.getElementById('workout2Checkbox')?.checked || false,
+                        type: document.getElementById('workout2Input')?.value || ''
+                    }
+                },
+                water: totalWater,
+                reading: {
+                    completed: document.getElementById('readingCheckbox')?.checked || false,
+                    pages: parseInt(document.getElementById('pagesInput')?.value) || 0
+                },
+                photo: {
+                    taken: document.getElementById('photoTakenCheckbox')?.checked || false,
+                    // Note: Image data would need special handling for persistence
+                },
+                todos: todos
             };
-            localStorage.setItem('75hard_calories', JSON.stringify(calorieData));
             
-            alert('تم حفظ تقدم اليوم بنجاح!');
-            showPage('dashboard');
+            // Save to localStorage with user-specific key
+            const userEmail = currentUser.email;
+            const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
+            localStorage.setItem(dayKey, JSON.stringify(dayData));
         }
 
-        // باقي الدوال (initializeAdminAccount, showPage, isLoggedIn, etc.)
-        // ... (يجب إضافة باقي الدوال من الكود السابق هنا)
+        // تحميل بيانات اليوم
+        function loadDayData(dayNumber = null) {
+            if (!currentUser) return;
+            
+            const userEmail = currentUser.email;
+            const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
+            const savedData = localStorage.getItem(dayKey);
+            
+            if (savedData) {
+                const dayData = JSON.parse(savedData);
+                
+                // Load diet data
+                if (dayData.diet) {
+                    document.getElementById('dietCheckbox').checked = dayData.diet.completed || false;
+                    
+                    if (dayData.diet.meals) {
+                        document.getElementById('breakfastCheckbox').checked = dayData.diet.meals.breakfast.completed || false;
+                        document.getElementById('breakfastCalories').value = dayData.diet.meals.breakfast.calories || 0;
+                        
+                        document.getElementById('snack1Checkbox').checked = dayData.diet.meals.snack1.completed || false;
+                        document.getElementById('snack1Calories').value = dayData.diet.meals.snack1.calories || 0;
+                        
+                        document.getElementById('lunchCheckbox').checked = dayData.diet.meals.lunch.completed || false;
+                        document.getElementById('lunchCalories').value = dayData.diet.meals.lunch.calories || 0;
+                        
+                        document.getElementById('snack2Checkbox').checked = dayData.diet.meals.snack2.completed || false;
+                        document.getElementById('snack2Calories').value = dayData.diet.meals.snack2.calories || 0;
+                        
+                        document.getElementById('dinnerCheckbox').checked = dayData.diet.meals.dinner.completed || false;
+                        document.getElementById('dinnerCalories').value = dayData.diet.meals.dinner.calories || 0;
+                    }
+                }
+                
+                // Load workout data
+                if (dayData.workouts) {
+                    document.getElementById('workout1Checkbox').checked = dayData.workouts.indoor.completed || false;
+                    document.getElementById('workout1Input').value = dayData.workouts.indoor.type || '';
+                    
+                    document.getElementById('workout2Checkbox').checked = dayData.workouts.outdoor.completed || false;
+                    document.getElementById('workout2Input').value = dayData.workouts.outdoor.type || '';
+                }
+                
+                // Load water data
+                if (dayData.water) {
+                    totalWater = dayData.water;
+                    updateWaterDisplay();
+                }
+                
+                // Load reading data
+                if (dayData.reading) {
+                    document.getElementById('readingCheckbox').checked = dayData.reading.completed || false;
+                    document.getElementById('pagesInput').value = dayData.reading.pages || 0;
+                }
+                
+                // Load photo data
+                if (dayData.photo) {
+                    document.getElementById('photoTakenCheckbox').checked = dayData.photo.taken || false;
+                }
+                
+                // Load todos
+                if (dayData.todos) {
+                    todos = dayData.todos;
+                    renderTodos();
+                }
+                
+                updateTotalCalories();
+            }
+        }
+
+        // حفظ تقدم اليوم
+        function saveDayProgress() {
+            // حفظ بيانات اليوم
+            saveDayData();
+            
+            alert('Day progress saved successfully!');
+            showPage('dashboard');
+        }
 
         // Setup event listeners
         function setupEventListeners() {
@@ -2024,16 +2487,254 @@
                 });
 
                 // فتح الصورة بالحجم الكامل
-                photoPreview.addEventListener('click', () => {
-                    openPhotoModal(photoPreview.src);
+                if (photoPreview) {
+                    photoPreview.addEventListener('click', () => {
+                        openPhotoModal(photoPreview.src);
+                    });
+                }
+            }
+
+            // Login form
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('loginEmail').value;
+                    const password = document.getElementById('loginPassword').value;
+                    
+                    // Validate login credentials
+                    const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+                    const user = users.find(u => u.email === email && u.password === password);
+                    
+                    if (user) {
+                        localStorage.setItem('75hard_currentUser', JSON.stringify(user));
+                        currentUser = user;
+                        checkAuthStatus();
+                        showPage('dashboard');
+                        alert('Login successful!');
+                    } else {
+                        alert('Incorrect email or password');
+                    }
                 });
             }
 
-            // باقي event listeners...
+            // Signup form
+            const signupForm = document.getElementById('signupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('signupName').value;
+                    const email = document.getElementById('signupEmail').value;
+                    const password = document.getElementById('signupPassword').value;
+                    
+                    // Check if user already exists
+                    const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+                    const userExists = users.some(user => user.email === email);
+                    
+                    if (userExists) {
+                        alert('This email is already registered');
+                        return;
+                    }
+                    
+                    // Create new user
+                    const newUser = {
+                        name: name,
+                        email: email,
+                        password: password,
+                        role: 'user',
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    users.push(newUser);
+                    localStorage.setItem('75hard_users', JSON.stringify(users));
+                    localStorage.setItem('75hard_currentUser', JSON.stringify(newUser));
+                    currentUser = newUser;
+                    
+                    checkAuthStatus();
+                    showPage('dashboard');
+                    alert('Account created successfully!');
+                });
+            }
+
+            // Reset challenge button
+            const resetChallengeBtn = document.getElementById('resetChallengeBtn');
+            if (resetChallengeBtn) {
+                resetChallengeBtn.addEventListener('click', () => {
+                    if (confirm('Warning: Reset will delete all progress data. Are you sure?')) {
+                        // Clear all user-specific data
+                        if (currentUser) {
+                            const userEmail = currentUser.email;
+                            for (let i = 1; i <= 75; i++) {
+                                localStorage.removeItem(`75hard_${userEmail}_day${i}`);
+                            }
+                            localStorage.removeItem(`75hard_${userEmail}_currentDay`);
+                        }
+                        
+                        alert('Challenge reset successfully!');
+                        generateDaysGrid(); // Regenerate with initial state
+                    }
+                });
+            }
+
+            // Reset day button
+            const resetDayBtn = document.getElementById('resetDayBtn');
+            if (resetDayBtn) {
+                resetDayBtn.addEventListener('click', () => {
+                    if (confirm('Do you want to reset this day? All data for this day will be cleared.')) {
+                        // Reset all inputs for the day
+                        document.getElementById('dietCheckbox').checked = false;
+                        document.getElementById('workout1Checkbox').checked = false;
+                        document.getElementById('workout2Checkbox').checked = false;
+                        document.getElementById('waterInput').value = '0';
+                        document.getElementById('readingCheckbox').checked = false;
+                        document.getElementById('photoPreview').style.display = 'none';
+                        document.getElementById('notesTextarea').value = '';
+                        
+                        // Reset meal checkboxes and calories
+                        const mealCheckboxes = [
+                            'breakfastCheckbox', 'snack1Checkbox', 'lunchCheckbox', 
+                            'snack2Checkbox', 'dinnerCheckbox'
+                        ];
+                        const calorieInputs = [
+                            'breakfastCalories', 'snack1Calories', 'lunchCalories',
+                            'snack2Calories', 'dinnerCalories'
+                        ];
+                        
+                        mealCheckboxes.forEach(id => {
+                            document.getElementById(id).checked = false;
+                        });
+                        
+                        calorieInputs.forEach(id => {
+                            document.getElementById(id).value = '';
+                        });
+                        
+                        // Reset water
+                        totalWater = 0;
+                        updateWaterDisplay();
+                        
+                        // Reset todos
+                        todos = [];
+                        renderTodos();
+                        
+                        // Save the reset state
+                        saveDayData();
+                        
+                        alert('Day reset successfully!');
+                    }
+                });
+            }
+
+            // Auto-save when inputs change
+            const autoSaveInputs = [
+                'dietCheckbox', 'breakfastCheckbox', 'snack1Checkbox', 'lunchCheckbox',
+                'snack2Checkbox', 'dinnerCheckbox', 'workout1Checkbox', 'workout2Checkbox',
+                'readingCheckbox', 'photoTakenCheckbox', 'pagesInput'
+            ];
+            
+            autoSaveInputs.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('change', () => {
+                        saveDayData();
+                    });
+                }
+            });
+            
+            const autoSaveTextInputs = [
+                'workout1Input', 'workout2Input', 'breakfastCalories', 'snack1Calories',
+                'lunchCalories', 'snack2Calories', 'dinnerCalories'
+            ];
+            
+            autoSaveTextInputs.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', () => {
+                        saveDayData();
+                    });
+                }
+            });
         }
 
-        // باقي الدوال (initializeAdminAccount, showPage, etc.)
-        // ... (يجب إضافة باقي الدوال من الكود السابق هنا)
+        // Logout function
+        function logout() {
+            localStorage.removeItem('75hard_currentUser');
+            currentUser = null;
+            checkAuthStatus();
+            showPage('home');
+            alert('Logged out successfully!');
+        }
+
+        // Load settings from localStorage
+        function loadSettings() {
+            // Load start date
+            const savedStartDate = localStorage.getItem('75hard_startDate');
+            if (savedStartDate) {
+                document.getElementById('startDate').value = savedStartDate;
+            }
+            
+            // Load account settings
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                document.getElementById('userName').value = currentUser.name;
+                document.getElementById('userEmail').value = currentUser.email;
+            }
+        }
+
+        // Update start date
+        function updateStartDate() {
+            const startDate = document.getElementById('startDate').value;
+            if (startDate) {
+                // Save to localStorage
+                localStorage.setItem('75hard_startDate', startDate);
+                generateDaysGrid();
+                alert('Challenge start date updated successfully!');
+            } else {
+                alert('Please choose challenge start date');
+            }
+        }
+
+        // Load users table for admin
+        function loadUsersTable() {
+            const usersTableBody = document.getElementById('usersTableBody');
+            if (!usersTableBody) return;
+            
+            const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+            const currentUser = getCurrentUser();
+            
+            usersTableBody.innerHTML = '';
+            
+            users.forEach(user => {
+                // Don't show current user in the list
+                if (user.email === currentUser.email) return;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${new Date(user.createdAt).toLocaleDateString('en-US')}</td>
+                    <td class="user-actions">
+                        <button class="btn-danger" onclick="deleteUser('${user.email}')">Delete</button>
+                    </td>
+                `;
+                
+                usersTableBody.appendChild(row);
+            });
+        }
+
+        // Delete user (admin only)
+        function deleteUser(email) {
+            if (!confirm('Are you sure you want to delete this user?')) return;
+            
+            const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+            const updatedUsers = users.filter(user => user.email !== email);
+            
+            localStorage.setItem('75hard_users', JSON.stringify(updatedUsers));
+            
+            // Reload users table
+            loadUsersTable();
+            
+            alert('User deleted successfully!');
+        }
     </script>
 </body>
 </html>
