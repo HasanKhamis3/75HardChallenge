@@ -436,7 +436,7 @@
 
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px 45px 12px 15px;
             border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
             font-size: 1rem;
@@ -459,6 +459,12 @@
             cursor: pointer;
             color: var(--light-text);
             transition: var(--transition);
+            font-size: 1.2rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .password-toggle:hover {
@@ -1516,7 +1522,7 @@
                         <label for="loginPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="loginPassword" class="form-control" required>
                         <button type="button" class="password-toggle" id="loginPasswordToggle" onclick="togglePasswordVisibility('loginPassword', 'loginPasswordToggle')">
-                            <span data-en="Show" data-ar="إظهار">إظهار</span>
+                            <span>👁️</span>
                         </button>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
@@ -1556,7 +1562,7 @@
                         <label for="signupPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="signupPassword" class="form-control" required minlength="8">
                         <button type="button" class="password-toggle" id="signupPasswordToggle" onclick="togglePasswordVisibility('signupPassword', 'signupPasswordToggle')">
-                            <span data-en="Show" data-ar="إظهار">إظهار</span>
+                            <span>👁️</span>
                         </button>
                         <small style="color: var(--light-text);" data-en="Password must contain at least 8 characters" data-ar="يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
                     </div>
@@ -2084,10 +2090,10 @@
             
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
-                toggleButton.innerHTML = currentLanguage === 'ar' ? 'إخفاء' : 'Hide';
+                toggleButton.innerHTML = '🙈';
             } else {
                 passwordField.type = 'password';
-                toggleButton.innerHTML = currentLanguage === 'ar' ? 'إظهار' : 'Show';
+                toggleButton.innerHTML = '👁️';
             }
         }
 
