@@ -167,16 +167,13 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            background-color: rgba(138, 43, 226, 0.1);
+            color: var(--primary-color);
+            font-weight: 500;
         }
 
         .lang-btn:hover {
-            background-color: rgba(138, 43, 226, 0.05);
-        }
-
-        .lang-btn.active {
-            background-color: rgba(138, 43, 226, 0.1);
-            color: var(--primary-color);
-            font-weight: bold;
+            background-color: rgba(138, 43, 226, 0.2);
         }
 
         /* Page Sections */
@@ -1302,10 +1299,7 @@
                     <li id="adminLink" class="hidden"><a onclick="showPage('adminUsers')" data-en="Admin" data-ar="المشرف">المشرف</a></li>
                 </ul>
                 <div class="auth-buttons" id="authButtons">
-                    <div class="language-selector">
-                        <button class="lang-btn active" onclick="changeLanguage('ar')">العربية</button>
-                        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
-                    </div>
+                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">English</button>
                     <button class="btn btn-outline" onclick="showPage('login')" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')" data-en="Sign Up" data-ar="إنشاء حساب">إنشاء حساب</button>
                 </div>
@@ -1846,6 +1840,9 @@
             
             // Load saved data
             loadDayData();
+            
+            // تحديث زر اللغة
+            updateLanguageToggle();
         });
 
         // Initialize admin account
@@ -1926,12 +1923,10 @@
                     (currentLanguage === 'ar' ? 'مساء الخير' : 'Good Evening');
                 
                 authButtons.innerHTML = `
-                    <div class="language-selector">
-                        <button class="lang-btn ${currentLanguage === 'ar' ? 'active' : ''}" onclick="changeLanguage('ar')">العربية</button>
-                        <button class="lang-btn ${currentLanguage === 'en' ? 'active' : ''}" onclick="changeLanguage('en')">English</button>
-                    </div>
+                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
                     <div class="user-info">
                         <span class="user-greeting">${greeting}, ${user.name}</span>
+                        <button class="btn btn-primary" onclick="showPage('dashboard')" data-en="Challenge" data-ar="التحدي">التحدي</button>
                         <button class="btn btn-outline" onclick="showPage('settings')" data-en="Settings" data-ar="الإعدادات">الإعدادات</button>
                         <button class="btn btn-outline" onclick="logout()" data-en="Logout" data-ar="تسجيل الخروج">تسجيل الخروج</button>
                     </div>
@@ -1948,10 +1943,7 @@
                 }
             } else {
                 authButtons.innerHTML = `
-                    <div class="language-selector">
-                        <button class="lang-btn ${currentLanguage === 'ar' ? 'active' : ''}" onclick="changeLanguage('ar')">العربية</button>
-                        <button class="lang-btn ${currentLanguage === 'en' ? 'active' : ''}" onclick="changeLanguage('en')">English</button>
-                    </div>
+                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
                     <button class="btn btn-outline" onclick="showPage('login')" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')" data-en="Sign Up" data-ar="إنشاء حساب">إنشاء حساب</button>
                 `;
@@ -1965,25 +1957,33 @@
             updateLanguage();
         }
 
-        // Change language function
-        function changeLanguage(lang) {
-            currentLanguage = lang;
+        // Toggle language function
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
             
             // Update HTML direction
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
-            
-            // Update language buttons
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.lang-btn[onclick="changeLanguage('${lang}')"]`).classList.add('active');
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = currentLanguage;
             
             // Update all text content
             updateLanguage();
             
+            // Update language toggle button
+            updateLanguageToggle();
+            
             // Update auth status to refresh user greeting
             checkAuthStatus();
+            
+            // Regenerate days grid with new language
+            generateDaysGrid();
+        }
+
+        // Update language toggle button
+        function updateLanguageToggle() {
+            const languageToggle = document.getElementById('languageToggle');
+            if (languageToggle) {
+                languageToggle.textContent = currentLanguage === 'ar' ? 'English' : 'العربية';
+            }
         }
 
         // Update all text content based on current language
