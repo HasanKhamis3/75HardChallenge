@@ -149,6 +149,36 @@
             background-color: rgba(138, 43, 226, 0.05);
         }
 
+        /* Language Selector */
+        .language-selector {
+            display: flex;
+            align-items: center;
+            margin-left: 1.5rem;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-btn:hover {
+            background-color: rgba(138, 43, 226, 0.05);
+        }
+
+        .lang-btn.active {
+            background-color: rgba(138, 43, 226, 0.1);
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
         /* Page Sections */
         .page {
             display: none;
@@ -1264,16 +1294,20 @@
             <nav class="navbar">
                 <div class="logo" onclick="showPage('home')">75Hard</div>
                 <ul class="nav-links">
-                    <li><a onclick="showPage('home')">Home</a></li>
-                    <li><a onclick="showPage('features')">Features</a></li>
-                    <li><a onclick="showPage('faq')">FAQ</a></li>
-                    <li><a onclick="showPage('contact')">Contact</a></li>
-                    <li id="challengeLink" class="hidden"><a onclick="showPage('dashboard')">Challenge</a></li>
-                    <li id="adminLink" class="hidden"><a onclick="showPage('adminUsers')">Admin</a></li>
+                    <li><a onclick="showPage('home')" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                    <li><a onclick="showPage('features')" data-en="Features" data-ar="الميزات">الميزات</a></li>
+                    <li><a onclick="showPage('faq')" data-en="FAQ" data-ar="الأسئلة الشائعة">الأسئلة الشائعة</a></li>
+                    <li><a onclick="showPage('contact')" data-en="Contact" data-ar="اتصل بنا">اتصل بنا</a></li>
+                    <li id="challengeLink" class="hidden"><a onclick="showPage('dashboard')" data-en="Challenge" data-ar="التحدي">التحدي</a></li>
+                    <li id="adminLink" class="hidden"><a onclick="showPage('adminUsers')" data-en="Admin" data-ar="المشرف">المشرف</a></li>
                 </ul>
                 <div class="auth-buttons" id="authButtons">
-                    <button class="btn btn-outline" onclick="showPage('login')">Login</button>
-                    <button class="btn btn-primary" onclick="showPage('signup')">Sign Up</button>
+                    <div class="language-selector">
+                        <button class="lang-btn active" onclick="changeLanguage('ar')">العربية</button>
+                        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+                    </div>
+                    <button class="btn btn-outline" onclick="showPage('login')" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')" data-en="Sign Up" data-ar="إنشاء حساب">إنشاء حساب</button>
                 </div>
             </nav>
         </div>
@@ -1283,30 +1317,30 @@
     <section id="home" class="page active">
         <div class="hero">
             <div class="container">
-                <h1>Start 75 Day Challenge - Strengthen Your Discipline</h1>
-                <p>A daily program of 5 rules to build self-discipline habits - diet, two workouts (one outdoor), water, reading, daily photo.</p>
-                <button class="cta-button" onclick="showPage('signup')">Start Now - Sign Up Free</button>
+                <h1 data-en="Start 75 Day Challenge - Strengthen Your Discipline" data-ar="ابدأ تحدي 75 يومًا - قوي انضباطك">ابدأ تحدي 75 يومًا - قوي انضباطك</h1>
+                <p data-en="A daily program of 5 rules to build self-discipline habits - diet, two workouts (one outdoor), water, reading, daily photo." data-ar="برنامج يومي من 5 قواعد لبناء عادات الانضباط الذاتي - نظام غذائي، تمرينان (أحدهما في الهواء الطلق)، ماء، قراءة، صورة يومية.">برنامج يومي من 5 قواعد لبناء عادات الانضباط الذاتي - نظام غذائي، تمرينان (أحدهما في الهواء الطلق)، ماء، قراءة، صورة يومية.</p>
+                <button class="cta-button" onclick="showPage('signup')" data-en="Start Now - Sign Up Free" data-ar="ابدأ الآن - سجل مجانًا">ابدأ الآن - سجل مجانًا</button>
             </div>
         </div>
 
         <div class="features">
             <div class="container">
-                <h2 class="section-title">App Features</h2>
+                <h2 class="section-title" data-en="App Features" data-ar="ميزات التطبيق">ميزات التطبيق</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">📊</div>
-                        <h3>Dashboard</h3>
-                        <p>Track your daily progress with an interactive dashboard showing your achievements and completion percentage.</p>
+                        <h3 data-en="Dashboard" data-ar="لوحة التحكم">لوحة التحكم</h3>
+                        <p data-en="Track your daily progress with an interactive dashboard showing your achievements and completion percentage." data-ar="تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز.">تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">🔔</div>
-                        <h3>Smart Reminders</h3>
-                        <p>Don't miss any task with the daily reminder system that alerts you to complete your tasks on time.</p>
+                        <h3 data-en="Smart Reminders" data-ar="التذكيرات الذكية">التذكيرات الذكية</h3>
+                        <p data-en="Don't miss any task with the daily reminder system that alerts you to complete your tasks on time." data-ar="لا تفوت أي مهمة مع نظام التذكير اليومي الذي ينبهك لإكمال مهامك في الوقت المحدد.">لا تفوت أي مهمة مع نظام التذكير اليومي الذي ينبهك لإكمال مهامك في الوقت المحدد.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">📤</div>
-                        <h3>Export Reports</h3>
-                        <p>Get detailed reports of your progress in CSV and PDF formats to share or archive.</p>
+                        <h3 data-en="Export Reports" data-ar="تصدير التقارير">تصدير التقارير</h3>
+                        <p data-en="Get detailed reports of your progress in CSV and PDF formats to share or archive." data-ar="احصل على تقارير مفصلة لتقدمك بصيغتي CSV و PDF للمشاركة أو الأرشفة.">احصل على تقارير مفصلة لتقدمك بصيغتي CSV و PDF للمشاركة أو الأرشفة.</p>
                     </div>
                 </div>
             </div>
@@ -1316,37 +1350,37 @@
     <!-- Features Page -->
     <section id="features" class="page">
         <div class="container">
-            <h1 class="section-title">75Hard Challenge Features</h1>
+            <h1 class="section-title" data-en="75Hard Challenge Features" data-ar="ميزات تحدي 75 يومًا">ميزات تحدي 75 يومًا</h1>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Comprehensive Dashboard</h3>
-                    <p>Track your daily progress with an interactive dashboard showing your achievements and completion percentage visually and attractively.</p>
+                    <h3 data-en="Comprehensive Dashboard" data-ar="لوحة تحكم شاملة">لوحة تحكم شاملة</h3>
+                    <p data-en="Track your daily progress with an interactive dashboard showing your achievements and completion percentage visually and attractively." data-ar="تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز بشكل مرئي وجذاب.">تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز بشكل مرئي وجذاب.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔔</div>
-                    <h3>Smart Reminders</h3>
-                    <p>Don't miss any task with the daily reminder system that alerts you to complete your tasks on time.</p>
+                    <h3 data-en="Smart Reminders" data-ar="التذكيرات الذكية">التذكيرات الذكية</h3>
+                    <p data-en="Don't miss any task with the daily reminder system that alerts you to complete your tasks on time." data-ar="لا تفوت أي مهمة مع نظام التذكير اليومي الذي ينبهك لإكمال مهامك في الوقت المحدد.">لا تفوت أي مهمة مع نظام التذكير اليومي الذي ينبهك لإكمال مهامك في الوقت المحدد.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📤</div>
-                    <h3>Export Reports</h3>
-                    <p>Get detailed reports of your progress in CSV and PDF formats to share or archive.</p>
+                    <h3 data-en="Export Reports" data-ar="تصدير التقارير">تصدير التقارير</h3>
+                    <p data-en="Get detailed reports of your progress in CSV and PDF formats to share or archive." data-ar="احصل على تقارير مفصلة لتقدمك بصيغتي CSV و PDF للمشاركة أو الأرشفة.">احصل على تقارير مفصلة لتقدمك بصيغتي CSV و PDF للمشاركة أو الأرشفة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3>Responsive Interface</h3>
-                    <p>Use the app on all devices from phones to desktop computers.</p>
+                    <h3 data-en="Responsive Interface" data-ar="واجهة متجاوبة">واجهة متجاوبة</h3>
+                    <p data-en="Use the app on all devices from phones to desktop computers." data-ar="استخدم التطبيق على جميع الأجهزة من الهواتف إلى أجهزة الكمبيوتر المكتبية.">استخدم التطبيق على جميع الأجهزة من الهواتف إلى أجهزة الكمبيوتر المكتبية.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <h3>Data Protection</h3>
-                    <p>Your data and photos are protected and encrypted, with advanced privacy options.</p>
+                    <h3 data-en="Data Protection" data-ar="حماية البيانات">حماية البيانات</h3>
+                    <p data-en="Your data and photos are protected and encrypted, with advanced privacy options." data-ar="بياناتك وصورك محمية ومشفرة، مع خيارات خصوصية متقدمة.">بياناتك وصورك محمية ومشفرة، مع خيارات خصوصية متقدمة.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌐</div>
-                    <h3>Multi-language Support</h3>
-                    <p>Use the app in Arabic or English according to your preferences.</p>
+                    <h3 data-en="Multi-language Support" data-ar="دعم متعدد اللغات">دعم متعدد اللغات</h3>
+                    <p data-en="Use the app in Arabic or English according to your preferences." data-ar="استخدم التطبيق بالعربية أو الإنجليزية حسب تفضيلاتك.">استخدم التطبيق بالعربية أو الإنجليزية حسب تفضيلاتك.</p>
                 </div>
             </div>
         </div>
@@ -1355,51 +1389,51 @@
     <!-- FAQ Page -->
     <section id="faq" class="page">
         <div class="container">
-            <h1 class="section-title">Frequently Asked Questions</h1>
+            <h1 class="section-title" data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">الأسئلة الشائعة</h1>
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>What is the goal of the 75 day challenge?</span>
+                        <span data-en="What is the goal of the 75 day challenge?" data-ar="ما هو الهدف من تحدي 75 يومًا؟">ما هو الهدف من تحدي 75 يومًا؟</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>The challenge aims to build self-discipline habits through commitment to five daily tasks for 75 consecutive days. The challenge helps you develop your ability to commit and improve your physical and mental health.</p>
+                        <p data-en="The challenge aims to build self-discipline habits through commitment to five daily tasks for 75 consecutive days. The challenge helps you develop your ability to commit and improve your physical and mental health." data-ar="يهدف التحدي إلى بناء عادات الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتالية. يساعدك التحدي على تطوير قدرتك على الالتزام وتحسين صحتك الجسدية والعقلية.">يهدف التحدي إلى بناء عادات الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتالية. يساعدك التحدي على تطوير قدرتك على الالتزام وتحسين صحتك الجسدية والعقلية.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>What happens if I fail one day?</span>
+                        <span data-en="What happens if I fail one day?" data-ar="ماذا يحدث إذا فشلت في يوم واحد؟">ماذا يحدث إذا فشلت في يوم واحد؟</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>If you activate the "Restart on Failure" option in settings, you will be returned to day one upon any rule violation. You can disable this option if you want to continue from where you left off.</p>
+                        <p data-en="If you activate the 'Restart on Failure' option in settings, you will be returned to day one upon any rule violation. You can disable this option if you want to continue from where you left off." data-ar="إذا قمت بتفعيل خيار 'إعادة البدء عند الفشل' في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي انتهاك للقواعد. يمكنك تعطيل هذا الخيار إذا كنت ترغب في الاستمرار من حيث توقفت.">إذا قمت بتفعيل خيار 'إعادة البدء عند الفشل' في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي انتهاك للقواعد. يمكنك تعطيل هذا الخيار إذا كنت ترغب في الاستمرار من حيث توقفت.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>Is the challenge suitable for beginners?</span>
+                        <span data-en="Is the challenge suitable for beginners?" data-ar="هل التحدي مناسب للمبتدئين؟">هل التحدي مناسب للمبتدئين؟</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, beginners can start the challenge by adjusting some tasks to suit their level, while maintaining the essence of the challenge which is daily commitment. We recommend starting gradually and increasing difficulty over time.</p>
+                        <p data-en="Yes, beginners can start the challenge by adjusting some tasks to suit their level, while maintaining the essence of the challenge which is daily commitment. We recommend starting gradually and increasing difficulty over time." data-ar="نعم، يمكن للمبتدئين بدء التحدي عن طريق تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي. نوصي بالبدء تدريجيًا وزيادة الصعوبة بمرور الوقت.">نعم، يمكن للمبتدئين بدء التحدي عن طريق تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي. نوصي بالبدء تدريجيًا وزيادة الصعوبة بمرور الوقت.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>How are completed days calculated?</span>
+                        <span data-en="How are completed days calculated?" data-ar="كيف يتم حساب الأيام المكتملة؟">كيف يتم حساب الأيام المكتملة؟</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>A day is considered complete when all five tasks are accomplished: diet, two workouts, drinking required water amount, reading, and uploading daily photo.</p>
+                        <p data-en="A day is considered complete when all five tasks are accomplished: diet, two workouts, drinking required water amount, reading, and uploading daily photo." data-ar="يعتبر اليوم مكتملاً عند إنجاز جميع المهام الخمس: النظام الغذائي، التمرينان، شرب كمية الماء المطلوبة، القراءة، وتحمل الصورة اليومية.">يعتبر اليوم مكتملاً عند إنجاز جميع المهام الخمس: النظام الغذائي، التمرينان، شرب كمية الماء المطلوبة، القراءة، وتحمل الصورة اليومية.</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <span>Can I modify previous days?</span>
+                        <span data-en="Can I modify previous days?" data-ar="هل يمكنني تعديل الأيام السابقة؟">هل يمكنني تعديل الأيام السابقة؟</span>
                         <span>+</span>
                     </div>
                     <div class="faq-answer">
-                        <p>Yes, you can modify data for previous days, but "Manually Modified" mark will be placed to maintain challenge credibility.</p>
+                        <p data-en="Yes, you can modify data for previous days, but 'Manually Modified' mark will be placed to maintain challenge credibility." data-ar="نعم، يمكنك تعديل بيانات الأيام السابقة، ولكن سيتم وضع علامة 'تم التعديل يدويًا' للحفاظ على مصداقية التحدي.">نعم، يمكنك تعديل بيانات الأيام السابقة، ولكن سيتم وضع علامة 'تم التعديل يدويًا' للحفاظ على مصداقية التحدي.</p>
                     </div>
                 </div>
             </div>
@@ -1409,21 +1443,21 @@
     <!-- Contact Page -->
     <section id="contact" class="page">
         <div class="container">
-            <h1 class="section-title">Contact Us</h1>
+            <h1 class="section-title" data-en="Contact Us" data-ar="اتصل بنا">اتصل بنا</h1>
             <div class="features-grid">
                 <div class="feature-card">
-                    <h3>Contact Information</h3>
+                    <h3 data-en="Contact Information" data-ar="معلومات الاتصال">معلومات الاتصال</h3>
                     <p>Email: info@75hard.com</p>
                     <p>Phone: +966 123 456 789</p>
-                    <p>Working Hours: 9:00 AM - 5:00 PM</p>
+                    <p data-en="Working Hours: 9:00 AM - 5:00 PM" data-ar="ساعات العمل: 9:00 صباحًا - 5:00 مساءً">ساعات العمل: 9:00 صباحًا - 5:00 مساءً</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Important Links</h3>
+                    <h3 data-en="Important Links" data-ar="روابط مهمة">روابط مهمة</h3>
                     <ul class="footer-links" style="color: var(--text-color);">
-                        <li><a>Privacy Policy</a></li>
-                        <li><a>Terms of Use</a></li>
-                        <li><a>Technical Support</a></li>
-                        <li><a>FAQ</a></li>
+                        <li><a data-en="Privacy Policy" data-ar="سياسة الخصوصية">سياسة الخصوصية</a></li>
+                        <li><a data-en="Terms of Use" data-ar="شروط الاستخدام">شروط الاستخدام</a></li>
+                        <li><a data-en="Technical Support" data-ar="الدعم الفني">الدعم الفني</a></li>
+                        <li><a data-en="FAQ" data-ar="الأسئلة الشائعة">الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
             </div>
@@ -1434,26 +1468,26 @@
     <section id="login" class="page">
         <div class="container">
             <div class="auth-container">
-                <h2 class="auth-title">Login</h2>
+                <h2 class="auth-title" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</h2>
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="loginEmail">Email</label>
+                        <label for="loginEmail" data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</label>
                         <input type="email" id="loginEmail" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">Password</label>
+                        <label for="loginPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="loginPassword" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
                 </form>
                 <div class="auth-divider">
-                    <span>or</span>
+                    <span data-en="or" data-ar="أو">أو</span>
                 </div>
                 <button class="btn-google">
-                    <span>Login with Google</span>
+                    <span data-en="Login with Google" data-ar="تسجيل الدخول باستخدام جوجل">تسجيل الدخول باستخدام جوجل</span>
                 </button>
                 <div class="auth-link">
-                    <p>Don't have an account? <a onclick="showPage('signup')">Create Account</a></p>
+                    <p data-en="Don't have an account?" data-ar="ليس لديك حساب؟">ليس لديك حساب؟ <a onclick="showPage('signup')" data-en="Create Account" data-ar="إنشاء حساب">إنشاء حساب</a></p>
                 </div>
             </div>
         </div>
@@ -1463,31 +1497,31 @@
     <section id="signup" class="page">
         <div class="container">
             <div class="auth-container">
-                <h2 class="auth-title">Create Account</h2>
+                <h2 class="auth-title" data-en="Create Account" data-ar="إنشاء حساب">إنشاء حساب</h2>
                 <form id="signupForm">
                     <div class="form-group">
-                        <label for="signupName">Full Name</label>
+                        <label for="signupName" data-en="Full Name" data-ar="الاسم الكامل">الاسم الكامل</label>
                         <input type="text" id="signupName" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupEmail">Email</label>
+                        <label for="signupEmail" data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</label>
                         <input type="email" id="signupEmail" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupPassword">Password</label>
+                        <label for="signupPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="signupPassword" class="form-control" required minlength="8">
-                        <small style="color: var(--light-text);">Password must contain at least 8 characters</small>
+                        <small style="color: var(--light-text);" data-en="Password must contain at least 8 characters" data-ar="يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Create Account" data-ar="إنشاء حساب">إنشاء حساب</button>
                 </form>
                 <div class="auth-divider">
-                    <span>or</span>
+                    <span data-en="or" data-ar="أو">أو</span>
                 </div>
                 <button class="btn-google">
-                    <span>Sign up with Google</span>
+                    <span data-en="Sign up with Google" data-ar="التسجيل باستخدام جوجل">التسجيل باستخدام جوجل</span>
                 </button>
                 <div class="auth-link">
-                    <p>Already have an account? <a onclick="showPage('login')">Login</a></p>
+                    <p data-en="Already have an account?" data-ar="هل لديك حساب بالفعل؟">هل لديك حساب بالفعل؟ <a onclick="showPage('login')" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</a></p>
                 </div>
             </div>
         </div>
@@ -1497,31 +1531,31 @@
     <section id="dashboard" class="page">
         <div class="container">
             <div id="startDateError" class="error-message hidden">
-                <p>Challenge start date not set yet. Please set start date in <a href="#" onclick="showPage('settings')">Settings</a>.</p>
+                <p data-en="Challenge start date not set yet. Please set start date in" data-ar="تاريخ بدء التحدي غير محدد بعد. يرجى تعيين تاريخ البدء في">تاريخ بدء التحدي غير محدد بعد. يرجى تعيين تاريخ البدء في <a href="#" onclick="showPage('settings')" data-en="Settings" data-ar="الإعدادات">الإعدادات</a>.</p>
             </div>
             
             <div class="progress-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2>Your Challenge Progress</h2>
-                    <button class="go-to-today-btn" onclick="goToToday()">Go to Today</button>
+                    <h2 data-en="Your Challenge Progress" data-ar="تقدمك في التحدي">تقدمك في التحدي</h2>
+                    <button class="go-to-today-btn" onclick="goToToday()" data-en="Go to Today" data-ar="اذهب إلى اليوم">اذهب إلى اليوم</button>
                 </div>
                 <div class="progress-info" style="display: flex; justify-content: space-between;">
-                    <span>Day <span id="currentDay">23</span> of 75</span>
-                    <span><span id="progressPercentage">30.6</span>% Complete</span>
+                    <span data-en="Day" data-ar="اليوم">اليوم <span id="currentDay">23</span> من 75</span>
+                    <span><span id="progressPercentage">30.6</span>% <span data-en="Complete" data-ar="مكتمل">مكتمل</span></span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill" style="width: 30.6%"></div>
                 </div>
                 
-                <h3 class="mt-2">Days Grid</h3>
+                <h3 class="mt-2" data-en="Days Grid" data-ar="شبكة الأيام">شبكة الأيام</h3>
                 <div class="days-grid" id="daysGrid">
                     <!-- Days 1-75 will be generated here -->
                 </div>
                 
                 <div class="dashboard-actions">
-                    <button class="btn btn-outline">Export CSV</button>
-                    <button class="btn btn-outline" onclick="showPage('reports')">Reports</button>
-                    <button class="btn btn-outline" id="resetChallengeBtn">Reset Challenge</button>
+                    <button class="btn btn-outline" data-en="Export CSV" data-ar="تصدير CSV">تصدير CSV</button>
+                    <button class="btn btn-outline" onclick="showPage('reports')" data-en="Reports" data-ar="التقارير">التقارير</button>
+                    <button class="btn btn-outline" id="resetChallengeBtn" data-en="Reset Challenge" data-ar="إعادة تعيين التحدي">إعادة تعيين التحدي</button>
                 </div>
             </div>
             
@@ -1536,13 +1570,13 @@
         <div class="container">
             <div class="day-header">
                 <h1 id="dayViewTitle">Day 23 - October 15, 2023</h1>
-                <button class="btn btn-outline" onclick="showPage('dashboard')">Back to Dashboard</button>
+                <button class="btn btn-outline" onclick="showPage('dashboard')" data-en="Back to Dashboard" data-ar="العودة إلى لوحة التحكم">العودة إلى لوحة التحكم</button>
             </div>
             
             <!-- Diet -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Diet</div>
+                    <div class="task-title" data-en="Diet" data-ar="النظام الغذائي">النظام الغذائي</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="dietCheckbox">
@@ -1558,11 +1592,11 @@
                                 <input type="checkbox" id="breakfastCheckbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>Breakfast</span>
+                            <span data-en="Breakfast" data-ar="الإفطار">الإفطار</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="breakfastCalories" placeholder="Calories">
-                            <span>cal</span>
+                            <input type="number" class="calories-input" id="breakfastCalories" placeholder="Calories" data-en="Calories" data-ar="السعرات">
+                            <span data-en="cal" data-ar="سعرة">سعرة</span>
                         </div>
                     </div>
                     
@@ -1572,11 +1606,11 @@
                                 <input type="checkbox" id="snack1Checkbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>Snack</span>
+                            <span data-en="Snack" data-ar="وجبة خفيفة">وجبة خفيفة</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="snack1Calories" placeholder="Calories">
-                            <span>cal</span>
+                            <input type="number" class="calories-input" id="snack1Calories" placeholder="Calories" data-en="Calories" data-ar="السعرات">
+                            <span data-en="cal" data-ar="سعرة">سعرة</span>
                         </div>
                     </div>
                     
@@ -1586,11 +1620,11 @@
                                 <input type="checkbox" id="lunchCheckbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>Lunch</span>
+                            <span data-en="Lunch" data-ar="الغداء">الغداء</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="lunchCalories" placeholder="Calories">
-                            <span>cal</span>
+                            <input type="number" class="calories-input" id="lunchCalories" placeholder="Calories" data-en="Calories" data-ar="السعرات">
+                            <span data-en="cal" data-ar="سعرة">سعرة</span>
                         </div>
                     </div>
                     
@@ -1600,11 +1634,11 @@
                                 <input type="checkbox" id="snack2Checkbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>Snack</span>
+                            <span data-en="Snack" data-ar="وجبة خفيفة">وجبة خفيفة</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="snack2Calories" placeholder="Calories">
-                            <span>cal</span>
+                            <input type="number" class="calories-input" id="snack2Calories" placeholder="Calories" data-en="Calories" data-ar="السعرات">
+                            <span data-en="cal" data-ar="سعرة">سعرة</span>
                         </div>
                     </div>
                     
@@ -1614,26 +1648,26 @@
                                 <input type="checkbox" id="dinnerCheckbox">
                                 <span class="toggle-slider"></span>
                             </label>
-                            <span>Dinner</span>
+                            <span data-en="Dinner" data-ar="العشاء">العشاء</span>
                         </div>
                         <div class="meal-calories">
-                            <input type="number" class="calories-input" id="dinnerCalories" placeholder="Calories">
-                            <span>cal</span>
+                            <input type="number" class="calories-input" id="dinnerCalories" placeholder="Calories" data-en="Calories" data-ar="السعرات">
+                            <span data-en="cal" data-ar="سعرة">سعرة</span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="total-calories">
-                    <span>Total Calories: </span>
+                    <span data-en="Total Calories:" data-ar="إجمالي السعرات الحرارية:">إجمالي السعرات الحرارية: </span>
                     <span id="totalCalories">0</span>
-                    <span> cal</span>
+                    <span data-en="cal" data-ar="سعرة"> سعرة</span>
                 </div>
             </div>
             
             <!-- Indoor Workout -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Indoor Workout (45 minutes)</div>
+                    <div class="task-title" data-en="Indoor Workout (45 minutes)" data-ar="تمرين داخلي (45 دقيقة)">تمرين داخلي (45 دقيقة)</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="workout1Checkbox">
@@ -1641,13 +1675,13 @@
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Workout type" id="workout1Input">
+                <input type="text" class="form-control" placeholder="Workout type" data-en="Workout type" data-ar="نوع التمرين" id="workout1Input">
             </div>
             
             <!-- Outdoor Workout -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Outdoor Workout (45 minutes)</div>
+                    <div class="task-title" data-en="Outdoor Workout (45 minutes)" data-ar="تمرين خارجي (45 دقيقة)">تمرين خارجي (45 دقيقة)</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="workout2Checkbox">
@@ -1655,44 +1689,44 @@
                         </label>
                     </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Workout type" id="workout2Input">
+                <input type="text" class="form-control" placeholder="Workout type" data-en="Workout type" data-ar="نوع التمرين" id="workout2Input">
             </div>
             
             <!-- Water -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Water</div>
+                    <div class="task-title" data-en="Water" data-ar="الماء">الماء</div>
                 </div>
                 
                 <div class="water-bottles">
                     <div class="bottle-row">
                         <span class="bottle-icon">💧</span>
                         <span>200 ml</span>
-                        <button class="bottle-btn" onclick="addWater(200)">Drink</button>
+                        <button class="bottle-btn" onclick="addWater(200)" data-en="Drink" data-ar="اشرب">اشرب</button>
                     </div>
                     
                     <div class="bottle-row">
                         <span class="bottle-icon">💧</span>
                         <span>500 ml</span>
-                        <button class="bottle-btn" onclick="addWater(500)">Drink</button>
+                        <button class="bottle-btn" onclick="addWater(500)" data-en="Drink" data-ar="اشرب">اشرب</button>
                     </div>
                     
                     <div class="bottle-row">
                         <span class="bottle-icon">💧</span>
                         <span>1000 ml</span>
-                        <button class="bottle-btn" onclick="addWater(1000)">Drink</button>
+                        <button class="bottle-btn" onclick="addWater(1000)" data-en="Drink" data-ar="اشرب">اشرب</button>
                     </div>
                 </div>
                 
                 <div class="water-target">
-                    <span>Daily Goal: 3700 ml</span>
+                    <span data-en="Daily Goal: 3700 ml" data-ar="الهدف اليومي: 3700 مل">الهدف اليومي: 3700 مل</span>
                     <div class="target-bottles" id="targetBottles">
                         <!-- سيتم إضافة الرموز هنا تلقائياً -->
                     </div>
                 </div>
                 
                 <div class="total-calories mt-1">
-                    <span>Total Water Consumed: </span>
+                    <span data-en="Total Water Consumed:" data-ar="إجمالي الماء المستهلك:">إجمالي الماء المستهلك: </span>
                     <span id="totalWater">0</span>
                     <span> ml</span>
                 </div>
@@ -1701,7 +1735,7 @@
             <!-- Reading -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Reading</div>
+                    <div class="task-title" data-en="Reading" data-ar="القراءة">القراءة</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="readingCheckbox">
@@ -1710,15 +1744,15 @@
                     </div>
                 </div>
                 <div class="reading-input-group">
-                    <input type="number" class="pages-input" id="pagesInput" placeholder="Pages read">
-                    <span>pages</span>
+                    <input type="number" class="pages-input" id="pagesInput" placeholder="Pages read" data-en="Pages read" data-ar="الصفحات المقروءة">
+                    <span data-en="pages" data-ar="صفحة">صفحة</span>
                 </div>
             </div>
             
             <!-- Daily Photo -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Daily Photo</div>
+                    <div class="task-title" data-en="Daily Photo" data-ar="الصورة اليومية">الصورة اليومية</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="photoTakenCheckbox">
@@ -1729,17 +1763,17 @@
                 
                 <div class="photo-section">
                     <div class="photo-toggle">
-                        <span>Was photo taken?</span>
+                        <span data-en="Was photo taken?" data-ar="هل تم التقاط الصورة؟">هل تم التقاط الصورة؟</span>
                     </div>
                     
                     <div class="photo-upload" id="photoUploadArea">
-                        <p>Click to upload photo or drag here</p>
+                        <p data-en="Click to upload photo or drag here" data-ar="انقر لتحميل الصورة أو اسحبها هنا">انقر لتحميل الصورة أو اسحبها هنا</p>
                         <input type="file" id="photoInput" accept="image/*" style="display: none;">
                     </div>
                     
                     <div class="photo-preview-container" id="photoPreviewContainer" style="display: none;">
                         <img id="photoPreview" class="photo-preview" src="" alt="Photo preview">
-                        <p class="text-center mt-1">Click on photo to view full size</p>
+                        <p class="text-center mt-1" data-en="Click on photo to view full size" data-ar="انقر على الصورة لعرضها بالحجم الكامل">انقر على الصورة لعرضها بالحجم الكامل</p>
                     </div>
                 </div>
             </div>
@@ -1747,7 +1781,7 @@
             <!-- Daily Tasks -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">Daily Tasks</div>
+                    <div class="task-title" data-en="Daily Tasks" data-ar="المهام اليومية">المهام اليومية</div>
                 </div>
                 
                 <div class="todo-list" id="todoList">
@@ -1755,14 +1789,14 @@
                 </div>
                 
                 <div class="add-todo">
-                    <input type="text" class="form-control" id="newTodoInput" placeholder="Add new task">
-                    <button class="btn btn-primary btn-small" onclick="addTodo()">Add</button>
+                    <input type="text" class="form-control" id="newTodoInput" placeholder="Add new task" data-en="Add new task" data-ar="إضافة مهمة جديدة">
+                    <button class="btn btn-primary btn-small" onclick="addTodo()" data-en="Add" data-ar="إضافة">إضافة</button>
                 </div>
             </div>
             
             <div class="day-actions">
-                <button class="btn btn-primary" onclick="saveDayProgress()">Save Progress</button>
-                <button class="btn btn-outline" id="resetDayBtn">Reset This Day</button>
+                <button class="btn btn-primary" onclick="saveDayProgress()" data-en="Save Progress" data-ar="حفظ التقدم">حفظ التقدم</button>
+                <button class="btn btn-outline" id="resetDayBtn" data-en="Reset This Day" data-ar="إعادة تعيين هذا اليوم">إعادة تعيين هذا اليوم</button>
             </div>
         </div>
     </section>
@@ -1782,6 +1816,7 @@
         let waterGoal = 3700;
         let todos = [];
         let currentUser = null;
+        let currentLanguage = 'ar'; // اللغة الافتراضية
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -1886,13 +1921,19 @@
                 const user = getCurrentUser();
                 currentUser = user;
                 const currentHour = new Date().getHours();
-                const greeting = currentHour < 12 ? 'Good Morning' : 'Good Evening';
+                const greeting = currentHour < 12 ? 
+                    (currentLanguage === 'ar' ? 'صباح الخير' : 'Good Morning') : 
+                    (currentLanguage === 'ar' ? 'مساء الخير' : 'Good Evening');
                 
                 authButtons.innerHTML = `
+                    <div class="language-selector">
+                        <button class="lang-btn ${currentLanguage === 'ar' ? 'active' : ''}" onclick="changeLanguage('ar')">العربية</button>
+                        <button class="lang-btn ${currentLanguage === 'en' ? 'active' : ''}" onclick="changeLanguage('en')">English</button>
+                    </div>
                     <div class="user-info">
                         <span class="user-greeting">${greeting}, ${user.name}</span>
-                        <button class="btn btn-outline" onclick="showPage('settings')">Settings</button>
-                        <button class="btn btn-outline" onclick="logout()">Logout</button>
+                        <button class="btn btn-outline" onclick="showPage('settings')" data-en="Settings" data-ar="الإعدادات">الإعدادات</button>
+                        <button class="btn btn-outline" onclick="logout()" data-en="Logout" data-ar="تسجيل الخروج">تسجيل الخروج</button>
                     </div>
                 `;
                 
@@ -1907,13 +1948,78 @@
                 }
             } else {
                 authButtons.innerHTML = `
-                    <button class="btn btn-outline" onclick="showPage('login')">Login</button>
-                    <button class="btn btn-primary" onclick="showPage('signup')">Sign Up</button>
+                    <div class="language-selector">
+                        <button class="lang-btn ${currentLanguage === 'ar' ? 'active' : ''}" onclick="changeLanguage('ar')">العربية</button>
+                        <button class="lang-btn ${currentLanguage === 'en' ? 'active' : ''}" onclick="changeLanguage('en')">English</button>
+                    </div>
+                    <button class="btn btn-outline" onclick="showPage('login')" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')" data-en="Sign Up" data-ar="إنشاء حساب">إنشاء حساب</button>
                 `;
                 
                 // Hide challenge and admin links for non-logged in users
                 challengeLink.classList.add('hidden');
                 adminLink.classList.add('hidden');
+            }
+            
+            // Update language for all elements
+            updateLanguage();
+        }
+
+        // Change language function
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update HTML direction
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="changeLanguage('${lang}')"]`).classList.add('active');
+            
+            // Update all text content
+            updateLanguage();
+            
+            // Update auth status to refresh user greeting
+            checkAuthStatus();
+        }
+
+        // Update all text content based on current language
+        function updateLanguage() {
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-ar]').forEach(element => {
+                if (currentLanguage === 'ar') {
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.placeholder = element.getAttribute('data-ar');
+                    } else {
+                        element.textContent = element.getAttribute('data-ar');
+                    }
+                } else {
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.placeholder = element.getAttribute('data-en');
+                    } else {
+                        element.textContent = element.getAttribute('data-en');
+                    }
+                }
+            });
+            
+            // Update day view title
+            const dayViewTitle = document.getElementById('dayViewTitle');
+            if (dayViewTitle) {
+                const dayNumber = dayViewTitle.textContent.match(/\d+/)[0];
+                const date = new Date();
+                const formattedDate = date.toLocaleDateString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                dayViewTitle.textContent = currentLanguage === 'ar' ? 
+                    `اليوم ${dayNumber} - ${formattedDate}` : 
+                    `Day ${dayNumber} - ${formattedDate}`;
             }
         }
 
@@ -1952,7 +2058,7 @@
                 // Calculate date for this day
                 const dayDate = new Date(startDate);
                 dayDate.setDate(startDate.getDate() + i - 1);
-                const formattedDate = dayDate.toLocaleDateString('en-US', {
+                const formattedDate = dayDate.toLocaleDateString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US', {
                     day: 'numeric',
                     month: 'short'
                 });
@@ -1978,27 +2084,27 @@
                     <div class="day-date">${formattedDate}</div>
                     <div class="day-tasks">
                         <div class="task-item" id="task-item-diet-${i}">
-                            <span class="task-name">Diet</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'النظام الغذائي' : 'Diet'}</span>
                             <div class="task-indicator" id="task-diet-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-water-${i}">
-                            <span class="task-name">Water</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'الماء' : 'Water'}</span>
                             <div class="task-indicator" id="task-water-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-workout1-${i}">
-                            <span class="task-name">Workout 1</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'تمرين 1' : 'Workout 1'}</span>
                             <div class="task-indicator" id="task-workout1-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-workout2-${i}">
-                            <span class="task-name">Workout 2</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'تمرين 2' : 'Workout 2'}</span>
                             <div class="task-indicator" id="task-workout2-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-reading-${i}">
-                            <span class="task-name">Reading</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'القراءة' : 'Reading'}</span>
                             <div class="task-indicator" id="task-reading-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-photo-${i}">
-                            <span class="task-name">Photo</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'الصورة' : 'Photo'}</span>
                             <div class="task-indicator" id="task-photo-${i}"></div>
                         </div>
                     </div>
@@ -2100,7 +2206,7 @@
             const startDate = savedStartDate ? new Date(savedStartDate) : new Date();
             const dayDate = new Date(startDate);
             dayDate.setDate(startDate.getDate() + dayNumber - 1);
-            const formattedDate = dayDate.toLocaleDateString('en-US', {
+            const formattedDate = dayDate.toLocaleDateString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US', {
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
@@ -2108,7 +2214,9 @@
             });
             
             // Update day view title
-            document.getElementById('dayViewTitle').textContent = `Day ${dayNumber} - ${formattedDate}`;
+            document.getElementById('dayViewTitle').textContent = currentLanguage === 'ar' ? 
+                `اليوم ${dayNumber} - ${formattedDate}` : 
+                `Day ${dayNumber} - ${formattedDate}`;
             
             // Load saved data for this day
             loadDayData(dayNumber);
@@ -2121,7 +2229,9 @@
         function goToToday() {
             const savedStartDate = localStorage.getItem('75hard_startDate');
             if (!savedStartDate) {
-                alert('Please set challenge start date first in Settings');
+                alert(currentLanguage === 'ar' ? 
+                    'يرجى تعيين تاريخ بدء التحدي أولاً في الإعدادات' : 
+                    'Please set challenge start date first in Settings');
                 showPage('settings');
                 return;
             }
@@ -2137,7 +2247,9 @@
             if (diffDays >= 1 && diffDays <= 75) {
                 showDayDetails(diffDays);
             } else {
-                alert('Current day is outside challenge range (75 days)');
+                alert(currentLanguage === 'ar' ? 
+                    'اليوم الحالي خارج نطاق التحدي (75 يومًا)' : 
+                    'Current day is outside challenge range (75 days)');
             }
         }
 
@@ -2198,7 +2310,9 @@
                 updateWaterDisplay();
                 saveDayData();
             } else {
-                alert('Cannot exceed daily water goal!');
+                alert(currentLanguage === 'ar' ? 
+                    'لا يمكن تجاوز الهدف اليومي للماء!' : 
+                    'Cannot exceed daily water goal!');
             }
         }
 
@@ -2280,12 +2394,15 @@
                         <span class="todo-text" style="text-decoration: ${todo.completed ? 'line-through' : 'none'}; color: ${todo.completed ? '#777' : '#333'}">${todo.text}</span>
                     </div>
                     <div class="todo-actions">
-                        <button class="btn btn-danger btn-small" onclick="deleteTodo(${todo.id})">Delete</button>
+                        <button class="btn btn-danger btn-small" onclick="deleteTodo(${todo.id})" data-en="Delete" data-ar="حذف">حذف</button>
                     </div>
                 `;
                 
                 todoList.appendChild(todoItem);
             });
+            
+            // Update language for newly created elements
+            updateLanguage();
         }
 
         // تحميل الأعمال من التخزين
@@ -2445,7 +2562,9 @@
             // حفظ بيانات اليوم
             saveDayData();
             
-            alert('Day progress saved successfully!');
+            alert(currentLanguage === 'ar' ? 
+                'تم حفظ تقدم اليوم بنجاح!' : 
+                'Day progress saved successfully!');
             showPage('dashboard');
         }
 
@@ -2511,9 +2630,13 @@
                         currentUser = user;
                         checkAuthStatus();
                         showPage('dashboard');
-                        alert('Login successful!');
+                        alert(currentLanguage === 'ar' ? 
+                            'تم تسجيل الدخول بنجاح!' : 
+                            'Login successful!');
                     } else {
-                        alert('Incorrect email or password');
+                        alert(currentLanguage === 'ar' ? 
+                            'البريد الإلكتروني أو كلمة المرور غير صحيحة' : 
+                            'Incorrect email or password');
                     }
                 });
             }
@@ -2532,7 +2655,9 @@
                     const userExists = users.some(user => user.email === email);
                     
                     if (userExists) {
-                        alert('This email is already registered');
+                        alert(currentLanguage === 'ar' ? 
+                            'هذا البريد الإلكتروني مسجل بالفعل' : 
+                            'This email is already registered');
                         return;
                     }
                     
@@ -2552,7 +2677,9 @@
                     
                     checkAuthStatus();
                     showPage('dashboard');
-                    alert('Account created successfully!');
+                    alert(currentLanguage === 'ar' ? 
+                        'تم إنشاء الحساب بنجاح!' : 
+                        'Account created successfully!');
                 });
             }
 
@@ -2560,7 +2687,9 @@
             const resetChallengeBtn = document.getElementById('resetChallengeBtn');
             if (resetChallengeBtn) {
                 resetChallengeBtn.addEventListener('click', () => {
-                    if (confirm('Warning: Reset will delete all progress data. Are you sure?')) {
+                    if (confirm(currentLanguage === 'ar' ? 
+                        'تحذير: إعادة التعيين ستحذف جميع بيانات التقدم. هل أنت متأكد؟' : 
+                        'Warning: Reset will delete all progress data. Are you sure?')) {
                         // Clear all user-specific data
                         if (currentUser) {
                             const userEmail = currentUser.email;
@@ -2570,7 +2699,9 @@
                             localStorage.removeItem(`75hard_${userEmail}_currentDay`);
                         }
                         
-                        alert('Challenge reset successfully!');
+                        alert(currentLanguage === 'ar' ? 
+                            'تم إعادة تعيين التحدي بنجاح!' : 
+                            'Challenge reset successfully!');
                         generateDaysGrid(); // Regenerate with initial state
                     }
                 });
@@ -2580,7 +2711,9 @@
             const resetDayBtn = document.getElementById('resetDayBtn');
             if (resetDayBtn) {
                 resetDayBtn.addEventListener('click', () => {
-                    if (confirm('Do you want to reset this day? All data for this day will be cleared.')) {
+                    if (confirm(currentLanguage === 'ar' ? 
+                        'هل تريد إعادة تعيين هذا اليوم؟ سيتم مسح جميع بيانات هذا اليوم.' : 
+                        'Do you want to reset this day? All data for this day will be cleared.')) {
                         // Reset all inputs for the day
                         document.getElementById('dietCheckbox').checked = false;
                         document.getElementById('workout1Checkbox').checked = false;
@@ -2619,7 +2752,9 @@
                         // Save the reset state
                         saveDayData();
                         
-                        alert('Day reset successfully!');
+                        alert(currentLanguage === 'ar' ? 
+                            'تم إعادة تعيين اليوم بنجاح!' : 
+                            'Day reset successfully!');
                     }
                 });
             }
@@ -2661,7 +2796,9 @@
             currentUser = null;
             checkAuthStatus();
             showPage('home');
-            alert('Logged out successfully!');
+            alert(currentLanguage === 'ar' ? 
+                'تم تسجيل الخروج بنجاح!' : 
+                'Logged out successfully!');
         }
 
         // Load settings from localStorage
@@ -2687,9 +2824,13 @@
                 // Save to localStorage
                 localStorage.setItem('75hard_startDate', startDate);
                 generateDaysGrid();
-                alert('Challenge start date updated successfully!');
+                alert(currentLanguage === 'ar' ? 
+                    'تم تحديث تاريخ بدء التحدي بنجاح!' : 
+                    'Challenge start date updated successfully!');
             } else {
-                alert('Please choose challenge start date');
+                alert(currentLanguage === 'ar' ? 
+                    'يرجى اختيار تاريخ بدء التحدي' : 
+                    'Please choose challenge start date');
             }
         }
 
@@ -2711,19 +2852,24 @@
                 row.innerHTML = `
                     <td>${user.name}</td>
                     <td>${user.email}</td>
-                    <td>${new Date(user.createdAt).toLocaleDateString('en-US')}</td>
+                    <td>${new Date(user.createdAt).toLocaleDateString(currentLanguage === 'ar' ? 'ar-SA' : 'en-US')}</td>
                     <td class="user-actions">
-                        <button class="btn-danger" onclick="deleteUser('${user.email}')">Delete</button>
+                        <button class="btn-danger" onclick="deleteUser('${user.email}')" data-en="Delete" data-ar="حذف">حذف</button>
                     </td>
                 `;
                 
                 usersTableBody.appendChild(row);
             });
+            
+            // Update language for newly created elements
+            updateLanguage();
         }
 
         // Delete user (admin only)
         function deleteUser(email) {
-            if (!confirm('Are you sure you want to delete this user?')) return;
+            if (!confirm(currentLanguage === 'ar' ? 
+                'هل أنت متأكد أنك تريد حذف هذا المستخدم؟' : 
+                'Are you sure you want to delete this user?')) return;
             
             const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
             const updatedUsers = users.filter(user => user.email !== email);
@@ -2733,7 +2879,9 @@
             // Reload users table
             loadUsersTable();
             
-            alert('User deleted successfully!');
+            alert(currentLanguage === 'ar' ? 
+                'تم حذف المستخدم بنجاح!' : 
+                'User deleted successfully!');
         }
     </script>
 </body>
