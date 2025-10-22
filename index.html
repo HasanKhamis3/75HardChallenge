@@ -1962,10 +1962,16 @@
             return localStorage.getItem('75hard_currentUser') !== null;
         }
 
-        // Get current user
+        // Get current user - FIXED VERSION
         function getCurrentUser() {
-            const userStr = localStorage.getItem('75hard_currentUser');
-            return userStr ? JSON.parse(userStr) : null;
+            try {
+                const userStr = localStorage.getItem('75hard_currentUser');
+                if (!userStr) return null;
+                return JSON.parse(userStr);
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                return null;
+            }
         }
 
         // Check authentication status and show appropriate pages
@@ -1976,6 +1982,12 @@
             
             if (isLoggedIn()) {
                 const user = getCurrentUser();
+                if (!user) {
+                    // If user data is corrupted, log out
+                    logout();
+                    return;
+                }
+                
                 currentUser = user;
                 const currentHour = new Date().getHours();
                 const greeting = currentHour < 12 ? 
@@ -2700,7 +2712,7 @@
                 }
             }
 
-            // Login form
+            // Login form - FIXED VERSION
             const loginForm = document.getElementById('loginForm');
             if (loginForm) {
                 loginForm.addEventListener('submit', (e) => {
@@ -2713,6 +2725,7 @@
                     const user = users.find(u => u.email === email && u.password === password);
                     
                     if (user) {
+                        // Save user data properly
                         localStorage.setItem('75hard_currentUser', JSON.stringify(user));
                         currentUser = user;
                         checkAuthStatus();
