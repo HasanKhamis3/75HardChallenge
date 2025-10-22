@@ -523,11 +523,11 @@
             100% { transform: translateX(100%); }
         }
 
-        /* Updated Days Grid - 2 مربعات في السطر */
+        /* Updated Days Grid - 5 مربعات في السطر */
         .days-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
             margin-top: 1.5rem;
         }
 
@@ -540,14 +540,14 @@
             border-radius: var(--border-radius);
             font-weight: 500;
             cursor: pointer;
-            padding: 20px 15px;
+            padding: 12px 8px;
             position: relative;
             border: 2px solid #e0e0e0;
             background-color: white;
             transition: var(--transition);
             text-align: center;
             width: 100%;
-            min-height: 220px;
+            min-height: 140px;
         }
 
         .day-box:hover {
@@ -557,14 +557,14 @@
         }
 
         .day-number {
-            font-size: 2.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: white;
             border: 2px solid var(--primary-light);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -572,11 +572,11 @@
         }
 
         .day-date {
-            font-size: 1.2rem;
+            font-size: 0.85rem;
             color: var(--light-text);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 500;
-            height: 25px;
+            height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -585,7 +585,7 @@
         .day-tasks {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 6px;
             width: 100%;
         }
 
@@ -594,26 +594,27 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            padding: 8px 5px;
+            gap: 4px;
+            padding: 6px 4px;
             border-radius: 6px;
             background-color: #f9f9f9;
             text-align: center;
             transition: var(--transition);
-            min-height: 60px;
+            min-height: 45px;
+            position: relative;
         }
 
         .task-name {
             color: var(--text-color);
             font-weight: bold;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-align: center;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .task-indicator {
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             border: 2px solid transparent;
             transition: var(--transition);
@@ -682,9 +683,9 @@
 
         .day-emoji {
             position: absolute;
-            top: 8px;
-            left: 8px;
-            font-size: 1.2rem;
+            top: 5px;
+            left: 5px;
+            font-size: 1rem;
         }
 
         .dashboard-actions {
@@ -977,6 +978,18 @@
         }
 
         /* Responsive */
+        @media (max-width: 1200px) {
+            .days-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .days-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -1003,36 +1016,44 @@
             }
             
             .days-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .day-box {
-                min-height: 200px;
-                padding: 15px 10px;
+                min-height: 130px;
+                padding: 10px 6px;
             }
             
             .day-number {
-                font-size: 2rem;
-                width: 50px;
-                height: 50px;
+                font-size: 1.4rem;
+                width: 35px;
+                height: 35px;
             }
             
             .day-date {
-                font-size: 1rem;
+                font-size: 0.8rem;
             }
             
             .task-name {
-                font-size: 0.7rem;
+                font-size: 0.6rem;
             }
         }
 
         @media (max-width: 480px) {
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .auth-container {
                 padding: 1.5rem;
             }
             
             .day-box {
-                min-height: 180px;
+                min-height: 120px;
+            }
+            
+            .task-name {
+                font-size: 0.55rem;
             }
         }
 
