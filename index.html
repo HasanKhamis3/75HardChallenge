@@ -424,6 +424,7 @@
 
         .form-group {
             margin-bottom: 1.5rem;
+            position: relative;
         }
 
         .form-group label {
@@ -446,6 +447,45 @@
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        }
+
+        /* Password Toggle */
+        .password-toggle {
+            position: absolute;
+            left: 15px;
+            top: 38px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--light-text);
+            transition: var(--transition);
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-color);
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 12px 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-success {
+            background-color: rgba(46, 213, 115, 0.1);
+            border: 1px solid var(--success-color);
+            color: var(--success-color);
+        }
+
+        .alert-error {
+            background-color: rgba(255, 71, 87, 0.1);
+            border: 1px solid var(--danger-color);
+            color: var(--danger-color);
         }
 
         .auth-divider {
@@ -1463,6 +1503,10 @@
         <div class="container">
             <div class="auth-container">
                 <h2 class="auth-title" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</h2>
+                
+                <!-- Alert Messages -->
+                <div id="loginAlert" class="alert hidden"></div>
+                
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail" data-en="Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</label>
@@ -1471,6 +1515,9 @@
                     <div class="form-group">
                         <label for="loginPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="loginPassword" class="form-control" required>
+                        <button type="button" class="password-toggle" id="loginPasswordToggle" onclick="togglePasswordVisibility('loginPassword', 'loginPasswordToggle')">
+                            <span data-en="Show" data-ar="إظهار">إظهار</span>
+                        </button>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
                 </form>
@@ -1492,6 +1539,10 @@
         <div class="container">
             <div class="auth-container">
                 <h2 class="auth-title" data-en="Create Account" data-ar="إنشاء حساب">إنشاء حساب</h2>
+                
+                <!-- Alert Messages -->
+                <div id="signupAlert" class="alert hidden"></div>
+                
                 <form id="signupForm">
                     <div class="form-group">
                         <label for="signupName" data-en="Full Name" data-ar="الاسم الكامل">الاسم الكامل</label>
@@ -1504,6 +1555,9 @@
                     <div class="form-group">
                         <label for="signupPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="signupPassword" class="form-control" required minlength="8">
+                        <button type="button" class="password-toggle" id="signupPasswordToggle" onclick="togglePasswordVisibility('signupPassword', 'signupPasswordToggle')">
+                            <span data-en="Show" data-ar="إظهار">إظهار</span>
+                        </button>
                         <small style="color: var(--light-text);" data-en="Password must contain at least 8 characters" data-ar="يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Create Account" data-ar="إنشاء حساب">إنشاء حساب</button>
@@ -2021,6 +2075,33 @@
                     `اليوم ${dayNumber} - ${formattedDate}` : 
                     `Day ${dayNumber} - ${formattedDate}`;
             }
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility(passwordFieldId, toggleButtonId) {
+            const passwordField = document.getElementById(passwordFieldId);
+            const toggleButton = document.getElementById(toggleButtonId);
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.innerHTML = currentLanguage === 'ar' ? 'إخفاء' : 'Hide';
+            } else {
+                passwordField.type = 'password';
+                toggleButton.innerHTML = currentLanguage === 'ar' ? 'إظهار' : 'Show';
+            }
+        }
+
+        // Show alert message
+        function showAlert(alertId, message, type) {
+            const alertElement = document.getElementById(alertId);
+            alertElement.textContent = message;
+            alertElement.className = `alert alert-${type}`;
+            alertElement.classList.remove('hidden');
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                alertElement.classList.add('hidden');
+            }, 5000);
         }
 
         // Check if start date is set
@@ -2630,13 +2711,13 @@
                         currentUser = user;
                         checkAuthStatus();
                         showPage('dashboard');
-                        alert(currentLanguage === 'ar' ? 
-                            'تم تسجيل الدخول بنجاح!' : 
-                            'Login successful!');
+                        showAlert('loginAlert', 
+                            currentLanguage === 'ar' ? 'تم تسجيل الدخول بنجاح!' : 'Login successful!', 
+                            'success');
                     } else {
-                        alert(currentLanguage === 'ar' ? 
-                            'البريد الإلكتروني أو كلمة المرور غير صحيحة' : 
-                            'Incorrect email or password');
+                        showAlert('loginAlert', 
+                            currentLanguage === 'ar' ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة' : 'Incorrect email or password', 
+                            'error');
                     }
                 });
             }
@@ -2655,9 +2736,9 @@
                     const userExists = users.some(user => user.email === email);
                     
                     if (userExists) {
-                        alert(currentLanguage === 'ar' ? 
-                            'هذا البريد الإلكتروني مسجل بالفعل' : 
-                            'This email is already registered');
+                        showAlert('signupAlert', 
+                            currentLanguage === 'ar' ? 'هذا البريد الإلكتروني مسجل بالفعل' : 'This email is already registered', 
+                            'error');
                         return;
                     }
                     
@@ -2677,9 +2758,9 @@
                     
                     checkAuthStatus();
                     showPage('dashboard');
-                    alert(currentLanguage === 'ar' ? 
-                        'تم إنشاء الحساب بنجاح!' : 
-                        'Account created successfully!');
+                    showAlert('signupAlert', 
+                        currentLanguage === 'ar' ? 'تم إنشاء الحساب بنجاح!' : 'Account created successfully!', 
+                        'success');
                 });
             }
 
