@@ -154,7 +154,7 @@
         .language-selector {
             display: flex;
             align-items: center;
-            margin-left: 1.5rem;
+            margin-right: 1.5rem;
         }
 
         .lang-btn {
@@ -843,18 +843,15 @@
             cursor: pointer;
         }
 
-        /* Day Actions - ثابتة في الأعلى */
+        /* Day Actions - داخل إطار اليوم */
         .day-actions {
             display: flex;
             gap: 10px;
             margin-bottom: 1.5rem;
-            position: sticky;
-            top: 150px;
-            z-index: 80;
-            background: white;
             padding: 1rem;
             border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
         }
 
         /* Settings Page - منظمة مثل الموقع الأساسي */
@@ -1041,7 +1038,6 @@
             }
             
             .day-actions {
-                top: 200px;
                 flex-direction: column;
             }
             
@@ -1121,6 +1117,23 @@
         .mb-2 {
             margin-bottom: 2rem;
         }
+
+        .water-note {
+            color: #FF4757;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        .water-emoji {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+
+        .reading-emoji {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
@@ -1136,7 +1149,9 @@
                     <li><a onclick="showPage('contact')">اتصل بنا</a></li>
                 </ul>
                 <div class="auth-buttons" id="authButtons">
-                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">English</button>
+                    <div class="language-selector">
+                        <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">English</button>
+                    </div>
                     <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
                 </div>
@@ -1366,14 +1381,14 @@
                 <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى لوحة التحكم</button>
             </div>
             
-            <!-- إجراءات اليوم - ثابتة في الأعلى -->
-            <div class="day-actions">
-                <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التقدم</button>
-                <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
-            </div>
-            
-            <!-- Diet -->
+            <!-- إجراءات اليوم - داخل إطار اليوم -->
             <div class="task-card">
+                <div class="day-actions">
+                    <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التقدم</button>
+                    <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
+                </div>
+                
+                <!-- Diet -->
                 <div class="task-header">
                     <div class="task-title">النظام الغذائي</div>
                     <div class="task-status">
@@ -1481,7 +1496,7 @@
             <!-- Indoor Workout -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">تمرين داخلي (45 دقيقة)</div>
+                    <div class="task-title">تمرين داخلي</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="workout1Checkbox">
@@ -1495,7 +1510,7 @@
             <!-- Outdoor Workout -->
             <div class="task-card">
                 <div class="task-header">
-                    <div class="task-title">تمرين خارجي (45 دقيقة)</div>
+                    <div class="task-title">تمرين خارجي</div>
                     <div class="task-status">
                         <label class="toggle-switch">
                             <input type="checkbox" id="workout2Checkbox">
@@ -1532,8 +1547,10 @@
                     </div>
                 </div>
                 
+                <div class="water-note">يرجى الضغط على زر "اشرب" ليتم احتساب الكمية</div>
+                
                 <div class="water-target">
-                    <span>الهدف اليومي: 3700 مل</span>
+                    <span>الهدف اليومي: <span id="waterGoalDisplay">3700</span> مل</span>
                     <div class="target-bottles" id="targetBottles">
                         <!-- سيتم إضافة الرموز هنا تلقائياً -->
                     </div>
@@ -1541,6 +1558,7 @@
                 
                 <div class="total-calories mt-1">
                     <span>إجمالي الماء المستهلك: </span>
+                    <span class="water-emoji" id="waterEmoji">💧</span>
                     <span id="totalWater">0</span>
                     <span> مل</span>
                 </div>
@@ -1559,7 +1577,13 @@
                 </div>
                 <div class="reading-input-group">
                     <input type="number" class="pages-input" id="pagesInput" placeholder="الصفحات المقروءة">
-                    <span>صفحة</span>
+                    <span>صفحة من أصل <span id="readingGoalDisplay">10</span></span>
+                </div>
+                <div class="total-calories mt-1">
+                    <span>التقدم: </span>
+                    <span class="reading-emoji" id="readingEmoji">📖</span>
+                    <span id="readingProgress">0</span>
+                    <span> صفحة</span>
                 </div>
             </div>
             
@@ -1753,6 +1777,7 @@
         let currentLanguage = 'ar'; // اللغة الافتراضية
         let totalWater = 0;
         let waterGoal = 3700;
+        let readingGoal = 10;
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -1772,6 +1797,9 @@
             
             // إعداد تتبع الماء
             setupWaterTracking();
+            
+            // إعداد تتبع القراءة
+            setupReadingTracking();
             
             // تحميل الإعدادات
             loadSettings();
@@ -1850,7 +1878,9 @@
                 const greeting = currentHour < 12 ? 'صباح الخير' : 'مساء الخير';
                 
                 authButtons.innerHTML = `
-                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
+                    <div class="language-selector">
+                        <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
+                    </div>
                     <div class="user-info">
                         <span class="user-greeting">${greeting}, ${user.name}</span>
                         <button class="btn btn-primary" onclick="showPage('dashboard')">التحدي</button>
@@ -1859,10 +1889,16 @@
                     </div>
                 `;
                 
+                // تحميل بيانات المستخدم في صفحة الإعدادات
+                document.getElementById('userName').value = user.name;
+                document.getElementById('userEmail').value = user.email;
+                
                 console.log('تم تحديث واجهة المستخدم للمستخدم المسجل:', user.name);
             } else {
                 authButtons.innerHTML = `
-                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
+                    <div class="language-selector">
+                        <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
+                    </div>
                     <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
                     <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
                 `;
@@ -1919,7 +1955,7 @@
                 // Calculate date for this day (demo dates)
                 const dayDate = new Date();
                 dayDate.setDate(today.getDate() + i - 23); // Start from day 23 for demo
-                const formattedDate = dayDate.toLocaleDateString('ar-SA', {
+                const formattedDate = dayDate.toLocaleDateString('en-US', {
                     day: 'numeric',
                     month: 'short'
                 });
@@ -1953,11 +1989,11 @@
                             <div class="task-indicator" id="task-water-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-workout1-${i}">
-                            <span class="task-name">تمرين 1</span>
+                            <span class="task-name">تمرين داخلي</span>
                             <div class="task-indicator" id="task-workout1-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-workout2-${i}">
-                            <span class="task-name">تمرين 2</span>
+                            <span class="task-name">تمرين خارجي</span>
                             <div class="task-indicator" id="task-workout2-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-reading-${i}">
@@ -2153,6 +2189,20 @@
                 totalWaterElement.textContent = totalWater;
             }
             
+            // تحديث رمز الماء بناءً على النسبة المئوية
+            const waterPercentage = (totalWater / waterGoal) * 100;
+            const waterEmoji = document.getElementById('waterEmoji');
+            
+            if (waterPercentage >= 100) {
+                waterEmoji.textContent = '💧💧💧';
+            } else if (waterPercentage >= 75) {
+                waterEmoji.textContent = '💧💧';
+            } else if (waterPercentage >= 50) {
+                waterEmoji.textContent = '💧';
+            } else {
+                waterEmoji.textContent = '💧';
+            }
+            
             // تحديث عرض العلب المستهدفة
             const targetBottles = document.getElementById('targetBottles');
             if (targetBottles) {
@@ -2166,6 +2216,46 @@
                     targetBottles.appendChild(bottle);
                 }
             }
+            
+            // تحديث هدف الماء المعروض
+            document.getElementById('waterGoalDisplay').textContent = waterGoal;
+        }
+
+        // إعداد تتبع القراءة
+        function setupReadingTracking() {
+            const pagesInput = document.getElementById('pagesInput');
+            if (pagesInput) {
+                pagesInput.addEventListener('input', updateReadingProgress);
+            }
+            
+            updateReadingProgress();
+        }
+
+        // تحديث تقدم القراءة
+        function updateReadingProgress() {
+            const pagesRead = parseInt(document.getElementById('pagesInput').value) || 0;
+            const readingProgressElement = document.getElementById('readingProgress');
+            const readingEmoji = document.getElementById('readingEmoji');
+            
+            if (readingProgressElement) {
+                readingProgressElement.textContent = pagesRead;
+            }
+            
+            // تحديث رمز القراءة بناءً على النسبة المئوية
+            const readingPercentage = (pagesRead / readingGoal) * 100;
+            
+            if (readingPercentage >= 100) {
+                readingEmoji.textContent = '📚📚📚';
+            } else if (readingPercentage >= 75) {
+                readingEmoji.textContent = '📚📚';
+            } else if (readingPercentage >= 50) {
+                readingEmoji.textContent = '📚';
+            } else {
+                readingEmoji.textContent = '📖';
+            }
+            
+            // تحديث هدف القراءة المعروض
+            document.getElementById('readingGoalDisplay').textContent = readingGoal;
         }
 
         // عرض الصورة في المودال
@@ -2297,6 +2387,7 @@
                 if (dayData.reading) {
                     document.getElementById('readingCheckbox').checked = dayData.reading.completed || false;
                     document.getElementById('pagesInput').value = dayData.reading.pages || 0;
+                    updateReadingProgress();
                 }
                 
                 // Load photo data
@@ -2340,7 +2431,12 @@
             
             if (settings.readingGoal) {
                 document.getElementById('readingGoal').value = settings.readingGoal;
+                readingGoal = settings.readingGoal;
             }
+            
+            // تحديث العرض
+            updateWaterDisplay();
+            updateReadingProgress();
         }
 
         // حفظ إعدادات الحساب
@@ -2425,7 +2521,9 @@
             localStorage.setItem('75hard_settings', JSON.stringify(settings));
             
             waterGoal = newWaterGoal;
+            readingGoal = newReadingGoal;
             updateWaterDisplay();
+            updateReadingProgress();
             
             alert('تم حفظ الأهداف بنجاح!');
         }
@@ -2588,6 +2686,7 @@
                         
                         // Reset reading
                         document.getElementById('pagesInput').value = '';
+                        updateReadingProgress();
                         
                         // Reset photo
                         document.getElementById('photoPreviewContainer').style.display = 'none';
