@@ -571,6 +571,9 @@
             padding: 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 80px;
+            z-index: 90;
         }
 
         .task-card {
@@ -651,13 +654,14 @@
             transform: translateX(26px);
         }
 
-        /* النظام الغذائي */
+        /* النظام الغذائي المحسن */
         .meal-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #f0f0f0;
+            gap: 10px;
         }
 
         .meal-item:last-child {
@@ -667,28 +671,45 @@
         .meal-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            flex: 1;
         }
 
         .meal-calories {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: nowrap;
+            min-width: 150px;
         }
 
         .calories-input {
-            width: 80px;
-            padding: 6px 10px;
+            width: 70px;
+            padding: 6px 8px;
             border: 1px solid #e0e0e0;
             border-radius: 6px;
             text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .meal-notes {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .notes-input {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
         }
 
         .total-calories {
             background-color: #f8f9fa;
             padding: 12px 15px;
             border-radius: var(--border-radius);
-            margin-top: 15px;
+            margin-top: 10px;
             text-align: center;
             font-weight: bold;
             border: 1px solid #e9ecef;
@@ -822,10 +843,24 @@
             cursor: pointer;
         }
 
-        /* Settings Page */
+        /* Day Actions - ثابتة في الأعلى */
+        .day-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            position: sticky;
+            top: 150px;
+            z-index: 80;
+            background: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Settings Page - منظمة مثل الموقع الأساسي */
         .settings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
         }
 
@@ -838,13 +873,66 @@
         }
 
         .settings-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .settings-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .settings-group h3 {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--text-color);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .settings-group h3 i {
+            color: var(--primary-color);
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f8f8f8;
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .setting-description {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
+        .setting-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .date-input {
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
         }
 
         /* Footer */
@@ -917,6 +1005,17 @@
             .days-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .meal-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .meal-calories, .meal-notes {
+                width: 100%;
+                min-width: auto;
+            }
         }
 
         @media (max-width: 768px) {
@@ -938,9 +1037,11 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 1rem;
+                top: 120px;
             }
             
-            .dashboard-actions, .day-actions {
+            .day-actions {
+                top: 200px;
                 flex-direction: column;
             }
             
@@ -967,14 +1068,8 @@
                 font-size: 0.55rem;
             }
 
-            .meal-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .meal-calories {
-                align-self: flex-end;
+            .settings-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -993,6 +1088,12 @@
             
             .task-name {
                 font-size: 0.5rem;
+            }
+            
+            .meal-calories {
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
             }
         }
 
@@ -1265,6 +1366,12 @@
                 <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى لوحة التحكم</button>
             </div>
             
+            <!-- إجراءات اليوم - ثابتة في الأعلى -->
+            <div class="day-actions">
+                <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التقدم</button>
+                <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
+            </div>
+            
             <!-- Diet -->
             <div class="task-card">
                 <div class="task-header">
@@ -1290,6 +1397,9 @@
                             <input type="number" class="calories-input" id="breakfastCalories" placeholder="السعرات">
                             <span>سعرة</span>
                         </div>
+                        <div class="meal-notes">
+                            <input type="text" class="notes-input" id="breakfastNotes" placeholder="ملاحظات...">
+                        </div>
                     </div>
                     
                     <div class="meal-item">
@@ -1303,6 +1413,9 @@
                         <div class="meal-calories">
                             <input type="number" class="calories-input" id="snack1Calories" placeholder="السعرات">
                             <span>سعرة</span>
+                        </div>
+                        <div class="meal-notes">
+                            <input type="text" class="notes-input" id="snack1Notes" placeholder="ملاحظات...">
                         </div>
                     </div>
                     
@@ -1318,6 +1431,9 @@
                             <input type="number" class="calories-input" id="lunchCalories" placeholder="السعرات">
                             <span>سعرة</span>
                         </div>
+                        <div class="meal-notes">
+                            <input type="text" class="notes-input" id="lunchNotes" placeholder="ملاحظات...">
+                        </div>
                     </div>
                     
                     <div class="meal-item">
@@ -1332,6 +1448,9 @@
                             <input type="number" class="calories-input" id="snack2Calories" placeholder="السعرات">
                             <span>سعرة</span>
                         </div>
+                        <div class="meal-notes">
+                            <input type="text" class="notes-input" id="snack2Notes" placeholder="ملاحظات...">
+                        </div>
                     </div>
                     
                     <div class="meal-item">
@@ -1345,6 +1464,9 @@
                         <div class="meal-calories">
                             <input type="number" class="calories-input" id="dinnerCalories" placeholder="السعرات">
                             <span>سعرة</span>
+                        </div>
+                        <div class="meal-notes">
+                            <input type="text" class="notes-input" id="dinnerNotes" placeholder="ملاحظات...">
                         </div>
                     </div>
                 </div>
@@ -1469,11 +1591,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="day-actions" style="display: flex; gap: 10px; margin-top: 2rem; flex-wrap: wrap;">
-                <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التقدم</button>
-                <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
-            </div>
         </div>
     </section>
 
@@ -1483,9 +1600,10 @@
             <h1 class="section-title">الإعدادات</h1>
             <div class="settings-grid">
                 <div class="settings-card">
-                    <h2>إعدادات الحساب</h2>
+                    <h2><i class="fas fa-user-cog"></i> إعدادات الحساب</h2>
+                    
                     <div class="settings-group">
-                        <h3>المعلومات الشخصية</h3>
+                        <h3><i class="fas fa-user"></i> المعلومات الشخصية</h3>
                         <div class="form-group">
                             <label for="userName">الاسم الكامل</label>
                             <input type="text" id="userName" class="form-control" value="مستخدم تجريبي">
@@ -1494,10 +1612,11 @@
                             <label for="userEmail">البريد الإلكتروني</label>
                             <input type="email" id="userEmail" class="form-control" value="user@example.com">
                         </div>
+                        <button class="btn btn-primary" onclick="saveAccountSettings()">حفظ المعلومات</button>
                     </div>
                     
                     <div class="settings-group">
-                        <h3>تغيير كلمة المرور</h3>
+                        <h3><i class="fas fa-lock"></i> تغيير كلمة المرور</h3>
                         <div class="form-group">
                             <label for="currentPassword">كلمة المرور الحالية</label>
                             <input type="password" id="currentPassword" class="form-control">
@@ -1510,53 +1629,81 @@
                             <label for="confirmPassword">تأكيد كلمة المرور</label>
                             <input type="password" id="confirmPassword" class="form-control">
                         </div>
+                        <button class="btn btn-primary" onclick="changePassword()">تغيير كلمة المرور</button>
                     </div>
-                    
-                    <button class="btn btn-primary">حفظ التغييرات</button>
                 </div>
                 
                 <div class="settings-card">
-                    <h2>إعدادات التحدي</h2>
+                    <h2><i class="fas fa-flag"></i> إعدادات التحدي</h2>
+                    
                     <div class="settings-group">
-                        <h3>تاريخ بدء التحدي</h3>
-                        <div class="form-group">
-                            <label for="startDate">اختر تاريخ البدء</label>
-                            <input type="date" id="startDate" class="form-control">
+                        <h3><i class="fas fa-calendar-alt"></i> تاريخ بدء التحدي</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">تاريخ البدء</div>
+                                <div class="setting-description">حدد التاريخ الذي بدأت فيه التحدي</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="date" id="startDate" class="date-input">
+                            </div>
                         </div>
+                        <button class="btn btn-primary mt-1" onclick="saveStartDate()">حفظ تاريخ البدء</button>
                     </div>
                     
                     <div class="settings-group">
-                        <h3>خيارات التحدي</h3>
-                        <div class="form-group">
-                            <label class="toggle-switch" style="display: flex; align-items: center; gap: 10px;">
-                                <input type="checkbox" id="restartOnFailure">
-                                <span class="toggle-slider"></span>
-                                <span>إعادة البدء عند الفشل</span>
-                            </label>
+                        <h3><i class="fas fa-cog"></i> خيارات التحدي</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">إعادة البدء عند الفشل</div>
+                                <div class="setting-description">البدء من اليوم الأول في حالة الفشل في يوم</div>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="restartOnFailure">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="toggle-switch" style="display: flex; align-items: center; gap: 10px;">
-                                <input type="checkbox" id="dailyReminders" checked>
-                                <span class="toggle-slider"></span>
-                                <span>التذكيرات اليومية</span>
-                            </label>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">التذكيرات اليومية</div>
+                                <div class="setting-description">إرسال تذكيرات لإكمال المهام اليومية</div>
+                            </div>
+                            <div class="setting-control">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="dailyReminders" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="settings-group">
-                        <h3>أهداف مخصصة</h3>
-                        <div class="form-group">
-                            <label for="waterGoal">هدف الماء اليومي (مل)</label>
-                            <input type="number" id="waterGoal" class="form-control" value="3700">
+                        <h3><i class="fas fa-bullseye"></i> أهداف مخصصة</h3>
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">هدف الماء اليومي</div>
+                                <div class="setting-description">كمية الماء المستهدفة يومياً بالملليلتر</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="number" id="waterGoal" class="calories-input" value="3700" style="width: 100px;">
+                                <span>مل</span>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="readingGoal">هدف القراءة اليومي (صفحات)</label>
-                            <input type="number" id="readingGoal" class="form-control" value="10">
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">هدف القراءة اليومي</div>
+                                <div class="setting-description">عدد الصفحات المستهدفة يومياً</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="number" id="readingGoal" class="calories-input" value="10" style="width: 100px;">
+                                <span>صفحة</span>
+                            </div>
                         </div>
+                        <button class="btn btn-primary mt-1" onclick="saveGoals()">حفظ الأهداف</button>
                     </div>
-                    
-                    <button class="btn btn-primary">تطبيق الإعدادات</button>
                 </div>
             </div>
         </div>
@@ -1625,6 +1772,9 @@
             
             // إعداد تتبع الماء
             setupWaterTracking();
+            
+            // تحميل الإعدادات
+            loadSettings();
             
             console.log('تم تهيئة التطبيق بنجاح!');
         });
@@ -2039,23 +2189,28 @@
                     meals: {
                         breakfast: {
                             completed: document.getElementById('breakfastCheckbox')?.checked || false,
-                            calories: parseInt(document.getElementById('breakfastCalories')?.value) || 0
+                            calories: parseInt(document.getElementById('breakfastCalories')?.value) || 0,
+                            notes: document.getElementById('breakfastNotes')?.value || ''
                         },
                         snack1: {
                             completed: document.getElementById('snack1Checkbox')?.checked || false,
-                            calories: parseInt(document.getElementById('snack1Calories')?.value) || 0
+                            calories: parseInt(document.getElementById('snack1Calories')?.value) || 0,
+                            notes: document.getElementById('snack1Notes')?.value || ''
                         },
                         lunch: {
                             completed: document.getElementById('lunchCheckbox')?.checked || false,
-                            calories: parseInt(document.getElementById('lunchCalories')?.value) || 0
+                            calories: parseInt(document.getElementById('lunchCalories')?.value) || 0,
+                            notes: document.getElementById('lunchNotes')?.value || ''
                         },
                         snack2: {
                             completed: document.getElementById('snack2Checkbox')?.checked || false,
-                            calories: parseInt(document.getElementById('snack2Calories')?.value) || 0
+                            calories: parseInt(document.getElementById('snack2Calories')?.value) || 0,
+                            notes: document.getElementById('snack2Notes')?.value || ''
                         },
                         dinner: {
                             completed: document.getElementById('dinnerCheckbox')?.checked || false,
-                            calories: parseInt(document.getElementById('dinnerCalories')?.value) || 0
+                            calories: parseInt(document.getElementById('dinnerCalories')?.value) || 0,
+                            notes: document.getElementById('dinnerNotes')?.value || ''
                         }
                     }
                 },
@@ -2083,8 +2238,6 @@
             const userEmail = currentUser.email;
             const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
             localStorage.setItem(dayKey, JSON.stringify(dayData));
-            
-            alert('تم حفظ التقدم بنجاح!');
         }
 
         // تحميل بيانات اليوم
@@ -2105,18 +2258,23 @@
                     if (dayData.diet.meals) {
                         document.getElementById('breakfastCheckbox').checked = dayData.diet.meals.breakfast.completed || false;
                         document.getElementById('breakfastCalories').value = dayData.diet.meals.breakfast.calories || 0;
+                        document.getElementById('breakfastNotes').value = dayData.diet.meals.breakfast.notes || '';
                         
                         document.getElementById('snack1Checkbox').checked = dayData.diet.meals.snack1.completed || false;
                         document.getElementById('snack1Calories').value = dayData.diet.meals.snack1.calories || 0;
+                        document.getElementById('snack1Notes').value = dayData.diet.meals.snack1.notes || '';
                         
                         document.getElementById('lunchCheckbox').checked = dayData.diet.meals.lunch.completed || false;
                         document.getElementById('lunchCalories').value = dayData.diet.meals.lunch.calories || 0;
+                        document.getElementById('lunchNotes').value = dayData.diet.meals.lunch.notes || '';
                         
                         document.getElementById('snack2Checkbox').checked = dayData.diet.meals.snack2.completed || false;
                         document.getElementById('snack2Calories').value = dayData.diet.meals.snack2.calories || 0;
+                        document.getElementById('snack2Notes').value = dayData.diet.meals.snack2.notes || '';
                         
                         document.getElementById('dinnerCheckbox').checked = dayData.diet.meals.dinner.completed || false;
                         document.getElementById('dinnerCalories').value = dayData.diet.meals.dinner.calories || 0;
+                        document.getElementById('dinnerNotes').value = dayData.diet.meals.dinner.notes || '';
                     }
                 }
                 
@@ -2154,7 +2312,122 @@
         function saveDayProgress() {
             // حفظ بيانات اليوم
             saveDayData();
+            alert('تم حفظ التقدم بنجاح!');
             showPage('dashboard');
+        }
+
+        // تحميل الإعدادات
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+            
+            // تحميل إعدادات التحدي
+            if (settings.startDate) {
+                document.getElementById('startDate').value = settings.startDate;
+            }
+            
+            if (settings.restartOnFailure !== undefined) {
+                document.getElementById('restartOnFailure').checked = settings.restartOnFailure;
+            }
+            
+            if (settings.dailyReminders !== undefined) {
+                document.getElementById('dailyReminders').checked = settings.dailyReminders;
+            }
+            
+            if (settings.waterGoal) {
+                document.getElementById('waterGoal').value = settings.waterGoal;
+                waterGoal = settings.waterGoal;
+            }
+            
+            if (settings.readingGoal) {
+                document.getElementById('readingGoal').value = settings.readingGoal;
+            }
+        }
+
+        // حفظ إعدادات الحساب
+        function saveAccountSettings() {
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            
+            if (currentUser) {
+                currentUser.name = userName;
+                currentUser.email = userEmail;
+                localStorage.setItem('75hard_currentUser', JSON.stringify(currentUser));
+                checkAuthStatus();
+            }
+            
+            alert('تم حفظ المعلومات الشخصية بنجاح!');
+        }
+
+        // تغيير كلمة المرور
+        function changePassword() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                alert('يرجى ملء جميع الحقول');
+                return;
+            }
+            
+            if (newPassword !== confirmPassword) {
+                alert('كلمة المرور الجديدة غير متطابقة');
+                return;
+            }
+            
+            if (newPassword.length < 8) {
+                alert('كلمة المرور يجب أن تكون 8 أحرف على الأقل');
+                return;
+            }
+            
+            // في تطبيق حقيقي، هنا يتم التحقق من كلمة المرور الحالية مع الخادم
+            alert('تم تغيير كلمة المرور بنجاح!');
+            
+            // مسح الحقول
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
+
+        // حفظ تاريخ البدء
+        function saveStartDate() {
+            const startDate = document.getElementById('startDate').value;
+            if (!startDate) {
+                alert('يرجى اختيار تاريخ البدء');
+                return;
+            }
+            
+            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+            settings.startDate = startDate;
+            localStorage.setItem('75hard_settings', JSON.stringify(settings));
+            
+            alert('تم حفظ تاريخ البدء بنجاح!');
+            generateDaysGrid(); // إعادة توليد شبكة الأيام
+        }
+
+        // حفظ الأهداف
+        function saveGoals() {
+            const newWaterGoal = parseInt(document.getElementById('waterGoal').value);
+            const newReadingGoal = parseInt(document.getElementById('readingGoal').value);
+            
+            if (!newWaterGoal || newWaterGoal <= 0) {
+                alert('يرجى إدخال هدف مائي صحيح');
+                return;
+            }
+            
+            if (!newReadingGoal || newReadingGoal <= 0) {
+                alert('يرجى إدخال هدف قراءة صحيح');
+                return;
+            }
+            
+            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+            settings.waterGoal = newWaterGoal;
+            settings.readingGoal = newReadingGoal;
+            localStorage.setItem('75hard_settings', JSON.stringify(settings));
+            
+            waterGoal = newWaterGoal;
+            updateWaterDisplay();
+            
+            alert('تم حفظ الأهداف بنجاح!');
         }
 
         // Setup event listeners
@@ -2180,6 +2453,7 @@
                             photoPreview.src = e.target.result;
                             photoPreviewContainer.style.display = 'block';
                             document.getElementById('photoTakenCheckbox').checked = true;
+                            saveDayData();
                         };
                         reader.readAsDataURL(file);
                     }
@@ -2251,6 +2525,15 @@
             if (resetChallengeBtn) {
                 resetChallengeBtn.addEventListener('click', () => {
                     if (confirm('تحذير: إعادة التعيين ستحذف جميع بيانات التقدم. هل أنت متأكد؟')) {
+                        // Clear all user-specific data
+                        if (currentUser) {
+                            const userEmail = currentUser.email;
+                            for (let i = 1; i <= 75; i++) {
+                                localStorage.removeItem(`75hard_${userEmail}_day${i}`);
+                            }
+                            localStorage.removeItem(`75hard_${userEmail}_currentDay`);
+                        }
+                        
                         alert('تم إعادة تعيين التحدي بنجاح!');
                         generateDaysGrid(); // Regenerate with initial state
                     }
@@ -2278,12 +2561,20 @@
                             'breakfastCalories', 'snack1Calories', 'lunchCalories',
                             'snack2Calories', 'dinnerCalories'
                         ];
+                        const notesInputs = [
+                            'breakfastNotes', 'snack1Notes', 'lunchNotes',
+                            'snack2Notes', 'dinnerNotes'
+                        ];
                         
                         mealCheckboxes.forEach(id => {
                             document.getElementById(id).checked = false;
                         });
                         
                         calorieInputs.forEach(id => {
+                            document.getElementById(id).value = '';
+                        });
+                        
+                        notesInputs.forEach(id => {
                             document.getElementById(id).value = '';
                         });
                         
@@ -2327,7 +2618,8 @@
             
             const autoSaveTextInputs = [
                 'workout1Input', 'workout2Input', 'breakfastCalories', 'snack1Calories',
-                'lunchCalories', 'snack2Calories', 'dinnerCalories'
+                'lunchCalories', 'snack2Calories', 'dinnerCalories', 'breakfastNotes',
+                'snack1Notes', 'lunchNotes', 'snack2Notes', 'dinnerNotes'
             ];
             
             autoSaveTextInputs.forEach(id => {
@@ -2337,6 +2629,19 @@
                         saveDayData();
                     });
                 }
+            });
+            
+            // حفظ إعدادات التحدي عند التغيير
+            document.getElementById('restartOnFailure').addEventListener('change', function() {
+                const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+                settings.restartOnFailure = this.checked;
+                localStorage.setItem('75hard_settings', JSON.stringify(settings));
+            });
+            
+            document.getElementById('dailyReminders').addEventListener('change', function() {
+                const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+                settings.dailyReminders = this.checked;
+                localStorage.setItem('75hard_settings', JSON.stringify(settings));
             });
             
             console.log('تم إعداد جميع مستمعي الأحداث بنجاح');
