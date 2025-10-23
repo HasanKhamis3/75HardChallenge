@@ -160,7 +160,6 @@
         .language-selector {
             display: flex;
             align-items: center;
-            margin-right: 1.5rem;
         }
 
         .lang-btn {
@@ -447,9 +446,14 @@
         .task-name {
             color: var(--text-color);
             font-weight: bold;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             text-align: center;
             line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 0 2px;
         }
 
         .task-indicator {
@@ -475,6 +479,11 @@
             border-color: var(--danger-color);
         }
 
+        .task-partial {
+            background-color: #FFA500;
+            border-color: #FFA500;
+        }
+
         .task-today {
             background-color: var(--today-color);
             border-color: var(--today-color);
@@ -490,6 +499,11 @@
             background-color: rgba(255, 71, 87, 0.1);
         }
 
+        .task-item-partial {
+            border: 1px solid #FFA500;
+            background-color: rgba(255, 165, 0, 0.1);
+        }
+
         .task-item-today {
             border: 1px solid var(--today-color);
             background-color: rgba(255, 215, 0, 0.1);
@@ -501,8 +515,8 @@
         }
 
         .day-partial {
-            border-color: var(--accent-color);
-            background: linear-gradient(135deg, rgba(255, 171, 0, 0.1), rgba(255, 171, 0, 0.05));
+            border-color: #FFA500;
+            background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 165, 0, 0.05));
         }
 
         .day-failed {
@@ -593,6 +607,16 @@
             position: sticky;
             top: 80px;
             z-index: 90;
+        }
+
+        .day-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
         }
 
         .task-card {
@@ -895,17 +919,6 @@
             cursor: pointer;
         }
 
-        /* Day Actions - داخل إطار اليوم */
-        .day-actions {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-        }
-
         /* Settings Page - منظمة مثل الموقع الأساسي */
         .settings-grid {
             display: grid;
@@ -1051,6 +1064,128 @@
             font-weight: 500;
         }
 
+        /* Activity Log */
+        .activity-log {
+            padding: 2rem 0;
+        }
+
+        .log-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .log-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .log-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .log-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .log-date {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .log-content {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .log-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Reports Page */
+        .reports {
+            padding: 2rem 0;
+        }
+
+        .report-filters {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .report-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .report-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .report-chart {
+            height: 200px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .report-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            background-color: #f8f9fa;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--light-text);
+        }
+
         /* Responsive */
         @media (max-width: 1200px) {
             .days-grid {
@@ -1121,7 +1256,7 @@
             }
             
             .task-name {
-                font-size: 0.55rem;
+                font-size: 0.65rem;
             }
 
             .settings-grid {
@@ -1143,7 +1278,7 @@
             }
             
             .task-name {
-                font-size: 0.5rem;
+                font-size: 0.6rem;
             }
             
             .meal-calories {
@@ -1460,7 +1595,7 @@
                 
                 <div class="dashboard-actions" style="display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap;">
                     <button class="btn btn-outline" onclick="exportCSV()">تصدير CSV</button>
-                    <button class="btn btn-outline" onclick="showReports()">التقارير</button>
+                    <button class="btn btn-outline" onclick="showPage('reports')">التقارير</button>
                     <button class="btn btn-outline" id="resetChallengeBtn">إعادة تعيين التحدي</button>
                 </div>
             </div>
@@ -1472,17 +1607,15 @@
         <div class="container">
             <div class="day-header">
                 <h1 id="dayViewTitle">اليوم 23 - 15 أكتوبر 2023</h1>
-                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى لوحة التحكم</button>
-            </div>
-            
-            <!-- إجراءات اليوم - داخل إطار اليوم -->
-            <div class="task-card">
-                <div class="day-actions">
+                <div style="display: flex; gap: 10px;">
                     <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التقدم</button>
                     <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
+                    <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى لوحة التحكم</button>
                 </div>
-                
-                <!-- Diet -->
+            </div>
+            
+            <!-- Diet -->
+            <div class="task-card">
                 <div class="task-header">
                     <div class="task-title">النظام الغذائي</div>
                     <div class="task-status">
@@ -1819,9 +1952,149 @@
                                 <span>صفحة</span>
                             </div>
                         </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <div class="setting-title">هدف السعرات اليومية</div>
+                                <div class="setting-description">إجمالي السعرات الحرارية المستهدفة يومياً</div>
+                            </div>
+                            <div class="setting-control">
+                                <input type="number" id="caloriesGoal" class="calories-input" value="2000" style="width: 100px;">
+                                <span>سعرة</span>
+                            </div>
+                        </div>
                         <button class="btn btn-primary mt-1" onclick="saveGoals()">حفظ الأهداف</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Page -->
+    <section id="reports" class="page">
+        <div class="container">
+            <h1 class="section-title">التقارير والإحصائيات</h1>
+            
+            <div class="report-filters">
+                <h3>تصفية التقارير</h3>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 1rem;">
+                    <div>
+                        <label for="reportStartDate">من تاريخ:</label>
+                        <input type="date" id="reportStartDate" class="form-control" style="width: auto;">
+                    </div>
+                    <div>
+                        <label for="reportEndDate">إلى تاريخ:</label>
+                        <input type="date" id="reportEndDate" class="form-control" style="width: auto;">
+                    </div>
+                    <div>
+                        <label for="reportType">نوع التقرير:</label>
+                        <select id="reportType" class="form-control" style="width: auto;">
+                            <option value="overview">نظرة عامة</option>
+                            <option value="progress">تقدم التحدي</option>
+                            <option value="tasks">المهام اليومية</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="generateReport()">إنشاء التقرير</button>
+                </div>
+            </div>
+            
+            <div class="report-grid">
+                <div class="report-card">
+                    <h3>إنجاز المهام</h3>
+                    <div class="report-chart">
+                        <canvas id="tasksChart" width="300" height="200"></canvas>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="completedTasks">0</div>
+                            <div class="stat-label">مهام مكتملة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="pendingTasks">0</div>
+                            <div class="stat-label">مهام معلقة</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <h3>تقدم التحدي</h3>
+                    <div class="report-chart">
+                        <canvas id="progressChart" width="300" height="200"></canvas>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="daysCompleted">0</div>
+                            <div class="stat-label">أيام مكتملة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="daysRemaining">0</div>
+                            <div class="stat-label">أيام متبقية</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <h3>الماء والقراءة</h3>
+                    <div class="report-chart">
+                        <canvas id="waterReadingChart" width="300" height="200"></canvas>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="avgWater">0</div>
+                            <div class="stat-label">متوسط الماء (مل)</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="avgReading">0</div>
+                            <div class="stat-label">متوسط القراءة (صفحة)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="report-card">
+                    <h3>النظام الغذائي</h3>
+                    <div class="report-chart">
+                        <canvas id="dietChart" width="300" height="200"></canvas>
+                    </div>
+                    <div class="report-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="avgCalories">0</div>
+                            <div class="stat-label">متوسط السعرات</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="dietDays">0</div>
+                            <div class="stat-label">أيام النظام الغذائي</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="task-card mt-2">
+                <h3>ملخص التقرير</h3>
+                <div id="reportSummary">
+                    <!-- سيتم ملء ملخص التقرير هنا -->
+                </div>
+                <div class="dashboard-actions" style="display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <button class="btn btn-primary" onclick="printReport()">طباعة التقرير</button>
+                    <button class="btn btn-outline" onclick="exportPDF()">تصدير PDF</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Log Page -->
+    <section id="activityLog" class="page">
+        <div class="container">
+            <h1 class="section-title">سجل التحديثات والمراسلات</h1>
+            
+            <div class="log-filters">
+                <button class="btn btn-outline active" onclick="filterLogs('all')">الكل</button>
+                <button class="btn btn-outline" onclick="filterLogs('activity')">الأنشطة</button>
+                <button class="btn btn-outline" onclick="filterLogs('notification')">المراسلات</button>
+                <button class="btn btn-outline" onclick="filterLogs('system')">النظام</button>
+            </div>
+            
+            <div class="log-list" id="logList">
+                <!-- سيتم ملء سجل التحديثات هنا -->
             </div>
         </div>
     </section>
@@ -1883,9 +2156,11 @@
         let totalWater = 0;
         let waterGoal = 3700;
         let readingGoal = 10;
+        let caloriesGoal = 2000;
         let currentDayNumber = 1;
         let startDate = null;
         let currentPhotos = [];
+        let activityLogs = [];
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -1912,6 +2187,9 @@
             // تحميل الإعدادات
             loadSettings();
             
+            // تحميل سجل التحديثات
+            loadActivityLogs();
+            
             console.log('تم تهيئة التطبيق بنجاح!');
         });
 
@@ -1931,7 +2209,7 @@
             updateActiveNav(pageId);
             
             // Special handling for dashboard pages (require login)
-            if (['dashboard', 'dayView', 'settings'].includes(pageId)) {
+            if (['dashboard', 'dayView', 'settings', 'reports', 'activityLog'].includes(pageId)) {
                 if (!isLoggedIn()) {
                     console.log('المستخدم غير مسجل، جاري التوجيه إلى صفحة تسجيل الدخول');
                     showPage('login');
@@ -1944,6 +2222,16 @@
                         showPage('settings');
                     });
                     return;
+                }
+                
+                // إذا كانت صفحة التقارير، إنشاء التقارير
+                if (pageId === 'reports') {
+                    generateReport();
+                }
+                
+                // إذا كانت صفحة سجل التحديثات، تحميل السجل
+                if (pageId === 'activityLog') {
+                    renderActivityLogs();
                 }
             }
             
@@ -2020,6 +2308,7 @@
                         <span class="user-greeting">${greeting}, ${user.name}</span>
                         <button class="btn btn-primary" onclick="showPage('dashboard')">${currentLanguage === 'ar' ? 'التحدي' : 'Challenge'}</button>
                         <button class="btn btn-outline" onclick="showPage('settings')">${currentLanguage === 'ar' ? 'الإعدادات' : 'Settings'}</button>
+                        <button class="btn btn-outline" onclick="showPage('activityLog')">${currentLanguage === 'ar' ? 'سجل التحديثات' : 'Activity Log'}</button>
                         <button class="btn btn-outline" onclick="logout()">${currentLanguage === 'ar' ? 'تسجيل الخروج' : 'Logout'}</button>
                     </div>
                 `;
@@ -2263,9 +2552,9 @@
                         // Random partial completion for demo
                         const isCompleted = Math.random() > 0.5;
                         indicator.className = isCompleted ? 
-                            'task-indicator task-completed' : 'task-indicator task-failed';
+                            'task-indicator task-completed' : 'task-indicator task-partial';
                         taskItem.className = isCompleted ? 
-                            'task-item task-item-completed' : 'task-item task-item-failed';
+                            'task-item task-item-completed' : 'task-item task-item-partial';
                     } else if (status === 'failed') {
                         indicator.className = 'task-indicator task-failed';
                         taskItem.className = 'task-item task-item-failed';
@@ -2384,6 +2673,9 @@
                 totalWater += amount;
                 updateWaterDisplay();
                 saveDayData(currentDayNumber);
+                
+                // إضافة إلى سجل التحديثات
+                addActivityLog('activity', `تم إضافة ${amount} مل من الماء`);
             } else {
                 alert(currentLanguage === 'ar' ? 'لا يمكن تجاوز الهدف اليومي للماء!' : 'Cannot exceed daily water goal!');
             }
@@ -2673,6 +2965,9 @@
             saveDayData(currentDayNumber);
             alert(currentLanguage === 'ar' ? 'تم حفظ التقدم بنجاح!' : 'Progress saved successfully!');
             showPage('dashboard');
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('activity', `تم حفظ تقدم اليوم ${currentDayNumber}`);
         }
 
         // تحميل الإعدادات
@@ -2703,6 +2998,11 @@
                 readingGoal = settings.readingGoal;
             }
             
+            if (settings.caloriesGoal) {
+                document.getElementById('caloriesGoal').value = settings.caloriesGoal;
+                caloriesGoal = settings.caloriesGoal;
+            }
+            
             // تحديث العرض
             updateWaterDisplay();
             updateReadingProgress();
@@ -2721,6 +3021,9 @@
             }
             
             alert(currentLanguage === 'ar' ? 'تم حفظ المعلومات الشخصية بنجاح!' : 'Personal information saved successfully!');
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('activity', 'تم تحديث المعلومات الشخصية');
         }
 
         // تغيير كلمة المرور
@@ -2747,6 +3050,9 @@
             // في تطبيق حقيقي، هنا يتم التحقق من كلمة المرور الحالية مع الخادم
             alert(currentLanguage === 'ar' ? 'تم تغيير كلمة المرور بنجاح!' : 'Password changed successfully!');
             
+            // إضافة إلى سجل التحديثات
+            addActivityLog('system', 'تم تغيير كلمة المرور');
+            
             // مسح الحقول
             document.getElementById('currentPassword').value = '';
             document.getElementById('newPassword').value = '';
@@ -2769,12 +3075,16 @@
             
             alert(currentLanguage === 'ar' ? 'تم حفظ تاريخ البدء بنجاح!' : 'Start date saved successfully!');
             generateDaysGrid(); // إعادة توليد شبكة الأيام
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('activity', `تم تعيين تاريخ بدء التحدي: ${startDateValue}`);
         }
 
         // حفظ الأهداف
         function saveGoals() {
             const newWaterGoal = parseInt(document.getElementById('waterGoal').value);
             const newReadingGoal = parseInt(document.getElementById('readingGoal').value);
+            const newCaloriesGoal = parseInt(document.getElementById('caloriesGoal').value);
             
             if (!newWaterGoal || newWaterGoal <= 0) {
                 alert(currentLanguage === 'ar' ? 'يرجى إدخال هدف مائي صحيح' : 'Please enter a valid water goal');
@@ -2786,17 +3096,27 @@
                 return;
             }
             
+            if (!newCaloriesGoal || newCaloriesGoal <= 0) {
+                alert(currentLanguage === 'ar' ? 'يرجى إدخال هدف سعرات صحيح' : 'Please enter a valid calories goal');
+                return;
+            }
+            
             const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
             settings.waterGoal = newWaterGoal;
             settings.readingGoal = newReadingGoal;
+            settings.caloriesGoal = newCaloriesGoal;
             localStorage.setItem('75hard_settings', JSON.stringify(settings));
             
             waterGoal = newWaterGoal;
             readingGoal = newReadingGoal;
+            caloriesGoal = newCaloriesGoal;
             updateWaterDisplay();
             updateReadingProgress();
             
             alert(currentLanguage === 'ar' ? 'تم حفظ الأهداف بنجاح!' : 'Goals saved successfully!');
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('activity', `تم تحديث الأهداف: الماء ${newWaterGoal} مل، القراءة ${newReadingGoal} صفحة، السعرات ${newCaloriesGoal} سعرة`);
         }
 
         // تصدير CSV
@@ -2804,29 +3124,35 @@
             if (!currentUser) return;
             
             let csvContent = "data:text/csv;charset=utf-8,";
-            csvContent += "Day,Date,Diet Completed,Water Consumed,Indoor Workout,Outdoor Workout,Reading Pages,Photo Taken\n";
+            
+            // تحديد رؤوس CSV بناءً على اللغة
+            if (currentLanguage === 'ar') {
+                csvContent += "اليوم,التاريخ,النظام الغذائي,الماء المستهلك,التمرين الداخلي,التمرين الخارجي,صفحات القراءة,الصورة اليومية\n";
+            } else {
+                csvContent += "Day,Date,Diet Completed,Water Consumed,Indoor Workout,Outdoor Workout,Reading Pages,Photo Taken\n";
+            }
             
             for (let i = 1; i <= 75; i++) {
                 const userEmail = currentUser.email;
                 const dayKey = `75hard_${userEmail}_day${i}`;
                 const savedData = localStorage.getItem(dayKey);
                 
-                let dietCompleted = "No";
+                let dietCompleted = currentLanguage === 'ar' ? "لا" : "No";
                 let waterConsumed = "0";
-                let indoorWorkout = "No";
-                let outdoorWorkout = "No";
+                let indoorWorkout = currentLanguage === 'ar' ? "لا" : "No";
+                let outdoorWorkout = currentLanguage === 'ar' ? "لا" : "No";
                 let readingPages = "0";
-                let photoTaken = "No";
+                let photoTaken = currentLanguage === 'ar' ? "لا" : "No";
                 
                 if (savedData) {
                     const dayData = JSON.parse(savedData);
                     
-                    dietCompleted = dayData.diet && dayData.diet.completed ? "Yes" : "No";
+                    dietCompleted = dayData.diet && dayData.diet.completed ? (currentLanguage === 'ar' ? "نعم" : "Yes") : (currentLanguage === 'ar' ? "لا" : "No");
                     waterConsumed = dayData.water || "0";
-                    indoorWorkout = dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed ? "Yes" : "No";
-                    outdoorWorkout = dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed ? "Yes" : "No";
+                    indoorWorkout = dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed ? (currentLanguage === 'ar' ? "نعم" : "Yes") : (currentLanguage === 'ar' ? "لا" : "No");
+                    outdoorWorkout = dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed ? (currentLanguage === 'ar' ? "نعم" : "Yes") : (currentLanguage === 'ar' ? "لا" : "No");
                     readingPages = dayData.reading && dayData.reading.pages ? dayData.reading.pages : "0";
-                    photoTaken = dayData.photo && dayData.photo.taken ? "Yes" : "No";
+                    photoTaken = dayData.photo && dayData.photo.taken ? (currentLanguage === 'ar' ? "نعم" : "Yes") : (currentLanguage === 'ar' ? "لا" : "No");
                 }
                 
                 // حساب تاريخ اليوم
@@ -2846,11 +3172,202 @@
             document.body.removeChild(link);
             
             alert(currentLanguage === 'ar' ? 'تم تصدير البيانات بنجاح!' : 'Data exported successfully!');
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('system', 'تم تصدير بيانات التحدي بصيغة CSV');
         }
 
-        // عرض التقارير
-        function showReports() {
+        // إنشاء التقرير
+        function generateReport() {
+            if (!currentUser) return;
+            
+            // حساب الإحصائيات
+            let completedTasks = 0;
+            let pendingTasks = 0;
+            let daysCompleted = 0;
+            let totalWater = 0;
+            let totalReading = 0;
+            let totalCalories = 0;
+            let dietDays = 0;
+            let daysWithData = 0;
+            
+            for (let i = 1; i <= 75; i++) {
+                const userEmail = currentUser.email;
+                const dayKey = `75hard_${userEmail}_day${i}`;
+                const savedData = localStorage.getItem(dayKey);
+                
+                if (savedData) {
+                    const dayData = JSON.parse(savedData);
+                    daysWithData++;
+                    
+                    // حساب المهام المكتملة
+                    if (dayData.diet && dayData.diet.completed) completedTasks++;
+                    else pendingTasks++;
+                    
+                    if (dayData.water && dayData.water >= waterGoal) completedTasks++;
+                    else pendingTasks++;
+                    
+                    if (dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed) completedTasks++;
+                    else pendingTasks++;
+                    
+                    if (dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed) completedTasks++;
+                    else pendingTasks++;
+                    
+                    if (dayData.reading && dayData.reading.completed && dayData.reading.pages >= readingGoal) completedTasks++;
+                    else pendingTasks++;
+                    
+                    if (dayData.photo && dayData.photo.taken) completedTasks++;
+                    else pendingTasks++;
+                    
+                    // حساب الأيام المكتملة
+                    const dayStatus = getDayStatus(i);
+                    if (dayStatus.class === 'day-completed') {
+                        daysCompleted++;
+                    }
+                    
+                    // جمع البيانات
+                    if (dayData.water) totalWater += dayData.water;
+                    if (dayData.reading && dayData.reading.pages) totalReading += dayData.reading.pages;
+                    if (dayData.diet && dayData.diet.meals) {
+                        let dayCalories = 0;
+                        if (dayData.diet.meals.breakfast && dayData.diet.meals.breakfast.calories) dayCalories += dayData.diet.meals.breakfast.calories;
+                        if (dayData.diet.meals.snack1 && dayData.diet.meals.snack1.calories) dayCalories += dayData.diet.meals.snack1.calories;
+                        if (dayData.diet.meals.lunch && dayData.diet.meals.lunch.calories) dayCalories += dayData.diet.meals.lunch.calories;
+                        if (dayData.diet.meals.snack2 && dayData.diet.meals.snack2.calories) dayCalories += dayData.diet.meals.snack2.calories;
+                        if (dayData.diet.meals.dinner && dayData.diet.meals.dinner.calories) dayCalories += dayData.diet.meals.dinner.calories;
+                        totalCalories += dayCalories;
+                        
+                        if (dayData.diet.completed) dietDays++;
+                    }
+                }
+            }
+            
+            // تحديث الإحصائيات
+            document.getElementById('completedTasks').textContent = completedTasks;
+            document.getElementById('pendingTasks').textContent = pendingTasks;
+            document.getElementById('daysCompleted').textContent = daysCompleted;
+            document.getElementById('daysRemaining').textContent = 75 - daysCompleted;
+            document.getElementById('avgWater').textContent = daysWithData > 0 ? Math.round(totalWater / daysWithData) : 0;
+            document.getElementById('avgReading').textContent = daysWithData > 0 ? Math.round(totalReading / daysWithData) : 0;
+            document.getElementById('avgCalories').textContent = daysWithData > 0 ? Math.round(totalCalories / daysWithData) : 0;
+            document.getElementById('dietDays').textContent = dietDays;
+            
+            // إنشاء ملخص التقرير
+            const reportSummary = document.getElementById('reportSummary');
+            if (reportSummary) {
+                let summaryHTML = '';
+                
+                if (currentLanguage === 'ar') {
+                    summaryHTML = `
+                        <p>إجمالي المهام المكتملة: <strong>${completedTasks}</strong> من <strong>${completedTasks + pendingTasks}</strong></p>
+                        <p>الأيام المكتملة: <strong>${daysCompleted}</strong> من <strong>75</strong> يوم</p>
+                        <p>متوسط استهلاك الماء: <strong>${daysWithData > 0 ? Math.round(totalWater / daysWithData) : 0}</strong> مل في اليوم</p>
+                        <p>متوسط القراءة: <strong>${daysWithData > 0 ? Math.round(totalReading / daysWithData) : 0}</strong> صفحة في اليوم</p>
+                        <p>متوسط السعرات الحرارية: <strong>${daysWithData > 0 ? Math.round(totalCalories / daysWithData) : 0}</strong> سعرة في اليوم</p>
+                        <p>أيام النظام الغذائي: <strong>${dietDays}</strong> يوم</p>
+                    `;
+                } else {
+                    summaryHTML = `
+                        <p>Total Completed Tasks: <strong>${completedTasks}</strong> out of <strong>${completedTasks + pendingTasks}</strong></p>
+                        <p>Days Completed: <strong>${daysCompleted}</strong> out of <strong>75</strong> days</p>
+                        <p>Average Water Consumption: <strong>${daysWithData > 0 ? Math.round(totalWater / daysWithData) : 0}</strong> ml per day</p>
+                        <p>Average Reading: <strong>${daysWithData > 0 ? Math.round(totalReading / daysWithData) : 0}</strong> pages per day</p>
+                        <p>Average Calories: <strong>${daysWithData > 0 ? Math.round(totalCalories / daysWithData) : 0}</strong> calories per day</p>
+                        <p>Diet Days: <strong>${dietDays}</strong> days</p>
+                    `;
+                }
+                
+                reportSummary.innerHTML = summaryHTML;
+            }
+            
+            // إنشاء الرسوم البيانية البسيطة (بدون مكتبة Chart.js)
+            createSimpleCharts(completedTasks, pendingTasks, daysCompleted, totalWater, totalReading, totalCalories);
+        }
+
+        // إنشاء رسوم بيانية بسيطة
+        function createSimpleCharts(completedTasks, pendingTasks, daysCompleted, totalWater, totalReading, totalCalories) {
+            // رسم بياني للمهام
+            const tasksCanvas = document.getElementById('tasksChart');
+            if (tasksCanvas) {
+                const ctx = tasksCanvas.getContext('2d');
+                ctx.clearRect(0, 0, tasksCanvas.width, tasksCanvas.height);
+                
+                // رسم دائرة للمهام المكتملة والمعلقة
+                const centerX = tasksCanvas.width / 2;
+                const centerY = tasksCanvas.height / 2;
+                const radius = Math.min(centerX, centerY) - 10;
+                
+                const total = completedTasks + pendingTasks;
+                const completedAngle = (completedTasks / total) * 2 * Math.PI;
+                
+                // رسم الجزء المكتمل
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, 0, completedAngle);
+                ctx.closePath();
+                ctx.fillStyle = '#2ED573';
+                ctx.fill();
+                
+                // رسم الجزء المعلق
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, completedAngle, 2 * Math.PI);
+                ctx.closePath();
+                ctx.fillStyle = '#FFA500';
+                ctx.fill();
+                
+                // إضافة نص
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 16px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`${Math.round((completedTasks / total) * 100)}%`, centerX, centerY);
+            }
+            
+            // رسم بياني للتقدم
+            const progressCanvas = document.getElementById('progressChart');
+            if (progressCanvas) {
+                const ctx = progressCanvas.getContext('2d');
+                ctx.clearRect(0, 0, progressCanvas.width, progressCanvas.height);
+                
+                // رسم شريط التقدم
+                const barWidth = progressCanvas.width - 40;
+                const barHeight = 30;
+                const barX = 20;
+                const barY = (progressCanvas.height - barHeight) / 2;
+                
+                // رسم الخلفية
+                ctx.fillStyle = '#e9ecef';
+                ctx.fillRect(barX, barY, barWidth, barHeight);
+                
+                // رسم التقدم
+                const progressWidth = (daysCompleted / 75) * barWidth;
+                ctx.fillStyle = '#8A2BE2';
+                ctx.fillRect(barX, barY, progressWidth, barHeight);
+                
+                // إضافة نص
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 14px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(`${daysCompleted}/75 أيام`, progressCanvas.width / 2, barY + barHeight + 20);
+            }
+        }
+
+        // طباعة التقرير
+        function printReport() {
+            window.print();
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('system', 'تم طباعة تقرير التحدي');
+        }
+
+        // تصدير PDF
+        function exportPDF() {
             alert(currentLanguage === 'ar' ? 'سيتم تطوير هذه الميزة قريباً' : 'This feature will be developed soon');
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('system', 'تم طلب تصدير تقرير بصيغة PDF');
         }
 
         // التحقق من الإعدادات
@@ -2907,6 +3424,9 @@
                         currentPhotos.splice(index, 1);
                         renderPhotos();
                         saveDayData(currentDayNumber);
+                        
+                        // إضافة إلى سجل التحديثات
+                        addActivityLog('activity', 'تم حذف صورة يومية');
                     }
                 };
                 
@@ -2914,6 +3434,152 @@
                 wrapper.appendChild(deleteBtn);
                 container.appendChild(wrapper);
             });
+        }
+
+        // تحميل سجل التحديثات
+        function loadActivityLogs() {
+            const savedLogs = localStorage.getItem('75hard_activityLogs');
+            if (savedLogs) {
+                activityLogs = JSON.parse(savedLogs);
+            } else {
+                // إنشاء سجل افتراضي
+                activityLogs = [
+                    {
+                        id: 1,
+                        type: 'system',
+                        title: 'مرحباً بك في تطبيق تحدي 75 يومًا',
+                        content: 'نتمنى لك رحلة ناجحة في بناء الانضباط الذاتي',
+                        date: new Date().toISOString(),
+                        read: false
+                    },
+                    {
+                        id: 2,
+                        type: 'notification',
+                        title: 'تذكير: ابدأ تحدي 75 يومًا',
+                        content: 'لا تنسى تعيين تاريخ البدء في إعدادات التحدي لبدء رحلتك',
+                        date: new Date().toISOString(),
+                        read: false
+                    }
+                ];
+                saveActivityLogs();
+            }
+        }
+
+        // حفظ سجل التحديثات
+        function saveActivityLogs() {
+            localStorage.setItem('75hard_activityLogs', JSON.stringify(activityLogs));
+        }
+
+        // إضافة سجل جديد
+        function addActivityLog(type, content, title = '') {
+            const log = {
+                id: Date.now(),
+                type: type,
+                title: title || getDefaultTitle(type),
+                content: content,
+                date: new Date().toISOString(),
+                read: false
+            };
+            
+            activityLogs.unshift(log);
+            saveActivityLogs();
+            
+            // إذا كانت الصفحة الحالية هي سجل التحديثات، قم بتحديث العرض
+            if (document.getElementById('activityLog').classList.contains('active')) {
+                renderActivityLogs();
+            }
+        }
+
+        // الحصول على عنوان افتراضي بناءً على النوع
+        function getDefaultTitle(type) {
+            switch(type) {
+                case 'activity':
+                    return currentLanguage === 'ar' ? 'نشاط جديد' : 'New Activity';
+                case 'notification':
+                    return currentLanguage === 'ar' ? 'إشعار جديد' : 'New Notification';
+                case 'system':
+                    return currentLanguage === 'ar' ? 'تحديث النظام' : 'System Update';
+                default:
+                    return currentLanguage === 'ar' ? 'سجل جديد' : 'New Log';
+            }
+        }
+
+        // عرض سجل التحديثات
+        function renderActivityLogs(filter = 'all') {
+            const logList = document.getElementById('logList');
+            if (!logList) return;
+            
+            logList.innerHTML = '';
+            
+            const filteredLogs = filter === 'all' ? activityLogs : activityLogs.filter(log => log.type === filter);
+            
+            if (filteredLogs.length === 0) {
+                logList.innerHTML = `<div class="log-item"><p>${currentLanguage === 'ar' ? 'لا توجد سجلات لعرضها' : 'No logs to display'}</p></div>`;
+                return;
+            }
+            
+            filteredLogs.forEach(log => {
+                const logItem = document.createElement('div');
+                logItem.className = `log-item ${log.read ? '' : 'unread'}`;
+                
+                const date = new Date(log.date);
+                const formattedDate = currentLanguage === 'ar' 
+                    ? `${date.toLocaleDateString('ar-SA')} ${date.toLocaleTimeString('ar-SA')}`
+                    : `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+                
+                logItem.innerHTML = `
+                    <div class="log-header">
+                        <div class="log-title">${log.title}</div>
+                        <div class="log-date">${formattedDate}</div>
+                    </div>
+                    <div class="log-content">${log.content}</div>
+                    <div class="log-actions">
+                        ${log.type === 'notification' ? `<button class="btn btn-primary" onclick="resendNotification(${log.id})">${currentLanguage === 'ar' ? 'إعادة الإرسال' : 'Resend'}</button>` : ''}
+                        <button class="btn btn-outline" onclick="viewLogDetails(${log.id})">${currentLanguage === 'ar' ? 'معاينة' : 'Preview'}</button>
+                    </div>
+                `;
+                
+                logList.appendChild(logItem);
+            });
+        }
+
+        // تصفية سجلات التحديثات
+        function filterLogs(type) {
+            // تحديث الأزرار النشطة
+            document.querySelectorAll('.log-filters .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // عرض السجلات المصفاة
+            renderActivityLogs(type);
+        }
+
+        // إعادة إرسال الإشعار
+        function resendNotification(logId) {
+            const log = activityLogs.find(l => l.id === logId);
+            if (log) {
+                alert(currentLanguage === 'ar' ? 'تم إعادة إرسال الإشعار' : 'Notification resent');
+                
+                // إضافة سجل جديد لإعادة الإرسال
+                addActivityLog('notification', `إعادة إرسال: ${log.content}`, `إعادة إرسال: ${log.title}`);
+            }
+        }
+
+        // معاينة تفاصيل السجل
+        function viewLogDetails(logId) {
+            const log = activityLogs.find(l => l.id === logId);
+            if (log) {
+                // وضع علامة كمقروء
+                log.read = true;
+                saveActivityLogs();
+                
+                // عرض التفاصيل في نافذة منبثقة
+                alert(`${log.title}\n\n${log.content}\n\n${new Date(log.date).toLocaleString()}`);
+                
+                // تحديث العرض
+                renderActivityLogs();
+            }
         }
 
         // Setup event listeners
@@ -2945,6 +3611,9 @@
                                 renderPhotos();
                                 document.getElementById('photoTakenCheckbox').checked = true;
                                 saveDayData(currentDayNumber);
+                                
+                                // إضافة إلى سجل التحديثات
+                                addActivityLog('activity', 'تم رفع صورة يومية جديدة');
                             };
                             reader.readAsDataURL(file);
                         }
@@ -2976,6 +3645,9 @@
                     checkAuthStatus();
                     showPage('dashboard');
                     alert(currentLanguage === 'ar' ? 'تم تسجيل الدخول بنجاح!' : 'Logged in successfully!');
+                    
+                    // إضافة إلى سجل التحديثات
+                    addActivityLog('system', 'تم تسجيل الدخول إلى النظام');
                 });
             }
 
@@ -3002,6 +3674,9 @@
                     checkAuthStatus();
                     showPage('dashboard');
                     alert(currentLanguage === 'ar' ? 'تم إنشاء الحساب بنجاح!' : 'Account created successfully!');
+                    
+                    // إضافة إلى سجل التحديثات
+                    addActivityLog('system', 'تم إنشاء حساب جديد');
                 });
             }
 
@@ -3020,6 +3695,9 @@
                         
                         alert(currentLanguage === 'ar' ? 'تم إعادة تعيين التحدي بنجاح!' : 'Challenge reset successfully!');
                         generateDaysGrid(); // Regenerate with initial state
+                        
+                        // إضافة إلى سجل التحديثات
+                        addActivityLog('system', 'تم إعادة تعيين التحدي بالكامل');
                     }
                 });
             }
@@ -3032,6 +3710,9 @@
                         resetDayForm();
                         saveDayData(currentDayNumber);
                         alert(currentLanguage === 'ar' ? 'تم إعادة تعيين اليوم بنجاح!' : 'Day reset successfully!');
+                        
+                        // إضافة إلى سجل التحديثات
+                        addActivityLog('activity', `تم إعادة تعيين اليوم ${currentDayNumber}`);
                     }
                 });
             }
@@ -3072,12 +3753,18 @@
                 const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
                 settings.restartOnFailure = this.checked;
                 localStorage.setItem('75hard_settings', JSON.stringify(settings));
+                
+                // إضافة إلى سجل التحديثات
+                addActivityLog('system', `تم ${this.checked ? 'تفعيل' : 'تعطيل'} خيار إعادة البدء عند الفشل`);
             });
             
             document.getElementById('dailyReminders').addEventListener('change', function() {
                 const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
                 settings.dailyReminders = this.checked;
                 localStorage.setItem('75hard_settings', JSON.stringify(settings));
+                
+                // إضافة إلى سجل التحديثات
+                addActivityLog('system', `تم ${this.checked ? 'تفعيل' : 'تعطيل'} خيار التذكيرات اليومية`);
             });
             
             console.log('تم إعداد جميع مستمعي الأحداث بنجاح');
@@ -3091,6 +3778,9 @@
             checkAuthStatus();
             showPage('home');
             alert(currentLanguage === 'ar' ? 'تم تسجيل الخروج بنجاح!' : 'Logged out successfully!');
+            
+            // إضافة إلى سجل التحديثات
+            addActivityLog('system', 'تم تسجيل الخروج من النظام');
         }
     </script>
 </body>
