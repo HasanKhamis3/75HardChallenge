@@ -1002,6 +1002,60 @@
             font-weight: 500;
         }
 
+        /* Activity Log */
+        .activity-log {
+            padding: 2rem 0;
+        }
+
+        .log-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .log-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .log-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .log-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .log-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .log-date {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .log-content {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .log-actions {
+            display: flex;
+            gap: 10px;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
@@ -1062,128 +1116,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.7);
             font-weight: 500;
-        }
-
-        /* Activity Log */
-        .activity-log {
-            padding: 2rem 0;
-        }
-
-        .log-filters {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .log-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .log-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .log-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-
-        .log-title {
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: var(--text-color);
-        }
-
-        .log-date {
-            color: var(--light-text);
-            font-size: 0.9rem;
-        }
-
-        .log-content {
-            color: var(--text-color);
-            margin-bottom: 1rem;
-        }
-
-        .log-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        /* Reports Page */
-        .reports {
-            padding: 2rem 0;
-        }
-
-        .report-filters {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 2rem;
-        }
-
-        .report-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .report-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .report-card h3 {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-
-        .report-chart {
-            height: 200px;
-            background-color: #f8f9fa;
-            border-radius: var(--border-radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .report-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            background-color: #f8f9fa;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--light-text);
         }
 
         /* Responsive */
@@ -1862,6 +1794,22 @@
                             <label for="userEmail">البريد الإلكتروني</label>
                             <input type="email" id="userEmail" class="form-control" value="user@example.com">
                         </div>
+                        <div class="form-group">
+                            <label for="userWeight">الوزن (كجم)</label>
+                            <input type="number" id="userWeight" class="form-control" placeholder="أدخل وزنك">
+                        </div>
+                        <div class="form-group">
+                            <label for="userHeight">الطول (سم)</label>
+                            <input type="number" id="userHeight" class="form-control" placeholder="أدخل طولك">
+                        </div>
+                        <div class="form-group">
+                            <label for="userGender">الجنس</label>
+                            <select id="userGender" class="form-control">
+                                <option value="">اختر الجنس</option>
+                                <option value="male">ذكر</option>
+                                <option value="female">أنثى</option>
+                            </select>
+                        </div>
                         <button class="btn btn-primary" onclick="saveAccountSettings()">حفظ المعلومات</button>
                     </div>
                     
@@ -1964,6 +1912,25 @@
                             </div>
                         </div>
                         <button class="btn btn-primary mt-1" onclick="saveGoals()">حفظ الأهداف</button>
+                    </div>
+                </div>
+                
+                <!-- سجل التحديثات داخل صفحة الإعدادات -->
+                <div class="settings-card">
+                    <h2><i class="fas fa-history"></i> سجل التحديثات</h2>
+                    
+                    <div class="settings-group">
+                        <h3><i class="fas fa-list"></i> أحدث الأنشطة</h3>
+                        <div class="log-filters">
+                            <button class="btn btn-outline active" onclick="filterLogs('all')">الكل</button>
+                            <button class="btn btn-outline" onclick="filterLogs('activity')">الأنشطة</button>
+                            <button class="btn btn-outline" onclick="filterLogs('notification')">المراسلات</button>
+                            <button class="btn btn-outline" onclick="filterLogs('system')">النظام</button>
+                        </div>
+                        
+                        <div class="log-list" id="settingsLogList" style="max-height: 400px; overflow-y: auto;">
+                            <!-- سيتم ملء سجل التحديثات هنا -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2081,24 +2048,6 @@
         </div>
     </section>
 
-    <!-- Activity Log Page -->
-    <section id="activityLog" class="page">
-        <div class="container">
-            <h1 class="section-title">سجل التحديثات والمراسلات</h1>
-            
-            <div class="log-filters">
-                <button class="btn btn-outline active" onclick="filterLogs('all')">الكل</button>
-                <button class="btn btn-outline" onclick="filterLogs('activity')">الأنشطة</button>
-                <button class="btn btn-outline" onclick="filterLogs('notification')">المراسلات</button>
-                <button class="btn btn-outline" onclick="filterLogs('system')">النظام</button>
-            </div>
-            
-            <div class="log-list" id="logList">
-                <!-- سيتم ملء سجل التحديثات هنا -->
-            </div>
-        </div>
-    </section>
-
     <!-- Modal للصورة -->
     <div class="photo-modal" id="photoModal">
         <span class="close-modal" onclick="closePhotoModal()">&times;</span>
@@ -2209,7 +2158,7 @@
             updateActiveNav(pageId);
             
             // Special handling for dashboard pages (require login)
-            if (['dashboard', 'dayView', 'settings', 'reports', 'activityLog'].includes(pageId)) {
+            if (['dashboard', 'dayView', 'settings', 'reports'].includes(pageId)) {
                 if (!isLoggedIn()) {
                     console.log('المستخدم غير مسجل، جاري التوجيه إلى صفحة تسجيل الدخول');
                     showPage('login');
@@ -2229,9 +2178,9 @@
                     generateReport();
                 }
                 
-                // إذا كانت صفحة سجل التحديثات، تحميل السجل
-                if (pageId === 'activityLog') {
-                    renderActivityLogs();
+                // إذا كانت صفحة الإعدادات، تحميل سجل التحديثات
+                if (pageId === 'settings') {
+                    renderSettingsActivityLogs();
                 }
             }
             
@@ -2308,7 +2257,6 @@
                         <span class="user-greeting">${greeting}, ${user.name}</span>
                         <button class="btn btn-primary" onclick="showPage('dashboard')">${currentLanguage === 'ar' ? 'التحدي' : 'Challenge'}</button>
                         <button class="btn btn-outline" onclick="showPage('settings')">${currentLanguage === 'ar' ? 'الإعدادات' : 'Settings'}</button>
-                        <button class="btn btn-outline" onclick="showPage('activityLog')">${currentLanguage === 'ar' ? 'سجل التحديثات' : 'Activity Log'}</button>
                         <button class="btn btn-outline" onclick="logout()">${currentLanguage === 'ar' ? 'تسجيل الخروج' : 'Logout'}</button>
                     </div>
                 `;
@@ -2316,6 +2264,9 @@
                 // تحميل بيانات المستخدم في صفحة الإعدادات
                 document.getElementById('userName').value = user.name;
                 document.getElementById('userEmail').value = user.email;
+                document.getElementById('userWeight').value = user.weight || '';
+                document.getElementById('userHeight').value = user.height || '';
+                document.getElementById('userGender').value = user.gender || '';
                 
                 console.log('تم تحديث واجهة المستخدم للمستخدم المسجل:', user.name);
             } else {
@@ -2465,7 +2416,7 @@
                     </div>
                 `;
                 
-                updateTaskIndicators(i, dayStatus.taskStatus, isCurrentDay);
+                updateTaskIndicators(i, dayStatus);
                 
                 // Count completed days for progress calculation
                 if (dayStatus.class === 'day-completed') {
@@ -2499,25 +2450,78 @@
                     let completedTasks = 0;
                     const totalTasks = 6; // النظام الغذائي، الماء، تمرين داخلي، تمرين خارجي، القراءة، الصورة
                     
-                    if (dayData.diet && dayData.diet.completed) completedTasks++;
+                    // حساب إنجاز النظام الغذائي
+                    let dietCompleted = 0;
+                    let dietTotal = 0;
+                    if (dayData.diet && dayData.diet.meals) {
+                        const meals = dayData.diet.meals;
+                        for (const meal in meals) {
+                            if (meals[meal].completed) dietCompleted++;
+                            dietTotal++;
+                        }
+                    }
+                    
+                    // تحديد حالة النظام الغذائي بناءً على الإنجاز
+                    let dietStatus = 'pending';
+                    if (dietCompleted === dietTotal && dietTotal > 0) {
+                        dietStatus = 'completed';
+                        completedTasks++;
+                    } else if (dietCompleted > 0) {
+                        dietStatus = 'partial';
+                        completedTasks++;
+                    }
+                    
+                    // حساب المهام الأخرى
                     if (dayData.water && dayData.water >= waterGoal) completedTasks++;
                     if (dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed) completedTasks++;
                     if (dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed) completedTasks++;
                     if (dayData.reading && dayData.reading.completed && dayData.reading.pages >= readingGoal) completedTasks++;
                     if (dayData.photo && dayData.photo.taken) completedTasks++;
                     
+                    // تحديد حالة اليوم بناءً على المهام المكتملة
+                    let dayClass = 'day-pending';
                     if (completedTasks === totalTasks) {
-                        return { class: 'day-completed', taskStatus: 'completed' };
+                        dayClass = 'day-completed';
                     } else if (completedTasks > 0) {
-                        return { class: 'day-partial', taskStatus: 'partial' };
+                        dayClass = 'day-partial';
                     } else {
-                        return { class: 'day-pending', taskStatus: 'pending' };
+                        // إذا لم يتم إكمال أي مهمة وكان اليوم قد مضى
+                        const dayDate = new Date(startDate);
+                        dayDate.setDate(startDate.getDate() + dayNumber - 1);
+                        const today = new Date();
+                        today.setHours(0, 0, 0, 0);
+                        
+                        if (dayDate < today) {
+                            dayClass = 'day-failed';
+                        }
                     }
+                    
+                    return { 
+                        class: dayClass, 
+                        taskStatus: {
+                            diet: dietStatus,
+                            water: dayData.water && dayData.water >= waterGoal ? 'completed' : (dayData.water && dayData.water > 0 ? 'partial' : 'pending'),
+                            workout1: dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed ? 'completed' : 'pending',
+                            workout2: dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed ? 'completed' : 'pending',
+                            reading: dayData.reading && dayData.reading.completed && dayData.reading.pages >= readingGoal ? 'completed' : (dayData.reading && dayData.reading.pages > 0 ? 'partial' : 'pending'),
+                            photo: dayData.photo && dayData.photo.taken ? 'completed' : 'pending'
+                        }
+                    };
                 }
             }
             
             // إذا لم تكن هناك بيانات محفوظة، افترض أن اليوم معلق
-            return { class: 'day-pending', taskStatus: 'pending' };
+            return { 
+                class: 'day-pending', 
+                taskStatus: {
+                    diet: 'pending',
+                    water: 'pending',
+                    workout1: 'pending',
+                    workout2: 'pending',
+                    reading: 'pending',
+                    photo: 'pending'
+                }
+            };
         }
 
         // Get emoji based on day status
@@ -2537,7 +2541,7 @@
         }
 
         // Update task indicators based on day status
-        function updateTaskIndicators(dayNumber, status, isCurrentDay) {
+        function updateTaskIndicators(dayNumber, dayStatus) {
             const tasks = ['diet', 'water', 'workout1', 'workout2', 'reading', 'photo'];
             
             tasks.forEach(task => {
@@ -2545,23 +2549,17 @@
                 const taskItem = document.getElementById(`task-item-${task}-${dayNumber}`);
                 
                 if (indicator && taskItem) {
+                    const status = dayStatus.taskStatus[task];
+                    
                     if (status === 'completed') {
                         indicator.className = 'task-indicator task-completed';
                         taskItem.className = 'task-item task-item-completed';
                     } else if (status === 'partial') {
-                        // Random partial completion for demo
-                        const isCompleted = Math.random() > 0.5;
-                        indicator.className = isCompleted ? 
-                            'task-indicator task-completed' : 'task-indicator task-partial';
-                        taskItem.className = isCompleted ? 
-                            'task-item task-item-completed' : 'task-item task-item-partial';
+                        indicator.className = 'task-indicator task-partial';
+                        taskItem.className = 'task-item task-item-partial';
                     } else if (status === 'failed') {
                         indicator.className = 'task-indicator task-failed';
                         taskItem.className = 'task-item task-item-failed';
-                    } else if (isCurrentDay) {
-                        // Today's tasks get yellow indicators
-                        indicator.className = 'task-indicator task-today';
-                        taskItem.className = 'task-item task-item-today';
                     } else {
                         indicator.className = 'task-indicator task-pending';
                         taskItem.className = 'task-item';
@@ -2964,6 +2962,8 @@
             // حفظ بيانات اليوم
             saveDayData(currentDayNumber);
             alert(currentLanguage === 'ar' ? 'تم حفظ التقدم بنجاح!' : 'Progress saved successfully!');
+            
+            // العودة إلى صفحة التحدي بعد الحفظ
             showPage('dashboard');
             
             // إضافة إلى سجل التحديثات
@@ -3012,10 +3012,16 @@
         function saveAccountSettings() {
             const userName = document.getElementById('userName').value;
             const userEmail = document.getElementById('userEmail').value;
+            const userWeight = document.getElementById('userWeight').value;
+            const userHeight = document.getElementById('userHeight').value;
+            const userGender = document.getElementById('userGender').value;
             
             if (currentUser) {
                 currentUser.name = userName;
                 currentUser.email = userEmail;
+                currentUser.weight = userWeight;
+                currentUser.height = userHeight;
+                currentUser.gender = userGender;
                 localStorage.setItem('75hard_currentUser', JSON.stringify(currentUser));
                 checkAuthStatus();
             }
@@ -3484,9 +3490,9 @@
             activityLogs.unshift(log);
             saveActivityLogs();
             
-            // إذا كانت الصفحة الحالية هي سجل التحديثات، قم بتحديث العرض
-            if (document.getElementById('activityLog').classList.contains('active')) {
-                renderActivityLogs();
+            // إذا كانت الصفحة الحالية هي الإعدادات، قم بتحديث عرض سجل التحديثات
+            if (document.getElementById('settings').classList.contains('active')) {
+                renderSettingsActivityLogs();
             }
         }
 
@@ -3504,9 +3510,9 @@
             }
         }
 
-        // عرض سجل التحديثات
-        function renderActivityLogs(filter = 'all') {
-            const logList = document.getElementById('logList');
+        // عرض سجل التحديثات في صفحة الإعدادات
+        function renderSettingsActivityLogs(filter = 'all') {
+            const logList = document.getElementById('settingsLogList');
             if (!logList) return;
             
             logList.innerHTML = '';
@@ -3552,7 +3558,7 @@
             event.target.classList.add('active');
             
             // عرض السجلات المصفاة
-            renderActivityLogs(type);
+            renderSettingsActivityLogs(type);
         }
 
         // إعادة إرسال الإشعار
@@ -3578,7 +3584,7 @@
                 alert(`${log.title}\n\n${log.content}\n\n${new Date(log.date).toLocaleString()}`);
                 
                 // تحديث العرض
-                renderActivityLogs();
+                renderSettingsActivityLogs();
             }
         }
 
