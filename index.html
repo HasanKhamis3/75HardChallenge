@@ -3,2659 +3,680 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>75Hard Challenge - قوي انضباطك في 75 يومًا</title>
+    <title>موقع التحدي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* أنماط CSS */
         :root {
-            --primary-color: #8A2BE2;
-            --primary-light: #9B4DFF;
-            --primary-dark: #6A1B9A;
-            --secondary-color: #F8F7FC;
-            --accent-color: #FF6B8B;
-            --accent-light: #FFA5B7;
-            --danger-color: #FF4757;
-            --success-color: #2ED573;
-            --today-color: #FFD700;
-            --text-color: #333344;
-            --light-text: #777788;
-            --border-radius: 12px;
-            --box-shadow: 0 4px 20px rgba(138, 43, 226, 0.15);
-            --transition: all 0.3s ease;
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FF9800;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --danger-color: #f44336;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background: linear-gradient(135deg, #F8F7FC 0%, #F0EDF5 100%);
-            color: var(--text-color);
+            background-color: #f9f9f9;
+            color: #333;
             line-height: 1.6;
-            min-height: 100vh;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: var(--box-shadow);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.1);
-        }
-
+        
+        /* شريط التنقل */
         .navbar {
+            background-color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
         }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo::before {
-            content: "💜";
-            font-size: 1.5rem;
-        }
-
+        
         .nav-links {
             display: flex;
             list-style: none;
         }
-
+        
         .nav-links li {
-            margin-left: 1.5rem;
+            margin-left: 20px;
         }
-
+        
         .nav-links a {
             text-decoration: none;
-            color: var(--text-color);
+            color: #333;
             font-weight: 500;
-            transition: var(--transition);
-            cursor: pointer;
-            padding: 8px 12px;
-            border-radius: var(--border-radius);
+            transition: color 0.3s;
         }
-
+        
         .nav-links a:hover {
             color: var(--primary-color);
-            background-color: rgba(138, 43, 226, 0.05);
         }
-
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .user-info {
+        
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 10px;
         }
-
-        .user-greeting {
-            font-weight: 500;
-            color: var(--text-color);
-        }
-
-        .btn {
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(138, 43, 226, 0.4);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(138, 43, 226, 0.05);
-        }
-
-        /* Language Selector */
-        .language-selector {
-            display: flex;
-            align-items: center;
-            margin-left: 1.5rem;
-        }
-
-        .lang-btn {
+        
+        .language-btn {
             background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            padding: 8px 12px;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            background-color: rgba(138, 43, 226, 0.1);
-            color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        .lang-btn:hover {
-            background-color: rgba(138, 43, 226, 0.2);
-        }
-
-        /* Page Sections */
-        .page {
-            display: none;
-            min-height: 80vh;
-            padding: 2rem 0;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05) 0%, rgba(255, 107, 139, 0.05) 100%);
-            text-align: center;
-            border-radius: 0 0 30px 30px;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            color: var(--light-text);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        .cta-button {
-            padding: 14px 35px;
-            font-size: 1.1rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(138, 43, 226, 0.4);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            color: var(--text-color);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            right: 50%;
-            transform: translateX(50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 2px;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: white;
-            padding: 2.5rem 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-            transition: var(--transition);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            font-size: 1.4rem;
-        }
-
-        /* Dashboard */
-        .dashboard {
-            padding: 2rem 0;
-        }
-
-        .progress-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 2rem;
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .progress-bar {
-            height: 20px;
-            background-color: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 1rem 0;
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            border-radius: 10px;
-            transition: width 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* Days Grid - 5 مربعات في السطر */
-        .days-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-top: 1.5rem;
-        }
-
-        .day-box {
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px 6px;
-            position: relative;
-            border: 2px solid #e0e0e0;
-            background-color: white;
-            transition: var(--transition);
-            text-align: center;
-            width: 100%;
-            min-height: 120px;
-        }
-
-        .day-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.2);
-            border-color: var(--primary-light);
-        }
-
-        .day-number {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 4px;
-            color: white;
-            border: 2px solid var(--primary-light);
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        }
-
-        .day-date {
-            font-size: 0.75rem;
-            color: var(--light-text);
-            margin-bottom: 8px;
-            font-weight: 500;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .day-tasks {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4px;
-            width: 100%;
-        }
-
-        .task-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 3px;
-            padding: 4px 2px;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
             border-radius: 4px;
-            background-color: #f9f9f9;
-            text-align: center;
-            transition: var(--transition);
-            min-height: 35px;
-            position: relative;
+            margin-left: 15px;
+            cursor: pointer;
         }
-
-        .task-name {
-            color: var(--text-color);
-            font-weight: bold;
-            font-size: 0.6rem;
-            text-align: center;
-            line-height: 1;
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
-
-        .task-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            transition: var(--transition);
-        }
-
-        .task-pending {
-            background-color: transparent;
-            border-color: #e0e0e0;
-        }
-
-        .task-completed {
-            background-color: var(--success-color);
-            border-color: var(--success-color);
-        }
-
-        .task-failed {
-            background-color: var(--danger-color);
-            border-color: var(--danger-color);
-        }
-
-        .task-today {
-            background-color: var(--today-color);
-            border-color: var(--today-color);
-        }
-
-        .task-item-completed {
-            border: 1px solid var(--success-color);
-            background-color: rgba(46, 213, 115, 0.1);
-        }
-
-        .task-item-failed {
-            border: 1px solid var(--danger-color);
-            background-color: rgba(255, 71, 87, 0.1);
-        }
-
-        .task-item-today {
-            border: 1px solid var(--today-color);
-            background-color: rgba(255, 215, 0, 0.1);
-        }
-
-        .day-completed {
-            border-color: var(--success-color);
-            background: linear-gradient(135deg, rgba(46, 213, 115, 0.1), rgba(46, 213, 115, 0.05));
-        }
-
-        .day-partial {
-            border-color: var(--accent-color);
-            background: linear-gradient(135deg, rgba(255, 171, 0, 0.1), rgba(255, 171, 0, 0.05));
-        }
-
-        .day-failed {
-            border-color: var(--danger-color);
-            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.05));
-        }
-
-        .day-pending {
-            background-color: white;
-            color: var(--text-color);
-        }
-
-        .day-current {
-            border: 3px solid var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.05), rgba(138, 43, 226, 0.02));
-        }
-
-        .day-emoji {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            font-size: 0.9rem;
-        }
-
-        /* Auth Forms */
-        .auth-container {
-            max-width: 450px;
-            margin: 2rem auto;
-            padding: 2.5rem;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .auth-title {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-            font-size: 1.8rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+        
+        .user-actions a {
+            text-decoration: none;
+            color: #333;
             font-weight: 500;
-            color: var(--text-color);
         }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: var(--transition);
+        
+        /* محتوى الصفحة */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
+        
+        .page-title {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
         }
-
-        /* Day View Styles */
-        .day-view {
-            padding: 2rem 0;
+        
+        /* بطاقة اليوم */
+        .day-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
         }
-
+        
         .day-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            position: sticky;
-            top: 80px;
-            z-index: 90;
+            margin-bottom: 20px;
         }
-
-        .task-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .task-card:hover {
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.1);
-        }
-
-        .task-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .task-title {
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--text-color);
-        }
-
-        .task-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(26px);
-        }
-
-        /* النظام الغذائي المحسن */
-        .meal-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-            gap: 10px;
-        }
-
-        .meal-item:last-child {
-            border-bottom: none;
-        }
-
-        .meal-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .meal-calories {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: nowrap;
-            min-width: 150px;
-        }
-
-        .calories-input {
-            width: 70px;
-            padding: 6px 8px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .meal-notes {
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .notes-input {
-            width: 100%;
-            padding: 6px 8px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-
-        .total-calories {
-            background-color: #f8f9fa;
-            padding: 12px 15px;
-            border-radius: var(--border-radius);
-            margin-top: 10px;
-            text-align: center;
-            font-weight: bold;
-            border: 1px solid #e9ecef;
-        }
-
-        /* الماء */
-        .water-bottles {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .bottle-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .bottle-icon {
+        
+        .day-title {
             font-size: 1.5rem;
-            color: #4A90E2;
+            color: var(--dark-color);
         }
-
-        .bottle-btn {
-            padding: 8px 15px;
-            background: linear-gradient(135deg, #4A90E2, #63B3ED);
-            color: white;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-
-        .bottle-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
-        }
-
-        .water-target {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-            padding: 12px 15px;
-            background-color: #f8f9fa;
-            border-radius: var(--border-radius);
-        }
-
-        .target-bottles {
-            display: flex;
-            gap: 5px;
-        }
-
-        .target-bottle {
-            font-size: 1.2rem;
-            color: #4A90E2;
-        }
-
-        /* القراءة */
-        .reading-input-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .pages-input {
-            width: 100px;
-            padding: 8px 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
-        }
-
-        /* الصورة اليومية */
-        .photo-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .photo-toggle {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .photo-preview-container {
-            text-align: center;
-        }
-
-        .photo-preview {
-            max-width: 200px;
-            max-height: 200px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .photo-preview:hover {
-            transform: scale(1.05);
-        }
-
-        .photo-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .photo-modal img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: var(--border-radius);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        /* Day Actions - ثابتة في الأعلى */
+        
         .day-actions {
             display: flex;
             gap: 10px;
-            margin-bottom: 1.5rem;
-            position: sticky;
-            top: 150px;
-            z-index: 80;
-            background: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
         }
-
-        /* Settings Page - منظمة مثل الموقع الأساسي */
-        .settings-grid {
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        /* أقسام التحدي */
+        .challenge-section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* النظام الغذائي */
+        .diet-inputs {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
         }
-
-        .settings-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            border-top: 4px solid var(--primary-color);
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
         }
-
-        .settings-group {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
+        
+        .input-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
         }
-
-        .settings-group:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
+        
+        .input-group input, .input-group textarea {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
-
-        .settings-group h3 {
-            margin-bottom: 1.5rem;
-            color: var(--text-color);
-            font-size: 1.3rem;
+        
+        /* الماء */
+        .water-section {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .water-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .water-target {
+            font-weight: bold;
+        }
+        
+        .water-consumed {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .water-note {
+            color: var(--danger-color);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        /* شبكة الأيام */
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .day-box {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .day-box.completed {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .day-box.current {
+            border: 2px solid var(--accent-color);
+        }
+        
+        .day-box.in-progress {
+            background-color: #FFEB3B;
+        }
+        
+        .day-date {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .day-exercises {
+            font-size: 0.8rem;
+        }
+        
+        /* التمارين */
+        .exercise-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .exercise-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        /* القراءة */
+        .reading-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff8e1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .reading-info {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-
-        .settings-group h3 i {
-            color: var(--primary-color);
+        
+        /* تقدم التحدي */
+        .progress-section {
+            margin-top: 30px;
         }
-
-        .setting-item {
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 21.3%;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        /* إعدادات الحساب */
+        .settings-section {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .settings-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .save-btn {
+            grid-column: span 2;
+            justify-self: end;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        /* رموز تعبيرية */
+        .emoji {
+            font-size: 1.2rem;
+        }
+        
+        /* التنقل بين الصفحات */
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* رأس اليوم الثالث */
+        .day-3-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f8f8f8;
+            background-color: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
         }
-
-        .setting-item:last-child {
-            border-bottom: none;
+        
+        .day-3-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark-color);
         }
-
-        .setting-info {
-            flex: 1;
-        }
-
-        .setting-title {
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-
-        .setting-description {
-            font-size: 0.9rem;
-            color: var(--light-text);
-        }
-
-        .setting-control {
+        
+        .day-3-actions {
             display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .date-input {
-            padding: 8px 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-            color: white;
-            padding: 3rem 0 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-column h3::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            right: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent-light);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .footer-links a:hover {
-            color: white;
-            padding-right: 5px;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .days-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (max-width: 992px) {
-            .days-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .meal-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-            
-            .meal-calories, .meal-notes {
-                width: 100%;
-                min-width: auto;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .day-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                top: 120px;
-            }
-            
-            .day-actions {
-                top: 200px;
-                flex-direction: column;
-            }
-            
-            .days-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .day-box {
-                min-height: 110px;
-                padding: 6px 4px;
-            }
-            
-            .day-number {
-                font-size: 1.2rem;
-                width: 30px;
-                height: 30px;
-            }
-            
-            .day-date {
-                font-size: 0.7rem;
-            }
-            
-            .task-name {
-                font-size: 0.55rem;
-            }
-
-            .settings-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .days-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .auth-container {
-                padding: 1.5rem;
-            }
-            
-            .day-box {
-                min-height: 100px;
-            }
-            
-            .task-name {
-                font-size: 0.5rem;
-            }
-            
-            .meal-calories {
-                flex-direction: column;
-                gap: 5px;
-                align-items: flex-start;
-            }
-        }
-
-        /* Utility Classes */
-        .hidden {
-            display: none !important;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-1 {
-            margin-top: 1rem;
-        }
-
-        .mt-2 {
-            margin-top: 2rem;
-        }
-
-        .mb-1 {
-            margin-bottom: 1rem;
-        }
-
-        .mb-2 {
-            margin-bottom: 2rem;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo" onclick="showPage('home')">75Hard</div>
-                <ul class="nav-links">
-                    <li><a onclick="showPage('home')">الرئيسية</a></li>
-                    <li><a onclick="showPage('features')">المميزات</a></li>
-                    <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
-                    <li><a onclick="showPage('contact')">اتصل بنا</a></li>
-                </ul>
-                <div class="auth-buttons" id="authButtons">
-                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">English</button>
-                    <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
-                    <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Landing Page -->
-    <section id="home" class="page active">
-        <div class="hero">
-            <div class="container">
-                <h1>ابدأ تحدي 75 يومًا - قوي انضباطك</h1>
-                <p>برنامج يومي من 5 قواعد لبناء عادات الانضباط الذاتي - نظام غذائي، تمرينان (أحدهما في الهواء الطلق)، ماء، قراءة، صورة يومية.</p>
-                <button class="cta-button" onclick="showPage('signup')">ابدأ الآن - سجل مجانًا</button>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link" data-page="home">الرئيسية</a></li>
+            <li><a href="#">المميزات</a></li>
+            <li><a href="#">الأسئلة الشائعة</a></li>
+            <li><a href="#">اتصل بنا</a></li>
+        </ul>
+        <div class="nav-right">
+            <button class="language-btn">English</button>
+            <div class="user-actions">
+                <span>صباح الخير</span>
+                <a href="#" class="nav-link" data-page="challenge">التحدي</a>
+                <a href="#" class="nav-link" data-page="settings">الإعدادات</a>
+                <a href="#">تسجيل الخروج</a>
             </div>
         </div>
+    </nav>
 
-        <div class="features">
-            <div class="container">
-                <h2 class="section-title">مميزات التطبيق</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>لوحة التحكم</h3>
-                        <p>تابع تقدمك اليومي مع لوحة تحكم تفاعلية تعرض إنجازاتك ونسبة الإنجاز.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔔</div>
-                        <h3>التذكيرات الذكية</h3>
-                        <p>لا تفوت أي مهمة مع نظام التذكير اليومي الذي ينبهك لإكمال مهامك في الوقت المحدد.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📤</div>
-                        <h3>تصدير التقارير</h3>
-                        <p>احصل على تقارير مفصلة لتقدمك بصيغتي CSV و PDF للمشاركة أو الأرشفة.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📱</div>
-                        <h3>واجهة متجاوبة</h3>
-                        <p>استخدم التطبيق على جميع الأجهزة من الهواتف إلى أجهزة الكمبيوتر المكتبية.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔒</div>
-                        <h3>حماية البيانات</h3>
-                        <p>بياناتك وصورك محمية ومشفرة، مع خيارات خصوصية متقدمة.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🌐</div>
-                        <h3>دعم متعدد اللغات</h3>
-                        <p>استخدم التطبيق بالعربية أو الإنجليزية حسب تفضيلاتك.</p>
-                    </div>
+    <!-- محتوى الصفحة -->
+    <div class="container">
+        <!-- صفحة التحدي -->
+        <div id="challenge-page" class="page active">
+            <h1 class="page-title">التحدي</h1>
+            
+            <!-- رأس اليوم الثالث -->
+            <div class="day-3-header">
+                <h2 class="day-3-title">اليوم 3 - الجمعة، 11 ربيع الآخر 1427 هـ</h2>
+                <div class="day-3-actions">
+                    <button class="btn btn-primary">حفظ التقدم</button>
+                    <button class="btn btn-danger">إعادة تعيين هذا اليوم</button>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Features Page -->
-    <section id="features" class="page">
-        <div class="container">
-            <h1 class="section-title">مميزات تحدي 75 يومًا</h1>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">💪</div>
-                    <h3>بناء الانضباط الذاتي</h3>
-                    <p>تعلم الالتزام اليومي من خلال 5 مهام أساسية لمدة 75 يومًا متتالية.</p>
+            
+            <!-- بطاقة اليوم -->
+            <div class="day-card">
+                <!-- النظام الغذائي -->
+                <div class="challenge-section">
+                    <h3 class="section-title">النظام الغذائي</h3>
+                    <div class="diet-inputs">
+                        <div class="input-group">
+                            <label>الإدخال</label>
+                            <input type="text" value="100 سعرة">
+                        </div>
+                        <div class="input-group">
+                            <label>ملاحظات...</label>
+                            <textarea rows="2">ملاحظات...</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>سعرة</label>
+                            <input type="text" value="السعرا">
+                        </div>
+                        <div class="input-group">
+                            <label>وجبة خفيفة</label>
+                            <input type="text" value="العداء">
+                        </div>
+                        <div class="input-group">
+                            <label>سعرة</label>
+                            <input type="text" value="ملاحظات...">
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏋️</div>
-                    <h3>تحسين اللياقة البدنية</h3>
-                    <p>تمرينان يوميان (90 دقيقة) لتحسين صحتك الجسدية والقدرة على التحمل.</p>
+                
+                <!-- الماء -->
+                <div class="challenge-section water-section">
+                    <h3 class="section-title">الماء</h3>
+                    <div class="water-info">
+                        <div class="water-target">الهدف اليومي: <span id="water-target">2000</span> مل</div>
+                        <div class="water-consumed">
+                            <span id="water-emoji" class="emoji">💧</span>
+                            <span id="water-consumed">0</span> / <span id="water-total">2000</span> مل
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" id="drink-btn">اشرب</button>
+                    <p class="water-note">يرجى الضغط على زر اشرب ليتم احتساب الكمية</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>التنمية الفكرية</h3>
-                    <p>قراءة 10 صفحات يوميًا لتنمية المعرفة وتطوير العقلية.</p>
+                
+                <!-- شبكة الأيام -->
+                <div class="challenge-section">
+                    <h3 class="section-title">شبكة الأيام</h3>
+                    <div class="days-grid">
+                        <div class="day-box completed">
+                            <div class="day-date">2023-10-01</div>
+                            <div class="day-exercises">تمرين داخلي</div>
+                        </div>
+                        <div class="day-box completed">
+                            <div class="day-date">2023-10-02</div>
+                            <div class="day-exercises">تمرين خارجي</div>
+                        </div>
+                        <div class="day-box current in-progress">
+                            <div class="day-date">2023-10-03</div>
+                            <div class="day-exercises">تمرين داخلي</div>
+                        </div>
+                        <div class="day-box">
+                            <div class="day-date">2023-10-04</div>
+                            <div class="day-exercises">-</div>
+                        </div>
+                        <div class="day-box">
+                            <div class="day-date">2023-10-05</div>
+                            <div class="day-exercises">-</div>
+                        </div>
+                        <div class="day-box">
+                            <div class="day-date">2023-10-06</div>
+                            <div class="day-exercises">-</div>
+                        </div>
+                        <div class="day-box">
+                            <div class="day-date">2023-10-07</div>
+                            <div class="day-exercises">-</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💧</div>
-                    <h3>ترطيب الجسم</h3>
-                    <p>شرب 3.7 لتر من الماء يوميًا لتحسين الصحة والطاقة.</p>
+                
+                <!-- التمارين -->
+                <div class="challenge-section">
+                    <h3 class="section-title">التمارين</h3>
+                    <div class="exercise-item">
+                        <div class="exercise-title">تمرين داخلي</div>
+                        <p>تمارين القوة والتحمل</p>
+                    </div>
+                    <div class="exercise-item">
+                        <div class="exercise-title">تمرين خارجي</div>
+                        <p>الجري في الهواء الطلق</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📷</div>
-                    <h3>التوثيق البصري</h3>
-                    <p>صورة يومية لتوثيق الرحلة وملاحظة التغيرات الجسدية.</p>
+                
+                <!-- القراءة -->
+                <div class="challenge-section">
+                    <h3 class="section-title">القراءة</h3>
+                    <div class="reading-section">
+                        <div class="reading-info">
+                            <span id="reading-emoji" class="emoji">📖</span>
+                            <span id="pages-read">0</span> / <span id="reading-target">30</span> صفحة
+                        </div>
+                        <button class="btn btn-primary" id="add-pages-btn">سجل الصفحات المقروءة</button>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🥗</div>
-                    <h3>نظام غذائي صحي</h3>
-                    <p>اتباع نظام غذائي صحي يناسب أهدافك دون احتياجات.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Page -->
-    <section id="faq" class="page">
-        <div class="container">
-            <h1 class="section-title">الأسئلة الشائعة</h1>
-            <div class="faq-list">
-                <div class="feature-card">
-                    <h3>ما هو الهدف من تحدي 75 يومًا؟</h3>
-                    <p>يهدف التحدي إلى بناء عادات الانضباط الذاتي من خلال الالتزام بخمس مهام يومية لمدة 75 يومًا متتالية. يساعدك التحدي على تطوير قدرتك على الالتزام وتحسين صحتك الجسدية والعقلية.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>ماذا يحدث إذا فشلت في يوم واحد؟</h3>
-                    <p>إذا قمت بتفعيل خيار 'إعادة البدء عند الفشل' في الإعدادات، سيتم إرجاعك إلى اليوم الأول عند أي انتهاك للقواعد. يمكنك تعطيل هذا الخيار إذا كنت ترغب في الاستمرار من حيث توقفت.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>هل التحدي مناسب للمبتدئين؟</h3>
-                    <p>نعم، يمكن للمبتدئين بدء التحدي عن طريق تعديل بعض المهام لتناسب مستواهم، مع الحفاظ على جوهر التحدي وهو الالتزام اليومي. نوصي بالبدء تدريجيًا وزيادة الصعوبة بمرور الوقت.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Page -->
-    <section id="contact" class="page">
-        <div class="container">
-            <h1 class="section-title">اتصل بنا</h1>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>معلومات الاتصال</h3>
-                    <p>Email: info@75hard.com</p>
-                    <p>Phone: +966 123 456 789</p>
-                    <p>ساعات العمل: 9:00 صباحًا - 5:00 مساءً</p>
-                </div>
-                <div class="feature-card">
-                    <h3>روابط مهمة</h3>
-                    <ul class="footer-links" style="color: var(--text-color);">
-                        <li><a>سياسة الخصوصية</a></li>
-                        <li><a>شروط الاستخدام</a></li>
-                        <li><a>الدعم الفني</a></li>
-                        <li><a>الأسئلة الشائعة</a></li>
-                    </ul>
+                
+                <!-- تقدم التحدي -->
+                <div class="progress-section">
+                    <h3 class="section-title">تقدمك في التحدي</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <p class="progress-text">21.3% مكتمل</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Login Page -->
-    <section id="login" class="page">
-        <div class="container">
-            <div class="auth-container">
-                <h2 class="auth-title">تسجيل الدخول</h2>
-                <form id="loginForm">
+        
+        <!-- صفحة الإعدادات -->
+        <div id="settings-page" class="page">
+            <h1 class="page-title">الإعدادات</h1>
+            
+            <!-- إعدادات الحساب -->
+            <div class="settings-section">
+                <h2 class="section-title">إعدادات الحساب</h2>
+                <form class="settings-form">
                     <div class="form-group">
-                        <label for="loginEmail">البريد الإلكتروني</label>
-                        <input type="email" id="loginEmail" class="form-control" required>
+                        <label>الاسم</label>
+                        <input type="text" value="محمد أحمد" id="user-name">
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">كلمة المرور</label>
-                        <input type="password" id="loginPassword" class="form-control" required>
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" value="mohamed@example.com" id="user-email">
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
+                    <div class="form-group">
+                        <label>هدف الماء اليومي (مل)</label>
+                        <input type="number" id="water-target-input" value="2000">
+                    </div>
+                    <div class="form-group">
+                        <label>هدف القراءة اليومي (صفحات)</label>
+                        <input type="number" id="reading-target-input" value="30">
+                    </div>
+                    <button type="button" class="save-btn" id="save-settings">حفظ التغييرات</button>
                 </form>
-                <div class="auth-link">
-                    <p>ليس لديك حساب؟ <a onclick="showPage('signup')">إنشاء حساب</a></p>
-                </div>
             </div>
         </div>
-    </section>
-
-    <!-- Signup Page -->
-    <section id="signup" class="page">
-        <div class="container">
-            <div class="auth-container">
-                <h2 class="auth-title">إنشاء حساب</h2>
-                <form id="signupForm">
-                    <div class="form-group">
-                        <label for="signupName">الاسم الكامل</label>
-                        <input type="text" id="signupName" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupEmail">البريد الإلكتروني</label>
-                        <input type="email" id="signupEmail" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupPassword">كلمة المرور</label>
-                        <input type="password" id="signupPassword" class="form-control" required minlength="8">
-                        <small style="color: var(--light-text);">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">إنشاء حساب</button>
-                </form>
-                <div class="auth-link">
-                    <p>هل لديك حساب بالفعل؟ <a onclick="showPage('login')">تسجيل الدخول</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dashboard Page -->
-    <section id="dashboard" class="page">
-        <div class="container">
-            <div class="progress-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <h2>تقدمك في التحدي</h2>
-                    <button class="btn btn-primary" onclick="goToToday()">اذهب إلى اليوم</button>
-                </div>
-                <div class="progress-info" style="display: flex; justify-content: space-between;">
-                    <span>اليوم <span id="currentDay">23</span> من 75</span>
-                    <span><span id="progressPercentage">30.6</span>% مكتمل</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 30.6%"></div>
-                </div>
-                
-                <h3 class="mt-2">شبكة الأيام</h3>
-                <div class="days-grid" id="daysGrid">
-                    <!-- Days 1-75 will be generated here -->
-                </div>
-                
-                <div class="dashboard-actions" style="display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap;">
-                    <button class="btn btn-outline">تصدير CSV</button>
-                    <button class="btn btn-outline">التقارير</button>
-                    <button class="btn btn-outline" id="resetChallengeBtn">إعادة تعيين التحدي</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Day View Page -->
-    <section id="dayView" class="page">
-        <div class="container">
-            <div class="day-header">
-                <h1 id="dayViewTitle">اليوم 23 - 15 أكتوبر 2023</h1>
-                <button class="btn btn-outline" onclick="showPage('dashboard')">العودة إلى لوحة التحكم</button>
-            </div>
-            
-            <!-- إجراءات اليوم - ثابتة في الأعلى -->
-            <div class="day-actions">
-                <button class="btn btn-primary" onclick="saveDayProgress()">حفظ التقدم</button>
-                <button class="btn btn-outline" id="resetDayBtn">إعادة تعيين هذا اليوم</button>
-            </div>
-            
-            <!-- Diet -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-title">النظام الغذائي</div>
-                    <div class="task-status">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="dietCheckbox">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="meal-list">
-                    <div class="meal-item">
-                        <div class="meal-info">
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="breakfastCheckbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span>الإفطار</span>
-                        </div>
-                        <div class="meal-calories">
-                            <input type="number" class="calories-input" id="breakfastCalories" placeholder="السعرات">
-                            <span>سعرة</span>
-                        </div>
-                        <div class="meal-notes">
-                            <input type="text" class="notes-input" id="breakfastNotes" placeholder="ملاحظات...">
-                        </div>
-                    </div>
-                    
-                    <div class="meal-item">
-                        <div class="meal-info">
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="snack1Checkbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span>وجبة خفيفة</span>
-                        </div>
-                        <div class="meal-calories">
-                            <input type="number" class="calories-input" id="snack1Calories" placeholder="السعرات">
-                            <span>سعرة</span>
-                        </div>
-                        <div class="meal-notes">
-                            <input type="text" class="notes-input" id="snack1Notes" placeholder="ملاحظات...">
-                        </div>
-                    </div>
-                    
-                    <div class="meal-item">
-                        <div class="meal-info">
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="lunchCheckbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span>الغداء</span>
-                        </div>
-                        <div class="meal-calories">
-                            <input type="number" class="calories-input" id="lunchCalories" placeholder="السعرات">
-                            <span>سعرة</span>
-                        </div>
-                        <div class="meal-notes">
-                            <input type="text" class="notes-input" id="lunchNotes" placeholder="ملاحظات...">
-                        </div>
-                    </div>
-                    
-                    <div class="meal-item">
-                        <div class="meal-info">
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="snack2Checkbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span>وجبة خفيفة</span>
-                        </div>
-                        <div class="meal-calories">
-                            <input type="number" class="calories-input" id="snack2Calories" placeholder="السعرات">
-                            <span>سعرة</span>
-                        </div>
-                        <div class="meal-notes">
-                            <input type="text" class="notes-input" id="snack2Notes" placeholder="ملاحظات...">
-                        </div>
-                    </div>
-                    
-                    <div class="meal-item">
-                        <div class="meal-info">
-                            <label class="toggle-switch">
-                                <input type="checkbox" id="dinnerCheckbox">
-                                <span class="toggle-slider"></span>
-                            </label>
-                            <span>العشاء</span>
-                        </div>
-                        <div class="meal-calories">
-                            <input type="number" class="calories-input" id="dinnerCalories" placeholder="السعرات">
-                            <span>سعرة</span>
-                        </div>
-                        <div class="meal-notes">
-                            <input type="text" class="notes-input" id="dinnerNotes" placeholder="ملاحظات...">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="total-calories">
-                    <span>إجمالي السعرات الحرارية: </span>
-                    <span id="totalCalories">0</span>
-                    <span> سعرة</span>
-                </div>
-            </div>
-            
-            <!-- Indoor Workout -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-title">تمرين داخلي (45 دقيقة)</div>
-                    <div class="task-status">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="workout1Checkbox">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <input type="text" class="form-control" placeholder="نوع التمرين" id="workout1Input">
-            </div>
-            
-            <!-- Outdoor Workout -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-title">تمرين خارجي (45 دقيقة)</div>
-                    <div class="task-status">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="workout2Checkbox">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <input type="text" class="form-control" placeholder="نوع التمرين" id="workout2Input">
-            </div>
-            
-            <!-- Water -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-title">الماء</div>
-                </div>
-                
-                <div class="water-bottles">
-                    <div class="bottle-row">
-                        <span class="bottle-icon">💧</span>
-                        <span>200 مل</span>
-                        <button class="bottle-btn" onclick="addWater(200)">اشرب</button>
-                    </div>
-                    
-                    <div class="bottle-row">
-                        <span class="bottle-icon">💧</span>
-                        <span>500 مل</span>
-                        <button class="bottle-btn" onclick="addWater(500)">اشرب</button>
-                    </div>
-                    
-                    <div class="bottle-row">
-                        <span class="bottle-icon">💧</span>
-                        <span>1000 مل</span>
-                        <button class="bottle-btn" onclick="addWater(1000)">اشرب</button>
-                    </div>
-                </div>
-                
-                <div class="water-target">
-                    <span>الهدف اليومي: 3700 مل</span>
-                    <div class="target-bottles" id="targetBottles">
-                        <!-- سيتم إضافة الرموز هنا تلقائياً -->
-                    </div>
-                </div>
-                
-                <div class="total-calories mt-1">
-                    <span>إجمالي الماء المستهلك: </span>
-                    <span id="totalWater">0</span>
-                    <span> مل</span>
-                </div>
-            </div>
-            
-            <!-- Reading -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-title">القراءة</div>
-                    <div class="task-status">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="readingCheckbox">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="reading-input-group">
-                    <input type="number" class="pages-input" id="pagesInput" placeholder="الصفحات المقروءة">
-                    <span>صفحة</span>
-                </div>
-            </div>
-            
-            <!-- Daily Photo -->
-            <div class="task-card">
-                <div class="task-header">
-                    <div class="task-title">الصورة اليومية</div>
-                    <div class="task-status">
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="photoTakenCheckbox">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="photo-section">
-                    <div class="photo-toggle">
-                        <span>هل تم التقاط الصورة؟</span>
-                    </div>
-                    
-                    <div class="photo-upload" id="photoUploadArea" style="border: 2px dashed #ddd; padding: 20px; text-align: center; border-radius: var(--border-radius); cursor: pointer;">
-                        <p>انقر لتحميل الصورة أو اسحبها هنا</p>
-                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
-                    </div>
-                    
-                    <div class="photo-preview-container" id="photoPreviewContainer" style="display: none;">
-                        <img id="photoPreview" class="photo-preview" src="" alt="معاينة الصورة">
-                        <p class="text-center mt-1">انقر على الصورة لعرضها بالحجم الكامل</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Settings Page -->
-    <section id="settings" class="page">
-        <div class="container">
-            <h1 class="section-title">الإعدادات</h1>
-            <div class="settings-grid">
-                <div class="settings-card">
-                    <h2><i class="fas fa-user-cog"></i> إعدادات الحساب</h2>
-                    
-                    <div class="settings-group">
-                        <h3><i class="fas fa-user"></i> المعلومات الشخصية</h3>
-                        <div class="form-group">
-                            <label for="userName">الاسم الكامل</label>
-                            <input type="text" id="userName" class="form-control" value="مستخدم تجريبي">
-                        </div>
-                        <div class="form-group">
-                            <label for="userEmail">البريد الإلكتروني</label>
-                            <input type="email" id="userEmail" class="form-control" value="user@example.com">
-                        </div>
-                        <button class="btn btn-primary" onclick="saveAccountSettings()">حفظ المعلومات</button>
-                    </div>
-                    
-                    <div class="settings-group">
-                        <h3><i class="fas fa-lock"></i> تغيير كلمة المرور</h3>
-                        <div class="form-group">
-                            <label for="currentPassword">كلمة المرور الحالية</label>
-                            <input type="password" id="currentPassword" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="newPassword">كلمة المرور الجديدة</label>
-                            <input type="password" id="newPassword" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirmPassword">تأكيد كلمة المرور</label>
-                            <input type="password" id="confirmPassword" class="form-control">
-                        </div>
-                        <button class="btn btn-primary" onclick="changePassword()">تغيير كلمة المرور</button>
-                    </div>
-                </div>
-                
-                <div class="settings-card">
-                    <h2><i class="fas fa-flag"></i> إعدادات التحدي</h2>
-                    
-                    <div class="settings-group">
-                        <h3><i class="fas fa-calendar-alt"></i> تاريخ بدء التحدي</h3>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">تاريخ البدء</div>
-                                <div class="setting-description">حدد التاريخ الذي بدأت فيه التحدي</div>
-                            </div>
-                            <div class="setting-control">
-                                <input type="date" id="startDate" class="date-input">
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mt-1" onclick="saveStartDate()">حفظ تاريخ البدء</button>
-                    </div>
-                    
-                    <div class="settings-group">
-                        <h3><i class="fas fa-cog"></i> خيارات التحدي</h3>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">إعادة البدء عند الفشل</div>
-                                <div class="setting-description">البدء من اليوم الأول في حالة الفشل في يوم</div>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="restartOnFailure">
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">التذكيرات اليومية</div>
-                                <div class="setting-description">إرسال تذكيرات لإكمال المهام اليومية</div>
-                            </div>
-                            <div class="setting-control">
-                                <label class="toggle-switch">
-                                    <input type="checkbox" id="dailyReminders" checked>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="settings-group">
-                        <h3><i class="fas fa-bullseye"></i> أهداف مخصصة</h3>
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">هدف الماء اليومي</div>
-                                <div class="setting-description">كمية الماء المستهدفة يومياً بالملليلتر</div>
-                            </div>
-                            <div class="setting-control">
-                                <input type="number" id="waterGoal" class="calories-input" value="3700" style="width: 100px;">
-                                <span>مل</span>
-                            </div>
-                        </div>
-                        
-                        <div class="setting-item">
-                            <div class="setting-info">
-                                <div class="setting-title">هدف القراءة اليومي</div>
-                                <div class="setting-description">عدد الصفحات المستهدفة يومياً</div>
-                            </div>
-                            <div class="setting-control">
-                                <input type="number" id="readingGoal" class="calories-input" value="10" style="width: 100px;">
-                                <span>صفحة</span>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary mt-1" onclick="saveGoals()">حفظ الأهداف</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modal للصورة -->
-    <div class="photo-modal" id="photoModal">
-        <span class="close-modal" onclick="closePhotoModal()">&times;</span>
-        <img id="modalImage" src="" alt="الصورة بالحجم الكامل">
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>75Hard Challenge</h3>
-                    <p>تطبيق متكامل لمساعدتك في إكمال تحدي 75 يومًا بنجاح وبناء عادات الانضباط الذاتي.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>روابط سريعة</h3>
-                    <ul class="footer-links">
-                        <li><a onclick="showPage('home')">الرئيسية</a></li>
-                        <li><a onclick="showPage('features')">المميزات</a></li>
-                        <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
-                        <li><a onclick="showPage('contact')">اتصل بنا</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>التواصل الاجتماعي</h3>
-                    <ul class="footer-links">
-                        <li><a>تويتر</a></li>
-                        <li><a>انستغرام</a></li>
-                        <li><a>فيسبوك</a></li>
-                        <li><a>يوتيوب</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© 2024 75Hard Challenge. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // المتغيرات العامة
-        let currentUser = null;
-        let currentLanguage = 'ar'; // اللغة الافتراضية
-        let totalWater = 0;
-        let waterGoal = 3700;
-
-        // Initialize the application
+        // JavaScript للوظائف التفاعلية
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('تطبيق تحدي 75 يومًا - جاري التهيئة...');
+            // التنقل بين الصفحات
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
             
-            // Check if user is logged in
-            checkAuthStatus();
-            
-            // Generate days grid for dashboard
-            generateDaysGrid();
-            
-            // Set up event listeners
-            setupEventListeners();
-            
-            // إعداد تتبع السعرات الحرارية
-            setupCaloriesTracking();
-            
-            // إعداد تتبع الماء
-            setupWaterTracking();
-            
-            // تحميل الإعدادات
-            loadSettings();
-            
-            console.log('تم تهيئة التطبيق بنجاح!');
-        });
-
-        // Page navigation function
-        function showPage(pageId) {
-            console.log('جاري الانتقال إلى الصفحة:', pageId);
-            
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // إخفاء جميع الصفحات
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // إظهار الصفحة المطلوبة
+                    if (targetPage === 'home' || targetPage === 'challenge') {
+                        document.getElementById('challenge-page').classList.add('active');
+                    } else if (targetPage === 'settings') {
+                        document.getElementById('settings-page').classList.add('active');
+                    }
+                });
             });
             
-            // Show the selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Special handling for dashboard pages (require login)
-            if (['dashboard', 'dayView', 'settings'].includes(pageId)) {
-                if (!isLoggedIn()) {
-                    console.log('المستخدم غير مسجل، جاري التوجيه إلى صفحة تسجيل الدخول');
-                    showPage('login');
-                    return;
-                }
-            }
-            
-            // Scroll to top when changing pages
-            window.scrollTo(0, 0);
-            
-            console.log('تم الانتقال إلى الصفحة:', pageId);
-        }
-
-        // Check if user is logged in
-        function isLoggedIn() {
-            const isLogged = localStorage.getItem('75hard_currentUser') !== null;
-            console.log('فحص حالة تسجيل الدخول:', isLogged);
-            return isLogged;
-        }
-
-        // Get current user
-        function getCurrentUser() {
-            try {
-                const userStr = localStorage.getItem('75hard_currentUser');
-                if (!userStr) {
-                    console.log('لا يوجد مستخدم مسجل حالياً');
-                    return null;
-                }
-                const user = JSON.parse(userStr);
-                console.log('تم تحميل بيانات المستخدم:', user.email);
-                return user;
-            } catch (error) {
-                console.error('خطأ في تحليل بيانات المستخدم:', error);
-                return null;
-            }
-        }
-
-        // Check authentication status and show appropriate pages
-        function checkAuthStatus() {
-            console.log('جاري تحديث حالة المصادقة...');
-            
-            const authButtons = document.getElementById('authButtons');
-            
-            if (isLoggedIn()) {
-                const user = getCurrentUser();
-                if (!user) {
-                    // If user data is corrupted, log out
-                    console.log('بيانات المستخدم تالفة، جاري تسجيل الخروج');
-                    logout();
-                    return;
-                }
+            // تحديث رمز الماء بناءً على النسبة
+            function updateWaterEmoji() {
+                const waterConsumed = parseInt(document.getElementById('water-consumed').textContent);
+                const waterTotal = parseInt(document.getElementById('water-total').textContent);
+                const waterEmoji = document.getElementById('water-emoji');
                 
-                currentUser = user;
-                const currentHour = new Date().getHours();
-                const greeting = currentHour < 12 ? 'صباح الخير' : 'مساء الخير';
+                const percentage = (waterConsumed / waterTotal) * 100;
                 
-                authButtons.innerHTML = `
-                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
-                    <div class="user-info">
-                        <span class="user-greeting">${greeting}, ${user.name}</span>
-                        <button class="btn btn-primary" onclick="showPage('dashboard')">التحدي</button>
-                        <button class="btn btn-outline" onclick="showPage('settings')">الإعدادات</button>
-                        <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
-                    </div>
-                `;
-                
-                console.log('تم تحديث واجهة المستخدم للمستخدم المسجل:', user.name);
-            } else {
-                authButtons.innerHTML = `
-                    <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
-                    <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
-                    <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
-                `;
-                
-                console.log('تم تحديث واجهة المستخدم للزائر');
-            }
-        }
-
-        // Toggle language function
-        function toggleLanguage() {
-            currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
-            console.log('تم تغيير اللغة إلى:', currentLanguage);
-            
-            // Update HTML direction
-            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = currentLanguage;
-            
-            // Update language toggle button
-            updateLanguageToggle();
-            
-            // Update auth status to refresh user greeting
-            checkAuthStatus();
-            
-            // Regenerate days grid with new language
-            generateDaysGrid();
-        }
-
-        // Update language toggle button
-        function updateLanguageToggle() {
-            const languageToggle = document.getElementById('languageToggle');
-            if (languageToggle) {
-                languageToggle.textContent = currentLanguage === 'ar' ? 'English' : 'العربية';
-            }
-        }
-
-        // Generate days grid for dashboard
-        function generateDaysGrid() {
-            const daysGrid = document.getElementById('daysGrid');
-            if (!daysGrid) return;
-            
-            daysGrid.innerHTML = '';
-            
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            let currentDayNumber = 0;
-            let completedDays = 0;
-            
-            for (let i = 1; i <= 75; i++) {
-                const dayBox = document.createElement('div');
-                dayBox.className = 'day-box';
-                dayBox.onclick = () => showDayDetails(i);
-                
-                // Calculate date for this day (demo dates)
-                const dayDate = new Date();
-                dayDate.setDate(today.getDate() + i - 23); // Start from day 23 for demo
-                const formattedDate = dayDate.toLocaleDateString('ar-SA', {
-                    day: 'numeric',
-                    month: 'short'
-                });
-                
-                // Check if this is the current day
-                const isCurrentDay = i === 23; // Demo current day
-                if (isCurrentDay) {
-                    dayBox.classList.add('day-current');
-                    currentDayNumber = i;
-                }
-                
-                // Determine day status based on completion
-                const dayStatus = getDayStatus(i);
-                dayBox.classList.add(dayStatus.class);
-                
-                // Add emoji based on day status
-                const emoji = getDayEmoji(dayStatus);
-                
-                // Create day content with task names and indicators
-                dayBox.innerHTML = `
-                    <div class="day-emoji">${emoji}</div>
-                    <div class="day-number">${i}</div>
-                    <div class="day-date">${formattedDate}</div>
-                    <div class="day-tasks">
-                        <div class="task-item" id="task-item-diet-${i}">
-                            <span class="task-name">النظام الغذائي</span>
-                            <div class="task-indicator" id="task-diet-${i}"></div>
-                        </div>
-                        <div class="task-item" id="task-item-water-${i}">
-                            <span class="task-name">الماء</span>
-                            <div class="task-indicator" id="task-water-${i}"></div>
-                        </div>
-                        <div class="task-item" id="task-item-workout1-${i}">
-                            <span class="task-name">تمرين 1</span>
-                            <div class="task-indicator" id="task-workout1-${i}"></div>
-                        </div>
-                        <div class="task-item" id="task-item-workout2-${i}">
-                            <span class="task-name">تمرين 2</span>
-                            <div class="task-indicator" id="task-workout2-${i}"></div>
-                        </div>
-                        <div class="task-item" id="task-item-reading-${i}">
-                            <span class="task-name">القراءة</span>
-                            <div class="task-indicator" id="task-reading-${i}"></div>
-                        </div>
-                        <div class="task-item" id="task-item-photo-${i}">
-                            <span class="task-name">الصورة</span>
-                            <div class="task-indicator" id="task-photo-${i}"></div>
-                        </div>
-                    </div>
-                `;
-                
-                updateTaskIndicators(i, dayStatus.taskStatus, isCurrentDay);
-                
-                // Count completed days for progress calculation
-                if (dayStatus.class === 'day-completed') {
-                    completedDays++;
-                }
-                
-                daysGrid.appendChild(dayBox);
-            }
-            
-            // Update current day display
-            document.getElementById('currentDay').textContent = currentDayNumber || 23;
-            
-            // Update progress percentage and bar
-            const progressPercentage = ((completedDays / 75) * 100).toFixed(1);
-            document.getElementById('progressPercentage').textContent = progressPercentage;
-            document.getElementById('progressFill').style.width = `${progressPercentage}%`;
-        }
-
-        // Determine day status based on completion
-        function getDayStatus(dayNumber) {
-            // For demo purposes, generate random status
-            if (dayNumber < 23) {
-                const status = Math.random();
-                if (status < 0.7) {
-                    return { class: 'day-completed', taskStatus: 'completed' };
-                } else if (status < 0.85) {
-                    return { class: 'day-partial', taskStatus: 'partial' };
+                if (percentage === 0) {
+                    waterEmoji.textContent = '💧';
+                } else if (percentage < 25) {
+                    waterEmoji.textContent = '💧';
+                } else if (percentage < 50) {
+                    waterEmoji.textContent = '💧💧';
+                } else if (percentage < 75) {
+                    waterEmoji.textContent = '💧💧💧';
+                } else if (percentage < 100) {
+                    waterEmoji.textContent = '💧💧💧💧';
                 } else {
-                    return { class: 'day-failed', taskStatus: 'failed' };
+                    waterEmoji.textContent = '💧💧💧💧💧';
                 }
-            } else if (dayNumber === 23) {
-                return { class: 'day-current', taskStatus: 'today' };
-            } else {
-                return { class: 'day-pending', taskStatus: 'pending' };
             }
-        }
-
-        // Get emoji based on day status
-        function getDayEmoji(dayStatus) {
-            switch(dayStatus.class) {
-                case 'day-completed':
-                    return '😊';
-                case 'day-partial':
-                    return '😐';
-                case 'day-failed':
-                    return '😞';
-                case 'day-current':
-                    return '🎯';
-                default:
-                    return '📅';
-            }
-        }
-
-        // Update task indicators based on day status
-        function updateTaskIndicators(dayNumber, status, isCurrentDay) {
-            const tasks = ['diet', 'water', 'workout1', 'workout2', 'reading', 'photo'];
             
-            tasks.forEach(task => {
-                const indicator = document.getElementById(`task-${task}-${dayNumber}`);
-                const taskItem = document.getElementById(`task-item-${task}-${dayNumber}`);
+            // تحديث رمز القراءة بناءً على النسبة
+            function updateReadingEmoji() {
+                const pagesRead = parseInt(document.getElementById('pages-read').textContent);
+                const readingTarget = parseInt(document.getElementById('reading-target').textContent);
+                const readingEmoji = document.getElementById('reading-emoji');
                 
-                if (indicator && taskItem) {
-                    if (status === 'completed') {
-                        indicator.className = 'task-indicator task-completed';
-                        taskItem.className = 'task-item task-item-completed';
-                    } else if (status === 'partial') {
-                        // Random partial completion for demo
-                        const isCompleted = Math.random() > 0.5;
-                        indicator.className = isCompleted ? 
-                            'task-indicator task-completed' : 'task-indicator task-failed';
-                        taskItem.className = isCompleted ? 
-                            'task-item task-item-completed' : 'task-item task-item-failed';
-                    } else if (status === 'failed') {
-                        indicator.className = 'task-indicator task-failed';
-                        taskItem.className = 'task-item task-item-failed';
-                    } else if (isCurrentDay) {
-                        // Today's tasks get yellow indicators
-                        indicator.className = 'task-indicator task-today';
-                        taskItem.className = 'task-item task-item-today';
-                    } else {
-                        indicator.className = 'task-indicator task-pending';
-                        taskItem.className = 'task-item';
-                    }
+                const percentage = (pagesRead / readingTarget) * 100;
+                
+                if (percentage === 0) {
+                    readingEmoji.textContent = '📖';
+                } else if (percentage < 25) {
+                    readingEmoji.textContent = '📖';
+                } else if (percentage < 50) {
+                    readingEmoji.textContent = '📖📖';
+                } else if (percentage < 75) {
+                    readingEmoji.textContent = '📖📖📖';
+                } else if (percentage < 100) {
+                    readingEmoji.textContent = '📖📖📖📖';
+                } else {
+                    readingEmoji.textContent = '📖📖📖📖📖';
                 }
-            });
-        }
-
-        // Show day details
-        function showDayDetails(dayNumber) {
-            // Update day view title
-            const dayDate = new Date();
-            dayDate.setDate(dayDate.getDate() + (dayNumber - 23));
-            const formattedDate = dayDate.toLocaleDateString('ar-SA', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+            }
+            
+            // زر شرب الماء
+            document.getElementById('drink-btn').addEventListener('click', function() {
+                const waterConsumed = document.getElementById('water-consumed');
+                const currentValue = parseInt(waterConsumed.textContent);
+                waterConsumed.textContent = currentValue + 250; // إضافة 250 مل مع كل نقرة
+                updateWaterEmoji();
             });
             
-            document.getElementById('dayViewTitle').textContent = `اليوم ${dayNumber} - ${formattedDate}`;
-            
-            // Load saved data for this day
-            loadDayData(dayNumber);
-            
-            // Show the day view page
-            showPage('dayView');
-        }
-
-        // Go to today's day
-        function goToToday() {
-            showDayDetails(23); // Demo current day
-        }
-
-        // إعداد تتبع السعرات الحرارية
-        function setupCaloriesTracking() {
-            const calorieInputs = [
-                'breakfastCalories',
-                'snack1Calories', 
-                'lunchCalories',
-                'snack2Calories',
-                'dinnerCalories'
-            ];
-            
-            calorieInputs.forEach(inputId => {
-                const input = document.getElementById(inputId);
-                if (input) {
-                    input.addEventListener('input', updateTotalCalories);
+            // زر إضافة صفحات مقروءة
+            document.getElementById('add-pages-btn').addEventListener('click', function() {
+                const pagesRead = document.getElementById('pages-read');
+                const currentValue = parseInt(pagesRead.textContent);
+                const pagesToAdd = parseInt(prompt('كم صفحة قرأت؟', '5'));
+                
+                if (!isNaN(pagesToAdd) && pagesToAdd > 0) {
+                    pagesRead.textContent = currentValue + pagesToAdd;
+                    updateReadingEmoji();
                 }
             });
             
-            updateTotalCalories();
-        }
-
-        // تحديث المجموع الكلي للسعرات
-        function updateTotalCalories() {
-            let total = 0;
-            const calorieInputs = [
-                'breakfastCalories',
-                'snack1Calories',
-                'lunchCalories', 
-                'snack2Calories',
-                'dinnerCalories'
-            ];
-            
-            calorieInputs.forEach(inputId => {
-                const input = document.getElementById(inputId);
-                if (input) {
-                    const value = parseInt(input.value) || 0;
-                    total += value;
-                }
+            // تحديث أهداف الماء والقراءة من الإعدادات
+            document.getElementById('save-settings').addEventListener('click', function() {
+                const waterTarget = document.getElementById('water-target-input').value;
+                const readingTarget = document.getElementById('reading-target-input').value;
+                
+                document.getElementById('water-target').textContent = waterTarget;
+                document.getElementById('water-total').textContent = waterTarget;
+                document.getElementById('reading-target').textContent = readingTarget;
+                
+                updateWaterEmoji();
+                updateReadingEmoji();
+                
+                alert('تم حفظ التغييرات بنجاح!');
             });
             
-            const totalCaloriesElement = document.getElementById('totalCalories');
-            if (totalCaloriesElement) {
-                totalCaloriesElement.textContent = total;
-            }
-        }
-
-        // إعداد تتبع الماء
-        function setupWaterTracking() {
-            updateWaterDisplay();
-        }
-
-        // إضافة ماء
-        function addWater(amount) {
-            if (totalWater + amount <= waterGoal) {
-                totalWater += amount;
-                updateWaterDisplay();
-                saveDayData();
-            } else {
-                alert('لا يمكن تجاوز الهدف اليومي للماء!');
-            }
-        }
-
-        // تحديث عرض الماء
-        function updateWaterDisplay() {
-            const totalWaterElement = document.getElementById('totalWater');
-            if (totalWaterElement) {
-                totalWaterElement.textContent = totalWater;
-            }
-            
-            // تحديث عرض العلب المستهدفة
-            const targetBottles = document.getElementById('targetBottles');
-            if (targetBottles) {
-                targetBottles.innerHTML = '';
-                
-                const bottlesNeeded = Math.ceil(waterGoal / 1000);
-                for (let i = 0; i < bottlesNeeded; i++) {
-                    const bottle = document.createElement('span');
-                    bottle.className = 'target-bottle';
-                    bottle.textContent = '💧';
-                    targetBottles.appendChild(bottle);
-                }
-            }
-        }
-
-        // عرض الصورة في المودال
-        function openPhotoModal(src) {
-            document.getElementById('modalImage').src = src;
-            document.getElementById('photoModal').style.display = 'flex';
-        }
-
-        // إغلاق مودال الصورة
-        function closePhotoModal() {
-            document.getElementById('photoModal').style.display = 'none';
-        }
-
-        // حفظ بيانات اليوم
-        function saveDayData(dayNumber = null) {
-            if (!currentUser) return;
-            
-            const dayData = {
-                diet: {
-                    completed: document.getElementById('dietCheckbox')?.checked || false,
-                    meals: {
-                        breakfast: {
-                            completed: document.getElementById('breakfastCheckbox')?.checked || false,
-                            calories: parseInt(document.getElementById('breakfastCalories')?.value) || 0,
-                            notes: document.getElementById('breakfastNotes')?.value || ''
-                        },
-                        snack1: {
-                            completed: document.getElementById('snack1Checkbox')?.checked || false,
-                            calories: parseInt(document.getElementById('snack1Calories')?.value) || 0,
-                            notes: document.getElementById('snack1Notes')?.value || ''
-                        },
-                        lunch: {
-                            completed: document.getElementById('lunchCheckbox')?.checked || false,
-                            calories: parseInt(document.getElementById('lunchCalories')?.value) || 0,
-                            notes: document.getElementById('lunchNotes')?.value || ''
-                        },
-                        snack2: {
-                            completed: document.getElementById('snack2Checkbox')?.checked || false,
-                            calories: parseInt(document.getElementById('snack2Calories')?.value) || 0,
-                            notes: document.getElementById('snack2Notes')?.value || ''
-                        },
-                        dinner: {
-                            completed: document.getElementById('dinnerCheckbox')?.checked || false,
-                            calories: parseInt(document.getElementById('dinnerCalories')?.value) || 0,
-                            notes: document.getElementById('dinnerNotes')?.value || ''
-                        }
-                    }
-                },
-                workouts: {
-                    indoor: {
-                        completed: document.getElementById('workout1Checkbox')?.checked || false,
-                        type: document.getElementById('workout1Input')?.value || ''
-                    },
-                    outdoor: {
-                        completed: document.getElementById('workout2Checkbox')?.checked || false,
-                        type: document.getElementById('workout2Input')?.value || ''
-                    }
-                },
-                water: totalWater,
-                reading: {
-                    completed: document.getElementById('readingCheckbox')?.checked || false,
-                    pages: parseInt(document.getElementById('pagesInput')?.value) || 0
-                },
-                photo: {
-                    taken: document.getElementById('photoTakenCheckbox')?.checked || false
-                }
-            };
-            
-            // Save to localStorage with user-specific key
-            const userEmail = currentUser.email;
-            const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
-            localStorage.setItem(dayKey, JSON.stringify(dayData));
-        }
-
-        // تحميل بيانات اليوم
-        function loadDayData(dayNumber = null) {
-            if (!currentUser) return;
-            
-            const userEmail = currentUser.email;
-            const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
-            const savedData = localStorage.getItem(dayKey);
-            
-            if (savedData) {
-                const dayData = JSON.parse(savedData);
-                
-                // Load diet data
-                if (dayData.diet) {
-                    document.getElementById('dietCheckbox').checked = dayData.diet.completed || false;
-                    
-                    if (dayData.diet.meals) {
-                        document.getElementById('breakfastCheckbox').checked = dayData.diet.meals.breakfast.completed || false;
-                        document.getElementById('breakfastCalories').value = dayData.diet.meals.breakfast.calories || 0;
-                        document.getElementById('breakfastNotes').value = dayData.diet.meals.breakfast.notes || '';
-                        
-                        document.getElementById('snack1Checkbox').checked = dayData.diet.meals.snack1.completed || false;
-                        document.getElementById('snack1Calories').value = dayData.diet.meals.snack1.calories || 0;
-                        document.getElementById('snack1Notes').value = dayData.diet.meals.snack1.notes || '';
-                        
-                        document.getElementById('lunchCheckbox').checked = dayData.diet.meals.lunch.completed || false;
-                        document.getElementById('lunchCalories').value = dayData.diet.meals.lunch.calories || 0;
-                        document.getElementById('lunchNotes').value = dayData.diet.meals.lunch.notes || '';
-                        
-                        document.getElementById('snack2Checkbox').checked = dayData.diet.meals.snack2.completed || false;
-                        document.getElementById('snack2Calories').value = dayData.diet.meals.snack2.calories || 0;
-                        document.getElementById('snack2Notes').value = dayData.diet.meals.snack2.notes || '';
-                        
-                        document.getElementById('dinnerCheckbox').checked = dayData.diet.meals.dinner.completed || false;
-                        document.getElementById('dinnerCalories').value = dayData.diet.meals.dinner.calories || 0;
-                        document.getElementById('dinnerNotes').value = dayData.diet.meals.dinner.notes || '';
-                    }
-                }
-                
-                // Load workout data
-                if (dayData.workouts) {
-                    document.getElementById('workout1Checkbox').checked = dayData.workouts.indoor.completed || false;
-                    document.getElementById('workout1Input').value = dayData.workouts.indoor.type || '';
-                    
-                    document.getElementById('workout2Checkbox').checked = dayData.workouts.outdoor.completed || false;
-                    document.getElementById('workout2Input').value = dayData.workouts.outdoor.type || '';
-                }
-                
-                // Load water data
-                if (dayData.water) {
-                    totalWater = dayData.water;
-                    updateWaterDisplay();
-                }
-                
-                // Load reading data
-                if (dayData.reading) {
-                    document.getElementById('readingCheckbox').checked = dayData.reading.completed || false;
-                    document.getElementById('pagesInput').value = dayData.reading.pages || 0;
-                }
-                
-                // Load photo data
-                if (dayData.photo) {
-                    document.getElementById('photoTakenCheckbox').checked = dayData.photo.taken || false;
-                }
-                
-                updateTotalCalories();
-            }
-        }
-
-        // حفظ تقدم اليوم
-        function saveDayProgress() {
-            // حفظ بيانات اليوم
-            saveDayData();
-            alert('تم حفظ التقدم بنجاح!');
-            showPage('dashboard');
-        }
-
-        // تحميل الإعدادات
-        function loadSettings() {
-            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
-            
-            // تحميل إعدادات التحدي
-            if (settings.startDate) {
-                document.getElementById('startDate').value = settings.startDate;
-            }
-            
-            if (settings.restartOnFailure !== undefined) {
-                document.getElementById('restartOnFailure').checked = settings.restartOnFailure;
-            }
-            
-            if (settings.dailyReminders !== undefined) {
-                document.getElementById('dailyReminders').checked = settings.dailyReminders;
-            }
-            
-            if (settings.waterGoal) {
-                document.getElementById('waterGoal').value = settings.waterGoal;
-                waterGoal = settings.waterGoal;
-            }
-            
-            if (settings.readingGoal) {
-                document.getElementById('readingGoal').value = settings.readingGoal;
-            }
-        }
-
-        // حفظ إعدادات الحساب
-        function saveAccountSettings() {
-            const userName = document.getElementById('userName').value;
-            const userEmail = document.getElementById('userEmail').value;
-            
-            if (currentUser) {
-                currentUser.name = userName;
-                currentUser.email = userEmail;
-                localStorage.setItem('75hard_currentUser', JSON.stringify(currentUser));
-                checkAuthStatus();
-            }
-            
-            alert('تم حفظ المعلومات الشخصية بنجاح!');
-        }
-
-        // تغيير كلمة المرور
-        function changePassword() {
-            const currentPassword = document.getElementById('currentPassword').value;
-            const newPassword = document.getElementById('newPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (!currentPassword || !newPassword || !confirmPassword) {
-                alert('يرجى ملء جميع الحقول');
-                return;
-            }
-            
-            if (newPassword !== confirmPassword) {
-                alert('كلمة المرور الجديدة غير متطابقة');
-                return;
-            }
-            
-            if (newPassword.length < 8) {
-                alert('كلمة المرور يجب أن تكون 8 أحرف على الأقل');
-                return;
-            }
-            
-            // في تطبيق حقيقي، هنا يتم التحقق من كلمة المرور الحالية مع الخادم
-            alert('تم تغيير كلمة المرور بنجاح!');
-            
-            // مسح الحقول
-            document.getElementById('currentPassword').value = '';
-            document.getElementById('newPassword').value = '';
-            document.getElementById('confirmPassword').value = '';
-        }
-
-        // حفظ تاريخ البدء
-        function saveStartDate() {
-            const startDate = document.getElementById('startDate').value;
-            if (!startDate) {
-                alert('يرجى اختيار تاريخ البدء');
-                return;
-            }
-            
-            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
-            settings.startDate = startDate;
-            localStorage.setItem('75hard_settings', JSON.stringify(settings));
-            
-            alert('تم حفظ تاريخ البدء بنجاح!');
-            generateDaysGrid(); // إعادة توليد شبكة الأيام
-        }
-
-        // حفظ الأهداف
-        function saveGoals() {
-            const newWaterGoal = parseInt(document.getElementById('waterGoal').value);
-            const newReadingGoal = parseInt(document.getElementById('readingGoal').value);
-            
-            if (!newWaterGoal || newWaterGoal <= 0) {
-                alert('يرجى إدخال هدف مائي صحيح');
-                return;
-            }
-            
-            if (!newReadingGoal || newReadingGoal <= 0) {
-                alert('يرجى إدخال هدف قراءة صحيح');
-                return;
-            }
-            
-            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
-            settings.waterGoal = newWaterGoal;
-            settings.readingGoal = newReadingGoal;
-            localStorage.setItem('75hard_settings', JSON.stringify(settings));
-            
-            waterGoal = newWaterGoal;
-            updateWaterDisplay();
-            
-            alert('تم حفظ الأهداف بنجاح!');
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            console.log('جاري إعداد مستمعي الأحداث...');
-            
-            // Photo upload
-            const photoUploadArea = document.getElementById('photoUploadArea');
-            const photoInput = document.getElementById('photoInput');
-            const photoPreview = document.getElementById('photoPreview');
-            const photoPreviewContainer = document.getElementById('photoPreviewContainer');
-
-            if (photoUploadArea && photoInput) {
-                photoUploadArea.addEventListener('click', () => {
-                    photoInput.click();
-                });
-
-                photoInput.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            photoPreview.src = e.target.result;
-                            photoPreviewContainer.style.display = 'block';
-                            document.getElementById('photoTakenCheckbox').checked = true;
-                            saveDayData();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                });
-
-                // فتح الصورة بالحجم الكامل
-                if (photoPreview) {
-                    photoPreview.addEventListener('click', () => {
-                        openPhotoModal(photoPreview.src);
-                    });
-                }
-            }
-
-            // Login form
-            const loginForm = document.getElementById('loginForm');
-            if (loginForm) {
-                loginForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    console.log('جاري معالجة تسجيل الدخول...');
-                    
-                    const email = document.getElementById('loginEmail').value;
-                    const password = document.getElementById('loginPassword').value;
-                    
-                    // For demo purposes, accept any login
-                    const demoUser = {
-                        name: "مستخدم تجريبي",
-                        email: email,
-                        role: 'user',
-                        createdAt: new Date().toISOString()
-                    };
-                    
-                    localStorage.setItem('75hard_currentUser', JSON.stringify(demoUser));
-                    currentUser = demoUser;
-                    
-                    checkAuthStatus();
-                    showPage('dashboard');
-                    alert('تم تسجيل الدخول بنجاح!');
-                });
-            }
-
-            // Signup form
-            const signupForm = document.getElementById('signupForm');
-            if (signupForm) {
-                signupForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const name = document.getElementById('signupName').value;
-                    const email = document.getElementById('signupEmail').value;
-                    const password = document.getElementById('signupPassword').value;
-                    
-                    // Create new user
-                    const newUser = {
-                        name: name,
-                        email: email,
-                        role: 'user',
-                        createdAt: new Date().toISOString()
-                    };
-                    
-                    localStorage.setItem('75hard_currentUser', JSON.stringify(newUser));
-                    currentUser = newUser;
-                    
-                    checkAuthStatus();
-                    showPage('dashboard');
-                    alert('تم إنشاء الحساب بنجاح!');
-                });
-            }
-
-            // Reset challenge button
-            const resetChallengeBtn = document.getElementById('resetChallengeBtn');
-            if (resetChallengeBtn) {
-                resetChallengeBtn.addEventListener('click', () => {
-                    if (confirm('تحذير: إعادة التعيين ستحذف جميع بيانات التقدم. هل أنت متأكد؟')) {
-                        // Clear all user-specific data
-                        if (currentUser) {
-                            const userEmail = currentUser.email;
-                            for (let i = 1; i <= 75; i++) {
-                                localStorage.removeItem(`75hard_${userEmail}_day${i}`);
-                            }
-                            localStorage.removeItem(`75hard_${userEmail}_currentDay`);
-                        }
-                        
-                        alert('تم إعادة تعيين التحدي بنجاح!');
-                        generateDaysGrid(); // Regenerate with initial state
-                    }
-                });
-            }
-
-            // Reset day button
-            const resetDayBtn = document.getElementById('resetDayBtn');
-            if (resetDayBtn) {
-                resetDayBtn.addEventListener('click', () => {
-                    if (confirm('هل تريد إعادة تعيين هذا اليوم؟ سيتم مسح جميع بيانات هذا اليوم.')) {
-                        // Reset all inputs for the day
-                        document.getElementById('dietCheckbox').checked = false;
-                        document.getElementById('workout1Checkbox').checked = false;
-                        document.getElementById('workout2Checkbox').checked = false;
-                        document.getElementById('readingCheckbox').checked = false;
-                        document.getElementById('photoTakenCheckbox').checked = false;
-                        
-                        // Reset meal checkboxes and calories
-                        const mealCheckboxes = [
-                            'breakfastCheckbox', 'snack1Checkbox', 'lunchCheckbox', 
-                            'snack2Checkbox', 'dinnerCheckbox'
-                        ];
-                        const calorieInputs = [
-                            'breakfastCalories', 'snack1Calories', 'lunchCalories',
-                            'snack2Calories', 'dinnerCalories'
-                        ];
-                        const notesInputs = [
-                            'breakfastNotes', 'snack1Notes', 'lunchNotes',
-                            'snack2Notes', 'dinnerNotes'
-                        ];
-                        
-                        mealCheckboxes.forEach(id => {
-                            document.getElementById(id).checked = false;
-                        });
-                        
-                        calorieInputs.forEach(id => {
-                            document.getElementById(id).value = '';
-                        });
-                        
-                        notesInputs.forEach(id => {
-                            document.getElementById(id).value = '';
-                        });
-                        
-                        // Reset water
-                        totalWater = 0;
-                        updateWaterDisplay();
-                        
-                        // Reset workout inputs
-                        document.getElementById('workout1Input').value = '';
-                        document.getElementById('workout2Input').value = '';
-                        
-                        // Reset reading
-                        document.getElementById('pagesInput').value = '';
-                        
-                        // Reset photo
-                        document.getElementById('photoPreviewContainer').style.display = 'none';
-                        
-                        // Save the reset state
-                        saveDayData();
-                        
-                        alert('تم إعادة تعيين اليوم بنجاح!');
-                    }
-                });
-            }
-            
-            // Auto-save when inputs change
-            const autoSaveInputs = [
-                'dietCheckbox', 'breakfastCheckbox', 'snack1Checkbox', 'lunchCheckbox',
-                'snack2Checkbox', 'dinnerCheckbox', 'workout1Checkbox', 'workout2Checkbox',
-                'readingCheckbox', 'photoTakenCheckbox', 'pagesInput'
-            ];
-            
-            autoSaveInputs.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('change', () => {
-                        saveDayData();
-                    });
-                }
-            });
-            
-            const autoSaveTextInputs = [
-                'workout1Input', 'workout2Input', 'breakfastCalories', 'snack1Calories',
-                'lunchCalories', 'snack2Calories', 'dinnerCalories', 'breakfastNotes',
-                'snack1Notes', 'lunchNotes', 'snack2Notes', 'dinnerNotes'
-            ];
-            
-            autoSaveTextInputs.forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    element.addEventListener('input', () => {
-                        saveDayData();
-                    });
-                }
-            });
-            
-            // حفظ إعدادات التحدي عند التغيير
-            document.getElementById('restartOnFailure').addEventListener('change', function() {
-                const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
-                settings.restartOnFailure = this.checked;
-                localStorage.setItem('75hard_settings', JSON.stringify(settings));
-            });
-            
-            document.getElementById('dailyReminders').addEventListener('change', function() {
-                const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
-                settings.dailyReminders = this.checked;
-                localStorage.setItem('75hard_settings', JSON.stringify(settings));
-            });
-            
-            console.log('تم إعداد جميع مستمعي الأحداث بنجاح');
-        }
-
-        // Logout function
-        function logout() {
-            console.log('جاري تسجيل الخروج...');
-            localStorage.removeItem('75hard_currentUser');
-            currentUser = null;
-            checkAuthStatus();
-            showPage('home');
-            alert('تم تسجيل الخروج بنجاح!');
-        }
+            // تهيئة الرموز التعبيرية
+            updateWaterEmoji();
+            updateReadingEmoji();
+        });
     </script>
 </body>
 </html>
