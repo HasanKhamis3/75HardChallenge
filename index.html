@@ -16,7 +16,7 @@
             --danger-color: #FF4757;
             --success-color: #2ED573;
             --today-color: #FFD700;
-            --text-color: #333344;
+            --text-color: #000000;
             --light-text: #777788;
             --border-radius: 12px;
             --box-shadow: 0 4px 20px rgba(138, 43, 226, 0.15);
@@ -98,6 +98,12 @@
         .nav-links a:hover {
             color: var(--primary-color);
             background-color: rgba(138, 43, 226, 0.05);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            background-color: rgba(138, 43, 226, 0.1);
+            font-weight: bold;
         }
 
         .auth-buttons {
@@ -250,6 +256,7 @@
             font-size: 2.2rem;
             color: var(--text-color);
             position: relative;
+            font-weight: bold;
         }
 
         .section-title::after {
@@ -297,6 +304,12 @@
             margin-bottom: 1rem;
             color: var(--text-color);
             font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .feature-card p {
+            color: var(--text-color);
+            font-weight: 500;
         }
 
         /* Dashboard */
@@ -311,6 +324,9 @@
             box-shadow: var(--box-shadow);
             margin-bottom: 2rem;
             border-top: 4px solid var(--primary-color);
+            position: sticky;
+            top: 100px;
+            z-index: 10;
         }
 
         .progress-bar {
@@ -528,6 +544,7 @@
             margin-bottom: 1.5rem;
             color: var(--text-color);
             font-size: 1.8rem;
+            font-weight: bold;
         }
 
         .form-group {
@@ -538,7 +555,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            font-weight: 500;
+            font-weight: bold;
             color: var(--text-color);
         }
 
@@ -549,6 +566,8 @@
             border-radius: var(--border-radius);
             font-size: 1rem;
             transition: var(--transition);
+            color: var(--text-color);
+            font-weight: 500;
         }
 
         .form-control:focus {
@@ -598,7 +617,7 @@
         }
 
         .task-title {
-            font-weight: 500;
+            font-weight: bold;
             font-size: 1.1rem;
             color: var(--text-color);
         }
@@ -690,6 +709,8 @@
             border-radius: 6px;
             text-align: center;
             font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: 500;
         }
 
         .meal-notes {
@@ -703,6 +724,8 @@
             border: 1px solid #e0e0e0;
             border-radius: 6px;
             font-size: 0.9rem;
+            color: var(--text-color);
+            font-weight: 500;
         }
 
         .total-calories {
@@ -713,6 +736,7 @@
             text-align: center;
             font-weight: bold;
             border: 1px solid #e9ecef;
+            color: var(--text-color);
         }
 
         /* الماء */
@@ -783,6 +807,8 @@
             padding: 8px 12px;
             border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
+            color: var(--text-color);
+            font-weight: 500;
         }
 
         /* الصورة اليومية */
@@ -799,12 +825,20 @@
         }
 
         .photo-preview-container {
-            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .photo-preview-wrapper {
+            position: relative;
+            display: inline-block;
         }
 
         .photo-preview {
-            max-width: 200px;
-            max-height: 200px;
+            max-width: 150px;
+            max-height: 150px;
             border-radius: var(--border-radius);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
@@ -813,6 +847,24 @@
 
         .photo-preview:hover {
             transform: scale(1.05);
+        }
+
+        .delete-photo {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background-color: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .photo-modal {
@@ -887,6 +939,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: bold;
         }
 
         .settings-group h3 i {
@@ -910,13 +963,15 @@
         }
 
         .setting-title {
-            font-weight: 500;
+            font-weight: bold;
             margin-bottom: 4px;
+            color: var(--text-color);
         }
 
         .setting-description {
             font-size: 0.9rem;
             color: var(--light-text);
+            font-weight: 500;
         }
 
         .setting-control {
@@ -930,6 +985,8 @@
             border: 1px solid #e0e0e0;
             border-radius: var(--border-radius);
             font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 500;
         }
 
         /* Footer */
@@ -952,6 +1009,7 @@
             font-size: 1.2rem;
             position: relative;
             display: inline-block;
+            font-weight: bold;
         }
 
         .footer-column h3::after {
@@ -977,6 +1035,7 @@
             text-decoration: none;
             transition: var(--transition);
             cursor: pointer;
+            font-weight: 500;
         }
 
         .footer-links a:hover {
@@ -989,6 +1048,7 @@
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
         }
 
         /* Responsive */
@@ -1123,6 +1183,7 @@
             font-size: 0.8rem;
             margin-top: 5px;
             text-align: center;
+            font-weight: 500;
         }
 
         .water-emoji {
@@ -1134,6 +1195,37 @@
             font-size: 1.2rem;
             margin-right: 5px;
         }
+
+        /* Modal للتنبيهات */
+        .alert-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .alert-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .alert-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -1143,10 +1235,10 @@
             <nav class="navbar">
                 <div class="logo" onclick="showPage('home')">75Hard</div>
                 <ul class="nav-links">
-                    <li><a onclick="showPage('home')">الرئيسية</a></li>
-                    <li><a onclick="showPage('features')">المميزات</a></li>
-                    <li><a onclick="showPage('faq')">الأسئلة الشائعة</a></li>
-                    <li><a onclick="showPage('contact')">اتصل بنا</a></li>
+                    <li><a onclick="showPage('home')" id="nav-home">الرئيسية</a></li>
+                    <li><a onclick="showPage('features')" id="nav-features">المميزات</a></li>
+                    <li><a onclick="showPage('faq')" id="nav-faq">الأسئلة الشائعة</a></li>
+                    <li><a onclick="showPage('contact')" id="nav-contact">اتصل بنا</a></li>
                 </ul>
                 <div class="auth-buttons" id="authButtons">
                     <div class="language-selector">
@@ -1358,15 +1450,17 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill" style="width: 30.6%"></div>
                 </div>
-                
-                <h3 class="mt-2">شبكة الأيام</h3>
+            </div>
+            
+            <div class="task-card">
+                <h3 class="mb-1">شبكة الأيام</h3>
                 <div class="days-grid" id="daysGrid">
                     <!-- Days 1-75 will be generated here -->
                 </div>
                 
                 <div class="dashboard-actions" style="display: flex; gap: 10px; margin-top: 1.5rem; flex-wrap: wrap;">
-                    <button class="btn btn-outline">تصدير CSV</button>
-                    <button class="btn btn-outline">التقارير</button>
+                    <button class="btn btn-outline" onclick="exportCSV()">تصدير CSV</button>
+                    <button class="btn btn-outline" onclick="showReports()">التقارير</button>
                     <button class="btn btn-outline" id="resetChallengeBtn">إعادة تعيين التحدي</button>
                 </div>
             </div>
@@ -1601,17 +1695,16 @@
                 
                 <div class="photo-section">
                     <div class="photo-toggle">
-                        <span>هل تم التقاط الصورة؟</span>
+                        <span>يمكنك رفع حتى 5 صور كحد أقصى</span>
                     </div>
                     
                     <div class="photo-upload" id="photoUploadArea" style="border: 2px dashed #ddd; padding: 20px; text-align: center; border-radius: var(--border-radius); cursor: pointer;">
                         <p>انقر لتحميل الصورة أو اسحبها هنا</p>
-                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;" multiple>
                     </div>
                     
-                    <div class="photo-preview-container" id="photoPreviewContainer" style="display: none;">
-                        <img id="photoPreview" class="photo-preview" src="" alt="معاينة الصورة">
-                        <p class="text-center mt-1">انقر على الصورة لعرضها بالحجم الكامل</p>
+                    <div class="photo-preview-container" id="photoPreviewContainer">
+                        <!-- سيتم إضافة الصور هنا تلقائياً -->
                     </div>
                 </div>
             </div>
@@ -1739,6 +1832,18 @@
         <img id="modalImage" src="" alt="الصورة بالحجم الكامل">
     </div>
 
+    <!-- Modal للتنبيهات -->
+    <div class="alert-modal" id="alertModal">
+        <div class="alert-content">
+            <h3 id="alertTitle">تنبيه</h3>
+            <p id="alertMessage">يرجى تحديث الإعدادات قبل البدء في التحدي</p>
+            <div class="alert-buttons">
+                <button class="btn btn-primary" id="alertConfirmBtn">موافق</button>
+                <button class="btn btn-outline" id="alertCancelBtn">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1778,6 +1883,9 @@
         let totalWater = 0;
         let waterGoal = 3700;
         let readingGoal = 10;
+        let currentDayNumber = 1;
+        let startDate = null;
+        let currentPhotos = [];
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
@@ -1819,11 +1927,22 @@
             // Show the selected page
             document.getElementById(pageId).classList.add('active');
             
+            // تحديث التنقل النشط
+            updateActiveNav(pageId);
+            
             // Special handling for dashboard pages (require login)
             if (['dashboard', 'dayView', 'settings'].includes(pageId)) {
                 if (!isLoggedIn()) {
                     console.log('المستخدم غير مسجل، جاري التوجيه إلى صفحة تسجيل الدخول');
                     showPage('login');
+                    return;
+                }
+                
+                // التحقق من إعدادات التحدي
+                if (pageId === 'dashboard' && !checkSettings()) {
+                    showAlert('يرجى تحديث الإعدادات', 'يجب عليك تعيين تاريخ بدء التحدي قبل البدء', function() {
+                        showPage('settings');
+                    });
                     return;
                 }
             }
@@ -1832,6 +1951,20 @@
             window.scrollTo(0, 0);
             
             console.log('تم الانتقال إلى الصفحة:', pageId);
+        }
+
+        // تحديث التنقل النشط
+        function updateActiveNav(pageId) {
+            // إزالة النشط من جميع الروابط
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // إضافة النشط للرابط الحالي
+            const activeLink = document.getElementById(`nav-${pageId}`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
         }
 
         // Check if user is logged in
@@ -1875,7 +2008,9 @@
                 
                 currentUser = user;
                 const currentHour = new Date().getHours();
-                const greeting = currentHour < 12 ? 'صباح الخير' : 'مساء الخير';
+                const greeting = currentLanguage === 'ar' ? 
+                    (currentHour < 12 ? 'صباح الخير' : 'مساء الخير') :
+                    (currentHour < 12 ? 'Good Morning' : 'Good Evening');
                 
                 authButtons.innerHTML = `
                     <div class="language-selector">
@@ -1883,9 +2018,9 @@
                     </div>
                     <div class="user-info">
                         <span class="user-greeting">${greeting}, ${user.name}</span>
-                        <button class="btn btn-primary" onclick="showPage('dashboard')">التحدي</button>
-                        <button class="btn btn-outline" onclick="showPage('settings')">الإعدادات</button>
-                        <button class="btn btn-outline" onclick="logout()">تسجيل الخروج</button>
+                        <button class="btn btn-primary" onclick="showPage('dashboard')">${currentLanguage === 'ar' ? 'التحدي' : 'Challenge'}</button>
+                        <button class="btn btn-outline" onclick="showPage('settings')">${currentLanguage === 'ar' ? 'الإعدادات' : 'Settings'}</button>
+                        <button class="btn btn-outline" onclick="logout()">${currentLanguage === 'ar' ? 'تسجيل الخروج' : 'Logout'}</button>
                     </div>
                 `;
                 
@@ -1899,8 +2034,8 @@
                     <div class="language-selector">
                         <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
                     </div>
-                    <button class="btn btn-outline" onclick="showPage('login')">تسجيل الدخول</button>
-                    <button class="btn btn-primary" onclick="showPage('signup')">إنشاء حساب</button>
+                    <button class="btn btn-outline" onclick="showPage('login')">${currentLanguage === 'ar' ? 'تسجيل الدخول' : 'Login'}</button>
+                    <button class="btn btn-primary" onclick="showPage('signup')">${currentLanguage === 'ar' ? 'إنشاء حساب' : 'Sign Up'}</button>
                 `;
                 
                 console.log('تم تحديث واجهة المستخدم للزائر');
@@ -1924,6 +2059,9 @@
             
             // Regenerate days grid with new language
             generateDaysGrid();
+            
+            // تحديث النصوص في الصفحة الحالية
+            updatePageTexts();
         }
 
         // Update language toggle button
@@ -1934,6 +2072,25 @@
             }
         }
 
+        // تحديث النصوص في الصفحة الحالية
+        function updatePageTexts() {
+            // تحديث النصوص حسب الصفحة الحالية
+            const activePage = document.querySelector('.page.active');
+            if (!activePage) return;
+            
+            const pageId = activePage.id;
+            
+            if (pageId === 'dashboard') {
+                document.querySelector('.progress-card h2').textContent = currentLanguage === 'ar' ? 'تقدمك في التحدي' : 'Your Challenge Progress';
+                document.querySelector('.task-card h3').textContent = currentLanguage === 'ar' ? 'شبكة الأيام' : 'Days Grid';
+                document.querySelector('.btn-primary').textContent = currentLanguage === 'ar' ? 'اذهب إلى اليوم' : 'Go to Today';
+                document.querySelectorAll('.btn-outline')[0].textContent = currentLanguage === 'ar' ? 'تصدير CSV' : 'Export CSV';
+                document.querySelectorAll('.btn-outline')[1].textContent = currentLanguage === 'ar' ? 'التقارير' : 'Reports';
+                document.querySelectorAll('.btn-outline')[2].textContent = currentLanguage === 'ar' ? 'إعادة تعيين التحدي' : 'Reset Challenge';
+            }
+            // يمكن إضافة المزيد من الصفحات هنا
+        }
+
         // Generate days grid for dashboard
         function generateDaysGrid() {
             const daysGrid = document.getElementById('daysGrid');
@@ -1941,10 +2098,10 @@
             
             daysGrid.innerHTML = '';
             
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
+            // الحصول على تاريخ البدء من الإعدادات
+            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+            startDate = settings.startDate ? new Date(settings.startDate) : new Date();
             
-            let currentDayNumber = 0;
             let completedDays = 0;
             
             for (let i = 1; i <= 75; i++) {
@@ -1952,16 +2109,28 @@
                 dayBox.className = 'day-box';
                 dayBox.onclick = () => showDayDetails(i);
                 
-                // Calculate date for this day (demo dates)
-                const dayDate = new Date();
-                dayDate.setDate(today.getDate() + i - 23); // Start from day 23 for demo
-                const formattedDate = dayDate.toLocaleDateString('en-US', {
-                    day: 'numeric',
-                    month: 'short'
-                });
+                // Calculate date for this day based on start date
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i - 1);
+                
+                let formattedDate;
+                if (currentLanguage === 'ar') {
+                    // تنسيق التاريخ بالعربية
+                    const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 
+                                       'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+                    formattedDate = `${dayDate.getDate()} ${monthNames[dayDate.getMonth()]}`;
+                } else {
+                    // تنسيق التاريخ بالإنجليزية
+                    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                                       'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    formattedDate = `${monthNames[dayDate.getMonth()]} ${dayDate.getDate()}`;
+                }
                 
                 // Check if this is the current day
-                const isCurrentDay = i === 23; // Demo current day
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const isCurrentDay = dayDate.toDateString() === today.toDateString();
+                
                 if (isCurrentDay) {
                     dayBox.classList.add('day-current');
                     currentDayNumber = i;
@@ -1981,27 +2150,27 @@
                     <div class="day-date">${formattedDate}</div>
                     <div class="day-tasks">
                         <div class="task-item" id="task-item-diet-${i}">
-                            <span class="task-name">النظام الغذائي</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'النظام الغذائي' : 'Diet'}</span>
                             <div class="task-indicator" id="task-diet-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-water-${i}">
-                            <span class="task-name">الماء</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'الماء' : 'Water'}</span>
                             <div class="task-indicator" id="task-water-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-workout1-${i}">
-                            <span class="task-name">تمرين داخلي</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'تمرين داخلي' : 'Indoor Workout'}</span>
                             <div class="task-indicator" id="task-workout1-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-workout2-${i}">
-                            <span class="task-name">تمرين خارجي</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'تمرين خارجي' : 'Outdoor Workout'}</span>
                             <div class="task-indicator" id="task-workout2-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-reading-${i}">
-                            <span class="task-name">القراءة</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'القراءة' : 'Reading'}</span>
                             <div class="task-indicator" id="task-reading-${i}"></div>
                         </div>
                         <div class="task-item" id="task-item-photo-${i}">
-                            <span class="task-name">الصورة</span>
+                            <span class="task-name">${currentLanguage === 'ar' ? 'الصورة' : 'Photo'}</span>
                             <div class="task-indicator" id="task-photo-${i}"></div>
                         </div>
                     </div>
@@ -2018,7 +2187,7 @@
             }
             
             // Update current day display
-            document.getElementById('currentDay').textContent = currentDayNumber || 23;
+            document.getElementById('currentDay').textContent = currentDayNumber;
             
             // Update progress percentage and bar
             const progressPercentage = ((completedDays / 75) * 100).toFixed(1);
@@ -2028,21 +2197,38 @@
 
         // Determine day status based on completion
         function getDayStatus(dayNumber) {
-            // For demo purposes, generate random status
-            if (dayNumber < 23) {
-                const status = Math.random();
-                if (status < 0.7) {
-                    return { class: 'day-completed', taskStatus: 'completed' };
-                } else if (status < 0.85) {
-                    return { class: 'day-partial', taskStatus: 'partial' };
-                } else {
-                    return { class: 'day-failed', taskStatus: 'failed' };
+            // تحميل بيانات اليوم من التخزين المحلي
+            if (currentUser) {
+                const userEmail = currentUser.email;
+                const dayKey = `75hard_${userEmail}_day${dayNumber}`;
+                const savedData = localStorage.getItem(dayKey);
+                
+                if (savedData) {
+                    const dayData = JSON.parse(savedData);
+                    
+                    // حساب عدد المهام المكتملة
+                    let completedTasks = 0;
+                    const totalTasks = 6; // النظام الغذائي، الماء، تمرين داخلي، تمرين خارجي، القراءة، الصورة
+                    
+                    if (dayData.diet && dayData.diet.completed) completedTasks++;
+                    if (dayData.water && dayData.water >= waterGoal) completedTasks++;
+                    if (dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed) completedTasks++;
+                    if (dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed) completedTasks++;
+                    if (dayData.reading && dayData.reading.completed && dayData.reading.pages >= readingGoal) completedTasks++;
+                    if (dayData.photo && dayData.photo.taken) completedTasks++;
+                    
+                    if (completedTasks === totalTasks) {
+                        return { class: 'day-completed', taskStatus: 'completed' };
+                    } else if (completedTasks > 0) {
+                        return { class: 'day-partial', taskStatus: 'partial' };
+                    } else {
+                        return { class: 'day-pending', taskStatus: 'pending' };
+                    }
                 }
-            } else if (dayNumber === 23) {
-                return { class: 'day-current', taskStatus: 'today' };
-            } else {
-                return { class: 'day-pending', taskStatus: 'pending' };
             }
+            
+            // إذا لم تكن هناك بيانات محفوظة، افترض أن اليوم معلق
+            return { class: 'day-pending', taskStatus: 'pending' };
         }
 
         // Get emoji based on day status
@@ -2098,16 +2284,26 @@
         // Show day details
         function showDayDetails(dayNumber) {
             // Update day view title
-            const dayDate = new Date();
-            dayDate.setDate(dayDate.getDate() + (dayNumber - 23));
-            const formattedDate = dayDate.toLocaleDateString('ar-SA', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+            const dayDate = new Date(startDate);
+            dayDate.setDate(startDate.getDate() + dayNumber - 1);
             
-            document.getElementById('dayViewTitle').textContent = `اليوم ${dayNumber} - ${formattedDate}`;
+            let formattedDate;
+            if (currentLanguage === 'ar') {
+                const weekdayNames = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+                const monthNames = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 
+                                   'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+                formattedDate = `${weekdayNames[dayDate.getDay()]}، ${dayDate.getDate()} ${monthNames[dayDate.getMonth()]} ${dayDate.getFullYear()}`;
+            } else {
+                const weekdayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+                                   'July', 'August', 'September', 'October', 'November', 'December'];
+                formattedDate = `${weekdayNames[dayDate.getDay()]}, ${monthNames[dayDate.getMonth()]} ${dayDate.getDate()}, ${dayDate.getFullYear()}`;
+            }
+            
+            document.getElementById('dayViewTitle').textContent = `${currentLanguage === 'ar' ? 'اليوم' : 'Day'} ${dayNumber} - ${formattedDate}`;
+            
+            // حفظ رقم اليوم الحالي
+            currentDayNumber = dayNumber;
             
             // Load saved data for this day
             loadDayData(dayNumber);
@@ -2118,7 +2314,18 @@
 
         // Go to today's day
         function goToToday() {
-            showDayDetails(23); // Demo current day
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // حساب عدد الأيام من تاريخ البدء إلى اليوم
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+            
+            if (diffDays > 0 && diffDays <= 75) {
+                showDayDetails(diffDays);
+            } else {
+                alert(currentLanguage === 'ar' ? 'لم يبدأ التحدي بعد أو انتهى' : 'Challenge has not started yet or has ended');
+            }
         }
 
         // إعداد تتبع السعرات الحرارية
@@ -2176,9 +2383,9 @@
             if (totalWater + amount <= waterGoal) {
                 totalWater += amount;
                 updateWaterDisplay();
-                saveDayData();
+                saveDayData(currentDayNumber);
             } else {
-                alert('لا يمكن تجاوز الهدف اليومي للماء!');
+                alert(currentLanguage === 'ar' ? 'لا يمكن تجاوز الهدف اليومي للماء!' : 'Cannot exceed daily water goal!');
             }
         }
 
@@ -2270,8 +2477,8 @@
         }
 
         // حفظ بيانات اليوم
-        function saveDayData(dayNumber = null) {
-            if (!currentUser) return;
+        function saveDayData(dayNumber) {
+            if (!currentUser || !dayNumber) return;
             
             const dayData = {
                 diet: {
@@ -2320,23 +2527,29 @@
                     pages: parseInt(document.getElementById('pagesInput')?.value) || 0
                 },
                 photo: {
-                    taken: document.getElementById('photoTakenCheckbox')?.checked || false
+                    taken: document.getElementById('photoTakenCheckbox')?.checked || false,
+                    photos: currentPhotos
                 }
             };
             
             // Save to localStorage with user-specific key
             const userEmail = currentUser.email;
-            const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
+            const dayKey = `75hard_${userEmail}_day${dayNumber}`;
             localStorage.setItem(dayKey, JSON.stringify(dayData));
+            
+            console.log(`تم حفظ بيانات اليوم ${dayNumber}`);
         }
 
         // تحميل بيانات اليوم
-        function loadDayData(dayNumber = null) {
+        function loadDayData(dayNumber) {
             if (!currentUser) return;
             
             const userEmail = currentUser.email;
-            const dayKey = dayNumber ? `75hard_${userEmail}_day${dayNumber}` : `75hard_${userEmail}_currentDay`;
+            const dayKey = `75hard_${userEmail}_day${dayNumber}`;
             const savedData = localStorage.getItem(dayKey);
+            
+            // إعادة تعيين القيم الافتراضية
+            resetDayForm();
             
             if (savedData) {
                 const dayData = JSON.parse(savedData);
@@ -2393,17 +2606,72 @@
                 // Load photo data
                 if (dayData.photo) {
                     document.getElementById('photoTakenCheckbox').checked = dayData.photo.taken || false;
+                    if (dayData.photo.photos) {
+                        currentPhotos = dayData.photo.photos;
+                        renderPhotos();
+                    }
                 }
                 
                 updateTotalCalories();
             }
         }
 
+        // إعادة تعيين نموذج اليوم
+        function resetDayForm() {
+            document.getElementById('dietCheckbox').checked = false;
+            document.getElementById('workout1Checkbox').checked = false;
+            document.getElementById('workout2Checkbox').checked = false;
+            document.getElementById('readingCheckbox').checked = false;
+            document.getElementById('photoTakenCheckbox').checked = false;
+            
+            // Reset meal checkboxes and calories
+            const mealCheckboxes = [
+                'breakfastCheckbox', 'snack1Checkbox', 'lunchCheckbox', 
+                'snack2Checkbox', 'dinnerCheckbox'
+            ];
+            const calorieInputs = [
+                'breakfastCalories', 'snack1Calories', 'lunchCalories',
+                'snack2Calories', 'dinnerCalories'
+            ];
+            const notesInputs = [
+                'breakfastNotes', 'snack1Notes', 'lunchNotes',
+                'snack2Notes', 'dinnerNotes'
+            ];
+            
+            mealCheckboxes.forEach(id => {
+                document.getElementById(id).checked = false;
+            });
+            
+            calorieInputs.forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            
+            notesInputs.forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            
+            // Reset water
+            totalWater = 0;
+            updateWaterDisplay();
+            
+            // Reset workout inputs
+            document.getElementById('workout1Input').value = '';
+            document.getElementById('workout2Input').value = '';
+            
+            // Reset reading
+            document.getElementById('pagesInput').value = '';
+            updateReadingProgress();
+            
+            // Reset photos
+            currentPhotos = [];
+            renderPhotos();
+        }
+
         // حفظ تقدم اليوم
         function saveDayProgress() {
             // حفظ بيانات اليوم
-            saveDayData();
-            alert('تم حفظ التقدم بنجاح!');
+            saveDayData(currentDayNumber);
+            alert(currentLanguage === 'ar' ? 'تم حفظ التقدم بنجاح!' : 'Progress saved successfully!');
             showPage('dashboard');
         }
 
@@ -2414,6 +2682,7 @@
             // تحميل إعدادات التحدي
             if (settings.startDate) {
                 document.getElementById('startDate').value = settings.startDate;
+                startDate = new Date(settings.startDate);
             }
             
             if (settings.restartOnFailure !== undefined) {
@@ -2451,7 +2720,7 @@
                 checkAuthStatus();
             }
             
-            alert('تم حفظ المعلومات الشخصية بنجاح!');
+            alert(currentLanguage === 'ar' ? 'تم حفظ المعلومات الشخصية بنجاح!' : 'Personal information saved successfully!');
         }
 
         // تغيير كلمة المرور
@@ -2461,22 +2730,22 @@
             const confirmPassword = document.getElementById('confirmPassword').value;
             
             if (!currentPassword || !newPassword || !confirmPassword) {
-                alert('يرجى ملء جميع الحقول');
+                alert(currentLanguage === 'ar' ? 'يرجى ملء جميع الحقول' : 'Please fill all fields');
                 return;
             }
             
             if (newPassword !== confirmPassword) {
-                alert('كلمة المرور الجديدة غير متطابقة');
+                alert(currentLanguage === 'ar' ? 'كلمة المرور الجديدة غير متطابقة' : 'New passwords do not match');
                 return;
             }
             
             if (newPassword.length < 8) {
-                alert('كلمة المرور يجب أن تكون 8 أحرف على الأقل');
+                alert(currentLanguage === 'ar' ? 'كلمة المرور يجب أن تكون 8 أحرف على الأقل' : 'Password must be at least 8 characters');
                 return;
             }
             
             // في تطبيق حقيقي، هنا يتم التحقق من كلمة المرور الحالية مع الخادم
-            alert('تم تغيير كلمة المرور بنجاح!');
+            alert(currentLanguage === 'ar' ? 'تم تغيير كلمة المرور بنجاح!' : 'Password changed successfully!');
             
             // مسح الحقول
             document.getElementById('currentPassword').value = '';
@@ -2486,17 +2755,19 @@
 
         // حفظ تاريخ البدء
         function saveStartDate() {
-            const startDate = document.getElementById('startDate').value;
-            if (!startDate) {
-                alert('يرجى اختيار تاريخ البدء');
+            const startDateValue = document.getElementById('startDate').value;
+            if (!startDateValue) {
+                alert(currentLanguage === 'ar' ? 'يرجى اختيار تاريخ البدء' : 'Please select a start date');
                 return;
             }
             
             const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
-            settings.startDate = startDate;
+            settings.startDate = startDateValue;
             localStorage.setItem('75hard_settings', JSON.stringify(settings));
             
-            alert('تم حفظ تاريخ البدء بنجاح!');
+            startDate = new Date(startDateValue);
+            
+            alert(currentLanguage === 'ar' ? 'تم حفظ تاريخ البدء بنجاح!' : 'Start date saved successfully!');
             generateDaysGrid(); // إعادة توليد شبكة الأيام
         }
 
@@ -2506,12 +2777,12 @@
             const newReadingGoal = parseInt(document.getElementById('readingGoal').value);
             
             if (!newWaterGoal || newWaterGoal <= 0) {
-                alert('يرجى إدخال هدف مائي صحيح');
+                alert(currentLanguage === 'ar' ? 'يرجى إدخال هدف مائي صحيح' : 'Please enter a valid water goal');
                 return;
             }
             
             if (!newReadingGoal || newReadingGoal <= 0) {
-                alert('يرجى إدخال هدف قراءة صحيح');
+                alert(currentLanguage === 'ar' ? 'يرجى إدخال هدف قراءة صحيح' : 'Please enter a valid reading goal');
                 return;
             }
             
@@ -2525,7 +2796,124 @@
             updateWaterDisplay();
             updateReadingProgress();
             
-            alert('تم حفظ الأهداف بنجاح!');
+            alert(currentLanguage === 'ar' ? 'تم حفظ الأهداف بنجاح!' : 'Goals saved successfully!');
+        }
+
+        // تصدير CSV
+        function exportCSV() {
+            if (!currentUser) return;
+            
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Day,Date,Diet Completed,Water Consumed,Indoor Workout,Outdoor Workout,Reading Pages,Photo Taken\n";
+            
+            for (let i = 1; i <= 75; i++) {
+                const userEmail = currentUser.email;
+                const dayKey = `75hard_${userEmail}_day${i}`;
+                const savedData = localStorage.getItem(dayKey);
+                
+                let dietCompleted = "No";
+                let waterConsumed = "0";
+                let indoorWorkout = "No";
+                let outdoorWorkout = "No";
+                let readingPages = "0";
+                let photoTaken = "No";
+                
+                if (savedData) {
+                    const dayData = JSON.parse(savedData);
+                    
+                    dietCompleted = dayData.diet && dayData.diet.completed ? "Yes" : "No";
+                    waterConsumed = dayData.water || "0";
+                    indoorWorkout = dayData.workouts && dayData.workouts.indoor && dayData.workouts.indoor.completed ? "Yes" : "No";
+                    outdoorWorkout = dayData.workouts && dayData.workouts.outdoor && dayData.workouts.outdoor.completed ? "Yes" : "No";
+                    readingPages = dayData.reading && dayData.reading.pages ? dayData.reading.pages : "0";
+                    photoTaken = dayData.photo && dayData.photo.taken ? "Yes" : "No";
+                }
+                
+                // حساب تاريخ اليوم
+                const dayDate = new Date(startDate);
+                dayDate.setDate(startDate.getDate() + i - 1);
+                const formattedDate = `${dayDate.getFullYear()}-${(dayDate.getMonth()+1).toString().padStart(2, '0')}-${dayDate.getDate().toString().padStart(2, '0')}`;
+                
+                csvContent += `${i},${formattedDate},${dietCompleted},${waterConsumed},${indoorWorkout},${outdoorWorkout},${readingPages},${photoTaken}\n`;
+            }
+            
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "75hard_progress.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert(currentLanguage === 'ar' ? 'تم تصدير البيانات بنجاح!' : 'Data exported successfully!');
+        }
+
+        // عرض التقارير
+        function showReports() {
+            alert(currentLanguage === 'ar' ? 'سيتم تطوير هذه الميزة قريباً' : 'This feature will be developed soon');
+        }
+
+        // التحقق من الإعدادات
+        function checkSettings() {
+            const settings = JSON.parse(localStorage.getItem('75hard_settings') || '{}');
+            return settings.startDate !== undefined;
+        }
+
+        // عرض تنبيه
+        function showAlert(title, message, confirmCallback = null) {
+            document.getElementById('alertTitle').textContent = title;
+            document.getElementById('alertMessage').textContent = message;
+            document.getElementById('alertModal').style.display = 'flex';
+            
+            const confirmBtn = document.getElementById('alertConfirmBtn');
+            const cancelBtn = document.getElementById('alertCancelBtn');
+            
+            // إزالة المستمعين السابقين
+            confirmBtn.replaceWith(confirmBtn.cloneNode(true));
+            cancelBtn.replaceWith(cancelBtn.cloneNode(true));
+            
+            // إضافة مستمعين جدد
+            document.getElementById('alertConfirmBtn').onclick = function() {
+                document.getElementById('alertModal').style.display = 'none';
+                if (confirmCallback) confirmCallback();
+            };
+            
+            document.getElementById('alertCancelBtn').onclick = function() {
+                document.getElementById('alertModal').style.display = 'none';
+            };
+        }
+
+        // عرض الصور
+        function renderPhotos() {
+            const container = document.getElementById('photoPreviewContainer');
+            container.innerHTML = '';
+            
+            currentPhotos.forEach((photo, index) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'photo-preview-wrapper';
+                
+                const img = document.createElement('img');
+                img.className = 'photo-preview';
+                img.src = photo;
+                img.alt = `الصورة ${index + 1}`;
+                img.onclick = () => openPhotoModal(photo);
+                
+                const deleteBtn = document.createElement('div');
+                deleteBtn.className = 'delete-photo';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (confirm(currentLanguage === 'ar' ? 'هل تريد حذف هذه الصورة؟' : 'Do you want to delete this photo?')) {
+                        currentPhotos.splice(index, 1);
+                        renderPhotos();
+                        saveDayData(currentDayNumber);
+                    }
+                };
+                
+                wrapper.appendChild(img);
+                wrapper.appendChild(deleteBtn);
+                container.appendChild(wrapper);
+            });
         }
 
         // Setup event listeners
@@ -2535,8 +2923,6 @@
             // Photo upload
             const photoUploadArea = document.getElementById('photoUploadArea');
             const photoInput = document.getElementById('photoInput');
-            const photoPreview = document.getElementById('photoPreview');
-            const photoPreviewContainer = document.getElementById('photoPreviewContainer');
 
             if (photoUploadArea && photoInput) {
                 photoUploadArea.addEventListener('click', () => {
@@ -2544,25 +2930,26 @@
                 });
 
                 photoInput.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            photoPreview.src = e.target.result;
-                            photoPreviewContainer.style.display = 'block';
-                            document.getElementById('photoTakenCheckbox').checked = true;
-                            saveDayData();
-                        };
-                        reader.readAsDataURL(file);
+                    const files = e.target.files;
+                    if (files) {
+                        for (let i = 0; i < files.length; i++) {
+                            if (currentPhotos.length >= 5) {
+                                alert(currentLanguage === 'ar' ? 'لا يمكن رفع أكثر من 5 صور' : 'Cannot upload more than 5 photos');
+                                break;
+                            }
+                            
+                            const file = files[i];
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                currentPhotos.push(e.target.result);
+                                renderPhotos();
+                                document.getElementById('photoTakenCheckbox').checked = true;
+                                saveDayData(currentDayNumber);
+                            };
+                            reader.readAsDataURL(file);
+                        }
                     }
                 });
-
-                // فتح الصورة بالحجم الكامل
-                if (photoPreview) {
-                    photoPreview.addEventListener('click', () => {
-                        openPhotoModal(photoPreview.src);
-                    });
-                }
             }
 
             // Login form
@@ -2588,7 +2975,7 @@
                     
                     checkAuthStatus();
                     showPage('dashboard');
-                    alert('تم تسجيل الدخول بنجاح!');
+                    alert(currentLanguage === 'ar' ? 'تم تسجيل الدخول بنجاح!' : 'Logged in successfully!');
                 });
             }
 
@@ -2614,7 +3001,7 @@
                     
                     checkAuthStatus();
                     showPage('dashboard');
-                    alert('تم إنشاء الحساب بنجاح!');
+                    alert(currentLanguage === 'ar' ? 'تم إنشاء الحساب بنجاح!' : 'Account created successfully!');
                 });
             }
 
@@ -2622,17 +3009,16 @@
             const resetChallengeBtn = document.getElementById('resetChallengeBtn');
             if (resetChallengeBtn) {
                 resetChallengeBtn.addEventListener('click', () => {
-                    if (confirm('تحذير: إعادة التعيين ستحذف جميع بيانات التقدم. هل أنت متأكد؟')) {
+                    if (confirm(currentLanguage === 'ar' ? 'تحذير: إعادة التعيين ستحذف جميع بيانات التقدم. هل أنت متأكد؟' : 'Warning: Resetting will delete all progress data. Are you sure?')) {
                         // Clear all user-specific data
                         if (currentUser) {
                             const userEmail = currentUser.email;
                             for (let i = 1; i <= 75; i++) {
                                 localStorage.removeItem(`75hard_${userEmail}_day${i}`);
                             }
-                            localStorage.removeItem(`75hard_${userEmail}_currentDay`);
                         }
                         
-                        alert('تم إعادة تعيين التحدي بنجاح!');
+                        alert(currentLanguage === 'ar' ? 'تم إعادة تعيين التحدي بنجاح!' : 'Challenge reset successfully!');
                         generateDaysGrid(); // Regenerate with initial state
                     }
                 });
@@ -2642,59 +3028,10 @@
             const resetDayBtn = document.getElementById('resetDayBtn');
             if (resetDayBtn) {
                 resetDayBtn.addEventListener('click', () => {
-                    if (confirm('هل تريد إعادة تعيين هذا اليوم؟ سيتم مسح جميع بيانات هذا اليوم.')) {
-                        // Reset all inputs for the day
-                        document.getElementById('dietCheckbox').checked = false;
-                        document.getElementById('workout1Checkbox').checked = false;
-                        document.getElementById('workout2Checkbox').checked = false;
-                        document.getElementById('readingCheckbox').checked = false;
-                        document.getElementById('photoTakenCheckbox').checked = false;
-                        
-                        // Reset meal checkboxes and calories
-                        const mealCheckboxes = [
-                            'breakfastCheckbox', 'snack1Checkbox', 'lunchCheckbox', 
-                            'snack2Checkbox', 'dinnerCheckbox'
-                        ];
-                        const calorieInputs = [
-                            'breakfastCalories', 'snack1Calories', 'lunchCalories',
-                            'snack2Calories', 'dinnerCalories'
-                        ];
-                        const notesInputs = [
-                            'breakfastNotes', 'snack1Notes', 'lunchNotes',
-                            'snack2Notes', 'dinnerNotes'
-                        ];
-                        
-                        mealCheckboxes.forEach(id => {
-                            document.getElementById(id).checked = false;
-                        });
-                        
-                        calorieInputs.forEach(id => {
-                            document.getElementById(id).value = '';
-                        });
-                        
-                        notesInputs.forEach(id => {
-                            document.getElementById(id).value = '';
-                        });
-                        
-                        // Reset water
-                        totalWater = 0;
-                        updateWaterDisplay();
-                        
-                        // Reset workout inputs
-                        document.getElementById('workout1Input').value = '';
-                        document.getElementById('workout2Input').value = '';
-                        
-                        // Reset reading
-                        document.getElementById('pagesInput').value = '';
-                        updateReadingProgress();
-                        
-                        // Reset photo
-                        document.getElementById('photoPreviewContainer').style.display = 'none';
-                        
-                        // Save the reset state
-                        saveDayData();
-                        
-                        alert('تم إعادة تعيين اليوم بنجاح!');
+                    if (confirm(currentLanguage === 'ar' ? 'هل تريد إعادة تعيين هذا اليوم؟ سيتم مسح جميع بيانات هذا اليوم.' : 'Do you want to reset this day? All data for this day will be cleared.')) {
+                        resetDayForm();
+                        saveDayData(currentDayNumber);
+                        alert(currentLanguage === 'ar' ? 'تم إعادة تعيين اليوم بنجاح!' : 'Day reset successfully!');
                     }
                 });
             }
@@ -2710,7 +3047,7 @@
                 const element = document.getElementById(id);
                 if (element) {
                     element.addEventListener('change', () => {
-                        saveDayData();
+                        saveDayData(currentDayNumber);
                     });
                 }
             });
@@ -2725,7 +3062,7 @@
                 const element = document.getElementById(id);
                 if (element) {
                     element.addEventListener('input', () => {
-                        saveDayData();
+                        saveDayData(currentDayNumber);
                     });
                 }
             });
@@ -2753,7 +3090,7 @@
             currentUser = null;
             checkAuthStatus();
             showPage('home');
-            alert('تم تسجيل الخروج بنجاح!');
+            alert(currentLanguage === 'ar' ? 'تم تسجيل الخروج بنجاح!' : 'Logged out successfully!');
         }
     </script>
 </body>
