@@ -449,7 +449,7 @@
             box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.1);
         }
 
-        /* Password Toggle */
+        /* Password Toggle - UPDATED */
         .password-toggle {
             position: absolute;
             left: 15px;
@@ -469,6 +469,14 @@
 
         .password-toggle:hover {
             color: var(--primary-color);
+        }
+
+        .eye-icon {
+            font-size: 1.2rem;
+        }
+
+        .eye-icon.hidden {
+            display: none;
         }
 
         /* Alert Messages */
@@ -1522,7 +1530,8 @@
                         <label for="loginPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="loginPassword" class="form-control" required>
                         <button type="button" class="password-toggle" id="loginPasswordToggle" onclick="togglePasswordVisibility('loginPassword', 'loginPasswordToggle')">
-                            <span>👁️</span>
+                            <span class="eye-icon">👁️</span>
+                            <span class="eye-icon hidden">🚫</span>
                         </button>
                     </div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;" data-en="Login" data-ar="تسجيل الدخول">تسجيل الدخول</button>
@@ -1562,7 +1571,8 @@
                         <label for="signupPassword" data-en="Password" data-ar="كلمة المرور">كلمة المرور</label>
                         <input type="password" id="signupPassword" class="form-control" required minlength="8">
                         <button type="button" class="password-toggle" id="signupPasswordToggle" onclick="togglePasswordVisibility('signupPassword', 'signupPasswordToggle')">
-                            <span>👁️</span>
+                            <span class="eye-icon">👁️</span>
+                            <span class="eye-icon hidden">🚫</span>
                         </button>
                         <small style="color: var(--light-text);" data-en="Password must contain at least 8 characters" data-ar="يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل">يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل</small>
                     </div>
@@ -1874,10 +1884,12 @@
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('تطبيق تحدي 75 يومًا - جاري التهيئة...');
+            
             // Initialize admin account
             initializeAdminAccount();
             
-            // Check if user is logged in (for demo purposes)
+            // Check if user is logged in
             checkAuthStatus();
             
             // Load saved settings
@@ -1903,6 +1915,8 @@
             
             // تحديث زر اللغة
             updateLanguageToggle();
+            
+            console.log('تم تهيئة التطبيق بنجاح!');
         });
 
         // Initialize admin account
@@ -1922,11 +1936,16 @@
             if (!adminExists) {
                 users.push(adminAccount);
                 localStorage.setItem('75hard_users', JSON.stringify(users));
+                console.log('تم إنشاء حساب المشرف الافتراضي');
+            } else {
+                console.log('حساب المشرف موجود بالفعل');
             }
         }
 
         // Page navigation function
         function showPage(pageId) {
+            console.log('جاري الانتقال إلى الصفحة:', pageId);
+            
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -1938,6 +1957,7 @@
             // Special handling for dashboard pages (require login)
             if (['dashboard', 'dayView', 'settings', 'reports', 'adminUsers'].includes(pageId)) {
                 if (!isLoggedIn()) {
+                    console.log('المستخدم غير مسجل، جاري التوجيه إلى صفحة تسجيل الدخول');
                     showPage('login');
                     return;
                 }
@@ -1955,27 +1975,38 @@
             
             // Scroll to top when changing pages
             window.scrollTo(0, 0);
+            
+            console.log('تم الانتقال إلى الصفحة:', pageId);
         }
 
         // Check if user is logged in
         function isLoggedIn() {
-            return localStorage.getItem('75hard_currentUser') !== null;
+            const isLogged = localStorage.getItem('75hard_currentUser') !== null;
+            console.log('فحص حالة تسجيل الدخول:', isLogged);
+            return isLogged;
         }
 
         // Get current user - FIXED VERSION
         function getCurrentUser() {
             try {
                 const userStr = localStorage.getItem('75hard_currentUser');
-                if (!userStr) return null;
-                return JSON.parse(userStr);
+                if (!userStr) {
+                    console.log('لا يوجد مستخدم مسجل حالياً');
+                    return null;
+                }
+                const user = JSON.parse(userStr);
+                console.log('تم تحميل بيانات المستخدم:', user.email);
+                return user;
             } catch (error) {
-                console.error('Error parsing user data:', error);
+                console.error('خطأ في تحليل بيانات المستخدم:', error);
                 return null;
             }
         }
 
         // Check authentication status and show appropriate pages
         function checkAuthStatus() {
+            console.log('جاري تحديث حالة المصادقة...');
+            
             const authButtons = document.getElementById('authButtons');
             const challengeLink = document.getElementById('challengeLink');
             const adminLink = document.getElementById('adminLink');
@@ -1984,6 +2015,7 @@
                 const user = getCurrentUser();
                 if (!user) {
                     // If user data is corrupted, log out
+                    console.log('بيانات المستخدم تالفة، جاري تسجيل الخروج');
                     logout();
                     return;
                 }
@@ -2010,9 +2042,12 @@
                 // Show admin link only for admin users
                 if (user.role === 'admin') {
                     adminLink.classList.remove('hidden');
+                    console.log('المستخدم هو مشرف، تم إظهار رابط المشرف');
                 } else {
                     adminLink.classList.add('hidden');
                 }
+                
+                console.log('تم تحديث واجهة المستخدم للمستخدم المسجل:', user.name);
             } else {
                 authButtons.innerHTML = `
                     <button class="lang-btn" id="languageToggle" onclick="toggleLanguage()">${currentLanguage === 'ar' ? 'English' : 'العربية'}</button>
@@ -2023,6 +2058,8 @@
                 // Hide challenge and admin links for non-logged in users
                 challengeLink.classList.add('hidden');
                 adminLink.classList.add('hidden');
+                
+                console.log('تم تحديث واجهة المستخدم للزائر');
             }
             
             // Update language for all elements
@@ -2032,6 +2069,7 @@
         // Toggle language function
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
+            console.log('تم تغيير اللغة إلى:', currentLanguage);
             
             // Update HTML direction
             document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
@@ -2095,26 +2133,44 @@
             }
         }
 
-        // Toggle password visibility
+        // Toggle password visibility - UPDATED VERSION
         function togglePasswordVisibility(passwordFieldId, toggleButtonId) {
             const passwordField = document.getElementById(passwordFieldId);
             const toggleButton = document.getElementById(toggleButtonId);
             
+            if (!passwordField || !toggleButton) {
+                console.error('لم يتم العثور على عنصر كلمة المرور أو زر التبديل');
+                return;
+            }
+            
+            const eyeIcons = toggleButton.querySelectorAll('.eye-icon');
+            
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
-                toggleButton.innerHTML = '🙈';
+                eyeIcons[0].classList.add('hidden');
+                eyeIcons[1].classList.remove('hidden');
+                console.log('تم إظهار كلمة المرور');
             } else {
                 passwordField.type = 'password';
-                toggleButton.innerHTML = '👁️';
+                eyeIcons[0].classList.remove('hidden');
+                eyeIcons[1].classList.add('hidden');
+                console.log('تم إخفاء كلمة المرور');
             }
         }
 
         // Show alert message
         function showAlert(alertId, message, type) {
             const alertElement = document.getElementById(alertId);
+            if (!alertElement) {
+                console.error('لم يتم العثور على عنصر التنبيه:', alertId);
+                return;
+            }
+            
             alertElement.textContent = message;
             alertElement.className = `alert alert-${type}`;
             alertElement.classList.remove('hidden');
+            
+            console.log('عرض التنبيه:', message);
             
             // Auto hide after 5 seconds
             setTimeout(() => {
@@ -2669,6 +2725,8 @@
 
         // Setup event listeners
         function setupEventListeners() {
+            console.log('جاري إعداد مستمعي الأحداث...');
+            
             // FAQ toggle
             document.querySelectorAll('.faq-question').forEach(question => {
                 question.addEventListener('click', () => {
@@ -2712,28 +2770,43 @@
                 }
             }
 
-            // Login form - FIXED VERSION
+            // Login form - COMPLETELY FIXED VERSION
             const loginForm = document.getElementById('loginForm');
             if (loginForm) {
                 loginForm.addEventListener('submit', (e) => {
                     e.preventDefault();
+                    console.log('جاري معالجة تسجيل الدخول...');
+                    
                     const email = document.getElementById('loginEmail').value;
                     const password = document.getElementById('loginPassword').value;
                     
+                    console.log('البريد الإلكتروني المدخل:', email);
+                    console.log('كلمة المرور المدخلة:', password ? '******' : 'فارغة');
+                    
                     // Validate login credentials
                     const users = JSON.parse(localStorage.getItem('75hard_users') || '[]');
+                    console.log('عدد المستخدمين المسجلين:', users.length);
+                    
                     const user = users.find(u => u.email === email && u.password === password);
                     
                     if (user) {
+                        console.log('تم العثور على المستخدم:', user.email);
+                        
                         // Save user data properly
                         localStorage.setItem('75hard_currentUser', JSON.stringify(user));
                         currentUser = user;
+                        
+                        // Verify the data was saved
+                        const savedUser = localStorage.getItem('75hard_currentUser');
+                        console.log('تم حفظ بيانات المستخدم في التخزين:', savedUser ? 'نعم' : 'لا');
+                        
                         checkAuthStatus();
                         showPage('dashboard');
                         showAlert('loginAlert', 
                             currentLanguage === 'ar' ? 'تم تسجيل الدخول بنجاح!' : 'Login successful!', 
                             'success');
                     } else {
+                        console.log('فشل تسجيل الدخول: بيانات غير صحيحة');
                         showAlert('loginAlert', 
                             currentLanguage === 'ar' ? 'البريد الإلكتروني أو كلمة المرور غير صحيحة' : 'Incorrect email or password', 
                             'error');
@@ -2888,10 +2961,13 @@
                     });
                 }
             });
+            
+            console.log('تم إعداد جميع مستمعي الأحداث بنجاح');
         }
 
         // Logout function
         function logout() {
+            console.log('جاري تسجيل الخروج...');
             localStorage.removeItem('75hard_currentUser');
             currentUser = null;
             checkAuthStatus();
